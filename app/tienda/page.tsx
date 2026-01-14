@@ -1,7 +1,6 @@
 import Image from "next/image";
 import "./styles.css";
 
-// Datos simulados basados en la imagen
 const products = [
   {
     id: 1,

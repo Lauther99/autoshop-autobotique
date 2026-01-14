@@ -1,4 +1,4 @@
-import { numero } from "../../general_information/information";
+import { numero } from "../../data/information";
 import Link from 'next/link'
 
 
