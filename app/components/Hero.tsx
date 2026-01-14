@@ -1,3 +1,5 @@
+import { numero } from "../../general_information/information";
+import Link from 'next/link'
 
 
 export default function Hero() {
@@ -17,8 +19,15 @@ export default function Hero() {
             de una década en la industria.
           </p>
           <div className="hero-buttons">
-            <button className="btn btn-primary">Ir a la Tienda &rarr;</button>
-            <button className="btn btn-outline">Contáctanos</button>
+            <Link href="/tienda" className="btn btn-primary">Ir a la Tienda &rarr;</Link>
+            <a
+              href={`https://wa.me/${numero}?text=Hola%20quiero%20más%20información`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-outline"
+            >
+              Contáctanos
+            </a>
           </div>
         </div>
       </div>

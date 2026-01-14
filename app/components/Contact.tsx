@@ -2,10 +2,8 @@
 
 import { useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
+import { numero } from "../../general_information/information";
 
-const numero = "51952295928";
-
-let wspLink = "https://wa.me/<número>?text=<mensaje_codificado>";
 
 export default function Contact() {
   const [nombre, setNombre] = useState("");

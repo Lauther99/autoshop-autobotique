@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function About() {
   return (
     <section className="about-section">
@@ -78,10 +80,7 @@ export default function About() {
               <p>Especialistas certificados.</p>
             </div>
           </div>
-
-          <button className="btn btn-outline" style={{ marginTop: "20px" }}>
-            Conocer nuestra historia &rarr;
-          </button>
+          <Link className="btn btn-outline" style={{ marginTop: "20px" }} href="/about">Conocer nuestra historia &rarr;</Link>
         </div>
       </div>
     </section>
