@@ -9,6 +9,9 @@ import Footer from "@/app/components/Footer";
 export const metadata: Metadata = {
   title: "Autoshop Autoboutique",
   description: "Expertos en accesorios para tu vehículo",
+  icons: {
+    icon: "/logo1.ico",
+  }
 };
 
 export default function RootLayout({
