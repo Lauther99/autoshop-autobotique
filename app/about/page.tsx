@@ -2,7 +2,7 @@ import Image from "next/image";
 import "./styles.css";
 import { PiHandshake } from "react-icons/pi";
 import { FiUserCheck } from "react-icons/fi";
-import Link from 'next/link'
+import Link from "next/link";
 
 const numero = "51952295928";
 
@@ -67,6 +67,43 @@ export default function AboutPage() {
             </div>
           </div>
         </section> */}
+
+        <div style={{ textAlign: "center", marginBottom: "80px" }}>
+          <h2 className="section-title">
+            Quienes <span className="text-red">Somos</span>
+          </h2>
+          <p
+            style={{
+              textAlign: "justify",
+              lineHeight: 1.9,
+              fontSize: "1.05rem",
+              color: "#e5e5e5",
+              maxWidth: "850px",
+              margin: "0 auto",
+              padding: "0 10px",
+              letterSpacing: "0.3px",
+            }}
+          >
+            <span style={{ color: "var(--primary-red)", fontWeight: 600 }}>
+              AutoShop Autoboutique
+            </span>{" "}
+            es una tienda especializada en productos exclusivos para autos,
+            camionetas y camiones. Contamos con más de 15 años de experiencia en
+            el sector automotriz, ofreciendo soluciones de alta calidad en
+            accesorios, iluminación, audio, seguridad y personalización
+            vehicular.
+            <br />
+            <br />
+            Nos diferenciamos por trabajar con marcas reconocidas, precios
+            competitivos por debajo del mercado y una atención personalizada 1 a
+            1, respaldada por un equipo técnico especializado que asesora al
+            cliente antes, durante y después de cada compra.
+            <br />
+            <br />
+            Nuestra tienda virtual nace para acercar lo mejor del mundo
+            automotriz a todo el Perú, de forma rápida, segura y confiable.
+          </p>
+        </div>
 
         {/* --- MISSION & VISION --- */}
         <section className="mv-grid">
@@ -268,7 +305,9 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="cta-buttons">
-            <Link href="/tienda" className="btn btn-white">Explorar Catálogo</Link>
+            <Link href="/tienda" className="btn btn-white">
+              Explorar Catálogo
+            </Link>
             <a
               href={`https://wa.me/${numero}?text=Hola%20quiero%20más%20información`}
               target="_blank"
