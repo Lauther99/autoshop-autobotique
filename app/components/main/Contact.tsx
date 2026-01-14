@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
-import { numero } from "../../data/information";
+import { numero } from "@/data/information";
 
 
 export default function Contact() {

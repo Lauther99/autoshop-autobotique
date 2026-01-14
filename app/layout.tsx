@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/app/components/Header";
-import Footer from "@/app/components/Footer";
+import Header from "@/app/components/main/Header";
+import Footer from "@/app/components/main/Footer";
 
 // Puedes usar iconos SVG directos o una librería como Lucide React
 // Aquí usaré SVGs simples inline para asegurar que funcione sin instalar nada extra
