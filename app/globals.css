@@ -246,12 +246,11 @@ ul {
 }
 
 .product-image {
+  position: relative; /* <--- AGREGA ESTO */
   height: 200px;
   width: 100%;
-  object-fit: cover;
   background: #222;
 }
-
 .card-info {
   padding: 15px;
 }

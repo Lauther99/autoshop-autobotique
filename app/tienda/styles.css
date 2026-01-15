@@ -329,6 +329,13 @@
   background: #222;
 }
 
+.dots {
+  display: flex;
+  align-items: flex-end;
+  color: #666;
+  padding: 0 4px;
+}
+
 /* Responsive Tienda */
 @media (max-width: 900px) {
   .shop-container { flex-direction: column; }
