@@ -26,19 +26,23 @@ export default function ShopPage() {
     const page = Number(searchParams.get("page")) || 1;
     const cats = searchParams.get("cat")?.split(",").filter(Boolean) || [];
     const brands = searchParams.get("brand")?.split(",").filter(Boolean) || [];
-    
-    const { priceRange } = useProductStore.getState();
-    const min = searchParams.get("price_min")
-      ? Number(searchParams.get("price_min"))
-      : priceRange.min;
-    const max = searchParams.get("price_max")
-      ? Number(searchParams.get("price_max"))
-      : priceRange.max;
 
+    const { priceRange } = useProductStore.getState();
+    const urlMin = searchParams.get("price_min");
+    const urlMax = searchParams.get("price_max");
+
+    let finalMin = urlMin ? Number(urlMin) : priceRange.min;
+    let finalMax = urlMax ? Number(urlMax) : priceRange.max;
+
+    if (finalMin < priceRange.min) finalMin = priceRange.min;
+    if (finalMax > priceRange.max) finalMax = priceRange.max;
+
+    if (finalMin > finalMax) finalMin = priceRange.min;
+
+    setFilter("minPrice", finalMin);
+    setFilter("maxPrice", finalMax);
     setFilter("categories", cats);
     setFilter("brands", brands);
-    setFilter("minPrice", min);
-    setFilter("maxPrice", max);
 
     applyFilters();
     setSortType(sort);

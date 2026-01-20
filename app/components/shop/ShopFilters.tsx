@@ -20,7 +20,6 @@ export default function ShopFilters() {
   const applyFilters = useProductStore((s) => s.applyFilters);
   const sortProducts = useProductStore((s) => s.sortProducts);
   const goToPage = useProductStore((s) => s.goToPage);
-  const resetFilters = useProductStore((s) => s.resetFilters);
 
   const handleReset = () => {
     router.push(pathname);

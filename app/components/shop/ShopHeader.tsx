@@ -1,7 +1,6 @@
 "use client";
 import { useProductStore } from "@/store/productStore";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { useEffect } from "react";
 
 export default function ShopHeader() {
   const setSortType = useProductStore((state) => state.setSortType);
