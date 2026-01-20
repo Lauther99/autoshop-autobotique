@@ -80,7 +80,7 @@ export default function About() {
               <p>Especialistas certificados.</p>
             </div>
           </div>
-          <Link className="btn btn-outline" style={{ marginTop: "20px" }} href="/about">Conocer nuestra historia &rarr;</Link>
+          <Link className="btn btn-outline" style={{ marginTop: "20px" }} href="/nosotros">Conocer nuestra historia &rarr;</Link>
         </div>
       </div>
     </section>

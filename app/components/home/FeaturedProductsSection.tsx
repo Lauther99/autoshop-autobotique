@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Product } from "@/types/product";
-import { ProductCard } from "./ProductCard";
+import { FeaturedProductCard } from "./FeaturedProductCard";
 import { products } from "@/data/products";
 
 interface FeaturedProductsProps {
@@ -25,7 +25,7 @@ export default function FeaturedProducts() {
 
       <div className="products-grid">
         {products.slice(0, 4).map((product, index) => (
-          <ProductCard product={product} key={index} />
+          <FeaturedProductCard product={product} key={index} />
         ))}
       </div>
     </section>

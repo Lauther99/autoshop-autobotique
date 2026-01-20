@@ -1,5 +1,5 @@
 import Image from "next/image";
-import "./styles.css";
+import "./nosotros_module.css";
 import { PiHandshake } from "react-icons/pi";
 import { FiUserCheck } from "react-icons/fi";
 import Link from "next/link";

@@ -19,7 +19,7 @@ export default function Header() {
               <Link href="/tienda">Tienda</Link>
             </li>
             <li>
-              <Link href="/about">Sobre Nosotros</Link>
+              <Link href="/nosotros">Sobre Nosotros</Link>
             </li>
           </ul>
         </nav>

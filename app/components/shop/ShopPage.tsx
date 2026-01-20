@@ -1,6 +1,5 @@
 "use client";
 
-import "./styles.css";
 import { products } from "@/data/products";
 import ShopBreadcrumbs from "./ShopBreadcrumbs";
 import ShopFilters from "./ShopFilters";

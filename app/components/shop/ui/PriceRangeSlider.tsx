@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
-import "./price-range.css";
-
+import './PriceRangeSlider_module.css'
 interface Props {
   min: number;
   max: number;

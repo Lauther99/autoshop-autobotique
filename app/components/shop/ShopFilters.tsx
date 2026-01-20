@@ -1,7 +1,7 @@
 "use client";
 import { useProductStore } from "@/store/productStore";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import PriceRangeSlider from "./filters/PriceRangeSlider";
+import PriceRangeSlider from "./ui/PriceRangeSlider";
 import { MdCleaningServices } from "react-icons/md";
 
 export default function ShopFilters() {

@@ -5,7 +5,7 @@ interface ProductCardProps {
   product: Product;
 }
 
-export function ProductCard({ product }: ProductCardProps) {
+export function FeaturedProductCard({ product }: ProductCardProps) {
   const {
     id,
     title,
