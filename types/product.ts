@@ -1,13 +1,19 @@
-
+export interface ProductSpecs {
+  label: string;
+  value: string;
+}
 
 export interface Product {
   id: number;
-  brand: string;
+  sku?: string | null;
+  brand?: string | null;
   title: string;
-  category: string | null;
+  category: string;
   price: number;
-  oldPrice?: number | null;
-  image: string;
-  tag?: string | null;
-  tagType?: string | null;
+  currency: string;
+  description?: string | null;
+  specs?: ProductSpecs[] | null;
+  isFreeShipping?: boolean | null;
+  stock: number;
+  images?: string[] | null;
 }

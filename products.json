@@ -1,0 +1,436 @@
+[
+  {
+    "id": 1,
+    "sku": "MC62",
+    "brand": "MUSWAY",
+    "title": "PARLANTE COAXIAL 2 VÍAS",
+    "category": "PARLANTES",
+    "price": 100,
+    "currency": "SOL",
+    "description": "16.5CM( 6.5\"), POTENCIA RMS: 100 WATTS ,  POTENCIA MAX: 200 WATTS , IMPEDANCIA: 4 OHMS , RANGO DE FRECUENCIA: 65 - 20000 HZ",
+    "stock": 1,
+    "isFreeShipping": true,
+    "specs": [],
+    "images": []
+  },
+  {
+    "id": 2,
+    "sku": "GTO-X5",
+    "brand": "JBL",
+    "title": "PARLANTE 5\" GTO-X5",
+    "category": "PARLANTES",
+    "price": 200,
+    "currency": "SOL",
+    "description": "5-1/ 4 \", Potencia máxima de salida 135W, Tiene un rango de frecuencia de 75Hz-20kHz, Carcasa de aluminio para mayor protección, Dimensiones: 5.079\" x 5.079\" x 5.5\", Con una profundidad de 4.8cm",
+    "stock": 1,
+    "isFreeShipping": true,
+    "specs": [
+      {
+        "label": "Tamaño",
+        "content": "5.25\""
+      },
+      {
+        "label": "Potencia Máxima",
+        "content": "135W"
+      },
+      {
+        "label": "Rango de Frecuencia",
+        "content": "75Hz–20kHz"
+      },
+      {
+        "label": "Material",
+        "content": "Aluminio"
+      },
+      {
+        "label": "Dimensiones",
+        "content": "5.079\" × 5.079\" × 5.5\""
+      },
+      {
+        "label": "Profundidad",
+        "content": "4.8cm"
+      }
+    ],
+    "images": []
+  },
+  {
+    "id": 3,
+    "sku": "GTO-X4",
+    "brand": "JBL",
+    "title": "PARLANTE JBL 4\" 2 VIAS",
+    "category": "PARLANTES",
+    "price": 300,
+    "currency": "SOL",
+    "description": "105W, PEAK 35WRMS, ALTAVOCES DOS VIAS Y 4\"",
+    "stock": 1,
+    "isFreeShipping": true,
+    "specs": [
+      {
+        "label": "Potencia Máxima",
+        "content": "105W"
+      },
+      {
+        "label": "Potencia RMS",
+        "content": "35W"
+      },
+      {
+        "label": "Tipo",
+        "content": "2 vías"
+      },
+      {
+        "label": "Tamaño",
+        "content": "4\""
+      }
+    ],
+    "images": []
+  },
+  {
+    "id": 4,
+    "sku": "DCX 165.3",
+    "brand": "HERTZ",
+    "title": "PARLANTE 6.5\" 2 VIAS",
+    "category": "PARLANTES",
+    "price": 400,
+    "currency": "SOL",
+    "description": "6.5\" tweeter size 15mm peak 120 w 60w continuous impedancia 4ohm 93 db spl 2 vias",
+    "stock": 1,
+    "isFreeShipping": true,
+    "specs": [
+      {
+        "label": "Tamaño",
+        "content": "6.5\""
+      },
+      {
+        "label": "Tamaño Tweeter",
+        "content": "15mm"
+      },
+      {
+        "label": "Potencia Máxima",
+        "content": "120W"
+      },
+      {
+        "label": "Potencia Continua",
+        "content": "60W"
+      },
+      {
+        "label": "Impedancia",
+        "content": "4Ω"
+      },
+      {
+        "label": "Sensibilidad",
+        "content": "93dB SPL"
+      },
+      {
+        "label": "Tipo",
+        "content": "2 vías"
+      }
+    ],
+    "images": []
+  },
+  {
+    "id": 5,
+    "sku": "GZTF 6.5X",
+    "brand": "GROUND ZERO",
+    "title": "PARLANTE 6.5\" ",
+    "category": "PARLANTES",
+    "price": 500,
+    "currency": "SOL",
+    "description": null,
+    "stock": 1,
+    "isFreeShipping": true,
+    "specs": [
+      {
+        "label": "Tamaño",
+        "content": "6.5\""
+      }
+    ],
+    "images": []
+  },
+  {
+    "id": 6,
+    "sku": "APX 6.5",
+    "brand": "AUDISON",
+    "title": "PARLANTE AUDISON 2 VIAS",
+    "category": "PARLANTES",
+    "price": 100,
+    "currency": "SOL",
+    "description": "POTENCIA RMS:75-150  WATTS , POTENCIA DE SALIDA MAXIMA 200 WTTS,  RANGO DE FRECUENCIA 2300 HZ, TECNOLOGIA DE COACTIVIDAD COXIAL",
+    "stock": 1,
+    "isFreeShipping": true,
+    "specs": [
+      {
+        "label": "Tamaño",
+        "content": "6.5\""
+      },
+      {
+        "label": "Tipo",
+        "content": "2 vías"
+      },
+      {
+        "label": "Potencia RMS",
+        "content": "75–150W"
+      },
+      {
+        "label": "Potencia Máxima",
+        "content": "200W"
+      },
+      {
+        "label": "Rango de Frecuencia",
+        "content": "2300Hz"
+      },
+      {
+        "label": "Tecnología",
+        "content": "Coaxial"
+      }
+    ],
+    "images": []
+  },
+  {
+    "id": 7,
+    "sku": "DSC650",
+    "brand": "KICKER ",
+    "title": "PARLANTE 2 VIAS 6.5\"",
+    "category": "PARLANTES",
+    "price": 200,
+    "currency": "SOL",
+    "description": "6.5\" 2 VIAS  240 WATTS PEAK ",
+    "stock": 1,
+    "isFreeShipping": true,
+    "specs": [
+      {
+        "label": "Tamaño",
+        "content": "6.5\""
+      },
+      {
+        "label": "Tipo",
+        "content": "2 vías"
+      },
+      {
+        "label": "Potencia Máxima",
+        "content": "240W"
+      }
+    ],
+    "images": []
+  },
+  {
+    "id": 8,
+    "sku": "STAGE2634",
+    "brand": "JBL",
+    "title": "PARLANTE 6.5\" 3 VIAS",
+    "category": "PARLANTES",
+    "price": 300,
+    "currency": "SOL",
+    "description": "6-1/2 (160MM) 3 WAY CAR SPEAKER ",
+    "stock": 1,
+    "isFreeShipping": true,
+    "specs": [
+      {
+        "label": "Tamaño",
+        "content": "6.5\" (160mm)"
+      },
+      {
+        "label": "Tipo",
+        "content": "3 vías"
+      }
+    ],
+    "images": []
+  },
+  {
+    "id": 9,
+    "sku": "MC6.2C",
+    "brand": "MUSWAY",
+    "title": "COMPONENTE 2 VÍAS ACTIVO 100 W RMS",
+    "category": "COMPONENTES",
+    "price": 400,
+    "currency": "SOL",
+    "description": "16.5 CM( 6.5\"), POTENCIA RMS: 100 WATTS,  POTENCIA MAX: 200 WATTS, IMPEDANCIA: 4 OHMS, FREQUENCY RANGE 65-6000 HZ",
+    "stock": 1,
+    "isFreeShipping": true,
+    "specs": [
+      {
+        "label": "Tamaño",
+        "content": "6.5\""
+      },
+      {
+        "label": "Tipo",
+        "content": "2 vías (activo)"
+      },
+      {
+        "label": "Potencia RMS",
+        "content": "100W"
+      },
+      {
+        "label": "Potencia Máxima",
+        "content": "200W"
+      },
+      {
+        "label": "Impedancia",
+        "content": "4Ω"
+      },
+      {
+        "label": "Rango de Frecuencia",
+        "content": "65–6000Hz"
+      }
+    ],
+    "images": []
+  },
+  {
+    "id": 10,
+    "sku": "GTO 629",
+    "brand": "JBL",
+    "title": "COMPONENTE 2 VIAS 6.5\"",
+    "category": " COMPONENTES",
+    "price": 500,
+    "currency": "SOL",
+    "description": "6.5\" 2 VIAS  180 W 60 RMS",
+    "stock": 1,
+    "isFreeShipping": true,
+    "specs": [],
+    "images": []
+  },
+  {
+    "id": 11,
+    "sku": "GTO 609C",
+    "brand": "JBL",
+    "title": "COMPONENTE JBL 6.5\" 2 VIAS ",
+    "category": "COMPONENTES",
+    "price": 100,
+    "currency": "SOL",
+    "description": "6-1/2 \" 2 VIAS 270 WSPEAK POWER 90 W RMS",
+    "stock": 1,
+    "isFreeShipping": true,
+    "specs": [
+      {
+        "label": "Tamaño",
+        "content": "6.5\""
+      },
+      {
+        "label": "Tipo",
+        "content": "2 vías"
+      },
+      {
+        "label": "Potencia Máxima",
+        "content": "270W"
+      },
+      {
+        "label": "Potencia RMS",
+        "content": "90W"
+      }
+    ],
+    "images": []
+  },
+  {
+    "id": 12,
+    "sku": "DSK165",
+    "brand": "HERTZ",
+    "title": "COMPONENTE 6.5\" 2 VIAS",
+    "category": "COMPONENTES",
+    "price": 200,
+    "currency": "SOL",
+    "description": "6.5\" POTENCIA RMS 80W POTENCIA MAXIMA 160 W IMPEDANCIA 4OHM DB SPL 93 ",
+    "stock": 1,
+    "isFreeShipping": true,
+    "specs": [
+      {
+        "label": "Tamaño",
+        "content": "6.5\""
+      },
+      {
+        "label": "Tipo",
+        "content": "2 vías"
+      },
+      {
+        "label": "Potencia RMS",
+        "content": "80W"
+      },
+      {
+        "label": "Potencia Máxima",
+        "content": "160W"
+      },
+      {
+        "label": "Impedancia",
+        "content": "4Ω"
+      },
+      {
+        "label": "Sensibilidad",
+        "content": "93dB"
+      }
+    ],
+    "images": []
+  },
+  {
+    "id": 13,
+    "sku": "K165",
+    "brand": "HERTZ",
+    "title": "COMPONENTE 6.5\" 2 VIAS",
+    "category": "COMPONENTES",
+    "price": 300,
+    "currency": "SOL",
+    "description": "6.5\" RMS 75 POTENCIA MAXIMA 300W IMPEDANCIA4 OHM DB SPL 93.5 ",
+    "stock": 1,
+    "isFreeShipping": true,
+    "specs": [
+      {
+        "label": "Tamaño",
+        "content": "6.5\""
+      },
+      {
+        "label": "Tipo",
+        "content": "2 vías"
+      },
+      {
+        "label": "Potencia RMS",
+        "content": "75W"
+      },
+      {
+        "label": "Potencia Máxima",
+        "content": "300W"
+      },
+      {
+        "label": "Impedancia",
+        "content": "4Ω"
+      },
+      {
+        "label": "Sensibilidad",
+        "content": "93.5dB"
+      }
+    ],
+    "images": []
+  },
+  {
+    "id": 14,
+    "sku": "CSS67",
+    "brand": "KICKER ",
+    "title": "COMPONENTE 2 VIAS 6.5\"",
+    "category": "COMPONENTES",
+    "price": 400,
+    "currency": "SOL",
+    "description": "6.5\" 2 VIAS 100W RMS 300 W",
+    "stock": 1,
+    "isFreeShipping": true,
+    "specs": [],
+    "images": []
+  },
+  {
+    "id": 15,
+    "sku": "GZRF 6.5 SQX",
+    "brand": "GROUND ZERO",
+    "title": "COMPONENTE 2 VIAS 6.5\"",
+    "category": "COMPONENTES",
+    "price": 500,
+    "currency": "SOL",
+    "description": null,
+    "stock": 1,
+    "isFreeShipping": false,
+    "specs": [
+      {
+        "label": "Tamaño",
+        "content": "6.5\""
+      },
+      {
+        "label": "Tipo",
+        "content": "2 vías"
+      }
+    ],
+    "images": []
+  }
+]

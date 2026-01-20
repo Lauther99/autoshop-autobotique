@@ -214,7 +214,7 @@
 .shop-image-container {
   position: relative;
   height: 220px;
-  background: #fff; /* Fondo blanco/claro para producto como en diseño */
+  background: rgb(65, 65, 65); /* Fondo blanco/claro para producto como en diseño */
   display: flex;
   align-items: center;
   justify-content: center;
