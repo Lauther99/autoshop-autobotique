@@ -1,8 +1,8 @@
 "use client";
 import { useProductStore } from "@/store/productStore";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { useEffect } from "react";
 import PriceRangeSlider from "./filters/PriceRangeSlider";
+import { MdCleaningServices } from "react-icons/md";
 
 export default function ShopFilters() {
   const products = useProductStore((state) => state.products);
@@ -20,6 +20,11 @@ export default function ShopFilters() {
   const applyFilters = useProductStore((s) => s.applyFilters);
   const sortProducts = useProductStore((s) => s.sortProducts);
   const goToPage = useProductStore((s) => s.goToPage);
+  const resetFilters = useProductStore((s) => s.resetFilters);
+
+  const handleReset = () => {
+    router.push(pathname);
+  };
 
   const toggleFilter = (key: "categories" | "brands", value: string) => {
     let arr = [...filters[key]];
@@ -32,7 +37,7 @@ export default function ShopFilters() {
 
     setFilter(key, arr);
     applyFilters();
-    sortProducts(searchParams.get("sort") || ("price-asc" as any));
+    sortProducts(searchParams.get("sort") || ("price-desc" as any));
     goToPage(1);
     // luego actualizar URL
     updateURL();
@@ -81,21 +86,44 @@ export default function ShopFilters() {
   return (
     <aside className="shop-sidebar">
       <div className="filter-section">
-        <div className="filter-title">
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            style={{ marginRight: 5 }}
+        <div style={{ display: "flex", justifyContent: "space-between", alignContent: "center"}}>
+          <div style={{ display: "flex" }}>
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              style={{ marginRight: 5 }}
+            >
+              <line x1="4" x2="20" y1="12" y2="12" />
+              <line x1="4" x2="20" y1="6" y2="6" />
+              <line x1="4" x2="20" y1="18" y2="18" />
+            </svg>
+            <h4 className="filter-title" style={{marginBottom: "0"}}>Filtros</h4>
+          </div>
+          <div
+            className="filter-header"
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
           >
-            <line x1="4" x2="20" y1="12" y2="12" />
-            <line x1="4" x2="20" y1="6" y2="6" />
-            <line x1="4" x2="20" y1="18" y2="18" />
-          </svg>
-          Filtros
+            <button
+              onClick={handleReset}
+              style={{
+                fontSize: "12px",
+                color: "red",
+                cursor: "pointer",
+                background: "none",
+                border: "none",
+              }}
+            >
+              <MdCleaningServices style={{ width: "18px", height: "18px" }}/>
+            </button>
+          </div>
         </div>
       </div>
       {/* FILTROS CATEGORIAS */}
@@ -121,8 +149,8 @@ export default function ShopFilters() {
       <PriceRangeSlider
         min={priceRange.min}
         max={priceRange.max}
-        valueMin={priceRange.min}
-        valueMax={priceRange.max}
+        valueMin={filters.minPrice} // Bien: le pasas lo que el usuario eligió (o lo que viene de la URL)
+        valueMax={filters.maxPrice}
         onChange={(min, max) => {
           setFilter("minPrice", min);
           setFilter("maxPrice", max);
@@ -130,7 +158,7 @@ export default function ShopFilters() {
           updateURLWithPriceRange(min, max);
         }}
       />
-      
+
       {/* FILTROS BRANDS */}
       <div className="filter-section">
         <div className="filter-title">Marcas Populares</div>

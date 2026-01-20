@@ -4,13 +4,17 @@ import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 export default function ShopHeader() {
-  const sortProducts = useProductStore((state) => state.sortProducts);
+  const setSortType = useProductStore((state) => state.setSortType);
+  const type = useProductStore((state) => state.sortType); // Valor del store
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
 
+  // Leemos el valor de la URL o usamos el del Store como respaldo
+  const currentSort = searchParams.get("sort") || type;
+
   const handleSort = (value: string) => {
-    sortProducts(value as any);
+    setSortType(value as any);
 
     const params = new URLSearchParams(searchParams.toString());
     params.set("sort", value);
@@ -18,7 +22,6 @@ export default function ShopHeader() {
 
     router.replace(`${pathname}?${params.toString()}`);
   };
-
 
   return (
     <header className="shop-header">
@@ -28,7 +31,8 @@ export default function ShopHeader() {
           onChange={(e) => handleSort(e.target.value)}
           style={{ padding: "8px", borderRadius: "6px" }}
           className="sort-select"
-          defaultValue={searchParams.get("sort") || "price-asc"}
+          // ✅ CAMBIO CLAVE: Usa 'value' para que React lo mantenga sincronizado
+          value={currentSort} 
         >
           <option value="price-asc">Menor Precio</option>
           <option value="price-desc">Mayor Precio</option>

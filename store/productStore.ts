@@ -1,18 +1,20 @@
 import { create } from "zustand";
 import type { Product } from "@/types/product";
 
-type SortType = "price-asc" | "price-desc" | null;
+type SortType = "price-asc" | "price-desc";
 
 type ProductState = {
   products: Product[];
   filteredProducts: Product[];
   sortedProducts: Product[];
+  sortType: SortType;
   paginatedProducts: Product[];
   currentPage: number;
   perPage: number;
   totalPages: number;
   setProducts: (products: Product[]) => void;
   sortProducts: (type: SortType) => void;
+  setSortType: (page: any) => void;
   goToPage: (page: number) => void;
   filters: {
     categories: string[];
@@ -34,6 +36,7 @@ export const useProductStore = create<ProductState>((set, get) => ({
   sortedProducts: [],
   filteredProducts: [],
   paginatedProducts: [],
+  sortType: "price-desc",
   currentPage: 1,
   perPage: 9,
   totalPages: 1,
@@ -57,21 +60,25 @@ export const useProductStore = create<ProductState>((set, get) => ({
     const minPrice = Math.max(0, Math.floor(rawMin - span * 0.1));
     const maxPrice = Math.ceil(rawMax + span * 0.2);
 
-    set({
+    set((state) => ({
       products,
       sortedProducts: products,
-      priceRange: {
-        min: minPrice,
-        max: maxPrice,
-      },
-      currentPage: 1,
+      priceRange: { min: minPrice, max: maxPrice },
       filters: {
-        categories: [],
-        brands: [],
-        minPrice: minPrice,
-        maxPrice: maxPrice,
+        ...state.filters,
+        minPrice:
+          state.filters.minPrice === 0 ? minPrice : state.filters.minPrice,
+        maxPrice:
+          state.filters.maxPrice === 999999 ? maxPrice : state.filters.maxPrice,
       },
-    });
+    }));
+  },
+
+  setSortType: (type) => {
+    set({ sortType: type });
+
+    const { sortProducts } = get();
+    sortProducts(type);
   },
 
   sortProducts: (type) => {
@@ -87,6 +94,7 @@ export const useProductStore = create<ProductState>((set, get) => ({
 
     set({
       sortedProducts: sorted,
+      sortType: type,
       currentPage: 1,
       totalPages,
       paginatedProducts: sorted.slice(0, perPage),
@@ -154,5 +162,25 @@ export const useProductStore = create<ProductState>((set, get) => ({
       },
     }));
   },
-  resetFilters: () => {},
+  resetFilters: () => {
+    const { products, priceRange, perPage } = get();
+
+    const defaultFilters = {
+      categories: [],
+      brands: [],
+      minPrice: priceRange.min,
+      maxPrice: priceRange.max,
+      sortType: "price-desc",
+    };
+
+    set({
+      filters: defaultFilters,
+      filteredProducts: products,
+      sortedProducts: products,
+      currentPage: 1,
+      totalPages: Math.ceil(products.length / perPage),
+      paginatedProducts: products.slice(0, perPage),
+      sortType: "price-desc",
+    });
+  },
 }));

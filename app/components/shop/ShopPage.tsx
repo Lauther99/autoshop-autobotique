@@ -17,18 +17,23 @@ export default function ShopPage() {
   const setProducts = useProductStore((state) => state.setProducts);
   const setFilter = useProductStore((s) => s.setFilter);
   const applyFilters = useProductStore((s) => s.applyFilters);
-  const sortProducts = useProductStore((s) => s.sortProducts);
-  const priceRange = useProductStore((state) => state.priceRange);
+  const setSortType = useProductStore((s) => s.setSortType);
 
   useEffect(() => {
     setProducts(products);
 
-    const sort = searchParams.get("sort") || "price-asc";
+    const sort = searchParams.get("sort") || "price-desc";
     const page = Number(searchParams.get("page")) || 1;
-    const cats = searchParams.get("cat")?.split(",") || [];
-    const brands = searchParams.get("brand")?.split(",") || [];
-    const min = Number(searchParams.get("price_min")) || priceRange.min;
-    const max = Number(searchParams.get("price_max")) || priceRange.max;
+    const cats = searchParams.get("cat")?.split(",").filter(Boolean) || [];
+    const brands = searchParams.get("brand")?.split(",").filter(Boolean) || [];
+    
+    const { priceRange } = useProductStore.getState();
+    const min = searchParams.get("price_min")
+      ? Number(searchParams.get("price_min"))
+      : priceRange.min;
+    const max = searchParams.get("price_max")
+      ? Number(searchParams.get("price_max"))
+      : priceRange.max;
 
     setFilter("categories", cats);
     setFilter("brands", brands);
@@ -36,9 +41,9 @@ export default function ShopPage() {
     setFilter("maxPrice", max);
 
     applyFilters();
-    sortProducts(sort as any);
+    setSortType(sort);
     goToPage(page);
-  }, [products, searchParams, setProducts, sortProducts, goToPage]);
+  }, [searchParams, setProducts]);
 
   return (
     <div className="container">
