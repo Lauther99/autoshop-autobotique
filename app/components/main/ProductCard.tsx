@@ -11,10 +11,9 @@ export function ProductCard({ product }: ProductCardProps) {
     title,
     category,
     price,
-    image,
+    images,
     // badge,
     // badgeColor,
-    oldPrice,
   } = product;
 
   return (
@@ -27,7 +26,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
       <div className="product-image">
         <Image
-          src={image}
+          src={product.images?.[0] ?? "/assets/logo1.png"}
           alt={title}
           fill
           style={{ objectFit: "cover" }}
@@ -37,10 +36,6 @@ export function ProductCard({ product }: ProductCardProps) {
       <div className="card-info">
         <div className="category">{category}</div>
         <div className="product-title">{title}</div>
-        <div className="price">
-          {price} <small>MXN</small>
-          {oldPrice && <span>{oldPrice}</span>}
-        </div>
       </div>
     </div>
   );
