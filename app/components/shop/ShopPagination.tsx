@@ -1,10 +1,23 @@
 "use client";
 import { useProductStore } from "@/store/productStore";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
+
 
 export default function ShopPagination() {
   const currentPage = useProductStore((s) => s.currentPage);
   const totalPages = useProductStore((s) => s.totalPages);
-  const goToPage = useProductStore((s) => s.goToPage);
+  const setPage = useProductStore((s) => s.goToPage);
+
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const goToPage = (page: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("page", String(page));
+    router.push(`${pathname}?${params.toString()}`);
+    setPage(page);
+  };
 
   const siblingCount = 2;
 

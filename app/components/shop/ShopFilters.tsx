@@ -1,10 +1,87 @@
+"use client";
+import { useProductStore } from "@/store/productStore";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { useEffect } from "react";
+import PriceRangeSlider from "./filters/PriceRangeSlider";
+
 export default function ShopFilters() {
+  const products = useProductStore((state) => state.products);
+  const priceRange = useProductStore((state) => state.priceRange);
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+
+  const categories = [...new Set(products.map((p) => p.category.trim()))];
+  const brands = [...new Set(products.map((p) => String(p.brand).trim()))];
+
+  const filters = useProductStore((s) => s.filters);
+  const setFilter = useProductStore((s) => s.setFilter);
+  const applyFilters = useProductStore((s) => s.applyFilters);
+  const sortProducts = useProductStore((s) => s.sortProducts);
+  const goToPage = useProductStore((s) => s.goToPage);
+
+  const toggleFilter = (key: "categories" | "brands", value: string) => {
+    let arr = [...filters[key]];
+
+    if (arr.includes(value)) {
+      arr = arr.filter((v) => v !== value);
+    } else {
+      arr.push(value);
+    }
+
+    setFilter(key, arr);
+    applyFilters();
+    sortProducts(searchParams.get("sort") || ("price-asc" as any));
+    goToPage(1);
+    // luego actualizar URL
+    updateURL();
+  };
+
+  const updateURL = () => {
+    const { filters } = useProductStore.getState();
+    const params = new URLSearchParams(searchParams.toString());
+
+    params.set("page", "1");
+
+    if (filters.categories.length > 0) {
+      params.set("cat", filters.categories.join(","));
+    } else {
+      params.delete("cat");
+    }
+
+    if (filters.brands.length > 0) {
+      params.set("brand", filters.brands.join(","));
+    } else {
+      params.delete("brand");
+    }
+    router.replace(`${pathname}?${params.toString()}`);
+  };
+
+  const updateURLWithPriceRange = (min: number, max: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    params.set("page", "1");
+
+    if (min) {
+      params.set("price_min", String(min));
+    } else {
+      params.delete("price_min");
+    }
+
+    if (max) {
+      params.set("price_max", String(max));
+    } else {
+      params.delete("price_max");
+    }
+
+    router.replace(`${pathname}?${params.toString()}`);
+  };
+
   return (
     <aside className="shop-sidebar">
       <div className="filter-section">
-        {" "}
         <div className="filter-title">
-          {" "}
           <svg
             width="18"
             height="18"
@@ -17,110 +94,62 @@ export default function ShopFilters() {
             <line x1="4" x2="20" y1="12" y2="12" />
             <line x1="4" x2="20" y1="6" y2="6" />
             <line x1="4" x2="20" y1="18" y2="18" />
-          </svg>{" "}
-          Filtros{" "}
-        </div>{" "}
-      </div>{" "}
+          </svg>
+          Filtros
+        </div>
+      </div>
+      {/* FILTROS CATEGORIAS */}
       <div className="filter-section">
-        {" "}
-        <div className="filter-title">Categorías</div>{" "}
+        <div className="filter-title">Categorías</div>
         <ul className="category-list">
-          {" "}
-          <li className="active">
-            {" "}
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
-              <circle cx="7" cy="17" r="2" />
-              <circle cx="17" cy="17" r="2" />
-            </svg>{" "}
-            Automóviles{" "}
-          </li>{" "}
-          <li>
-            {" "}
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <rect x="1" y="3" width="15" height="13"></rect>
-              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-              <circle cx="5.5" cy="18.5" r="2.5"></circle>
-              <circle cx="18.5" cy="18.5" r="2.5"></circle>
-            </svg>{" "}
-            Camionetas{" "}
-          </li>{" "}
-          <li>
-            {" "}
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-              <polyline points="14 2 14 8 20 8" />
-            </svg>{" "}
-            SUVs & Off-road{" "}
-          </li>{" "}
-        </ul>{" "}
-      </div>{" "}
+          {categories.map((cat) => {
+            const selected = filters.categories.includes(cat);
+
+            return (
+              <li
+                key={cat}
+                className={`${selected ? "active" : ""}`}
+                onClick={() => toggleFilter("categories", cat)}
+              >
+                {cat}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+      {/* SLIDER DE PRECIOS */}
+      <PriceRangeSlider
+        min={priceRange.min}
+        max={priceRange.max}
+        valueMin={priceRange.min}
+        valueMax={priceRange.max}
+        onChange={(min, max) => {
+          setFilter("minPrice", min);
+          setFilter("maxPrice", max);
+          applyFilters();
+          updateURLWithPriceRange(min, max);
+        }}
+      />
+      
+      {/* FILTROS BRANDS */}
       <div className="filter-section">
-        {" "}
-        <div className="filter-title">Rango de Precio</div>{" "}
-        <div className="price-slider-visual">
-          {" "}
-          <div className="price-slider-bar"></div>{" "}
-          <div className="price-slider-thumb" style={{ left: "20%" }}></div>{" "}
-          <div
-            className="price-slider-thumb"
-            style={{ right: "20%", left: "auto" }}
-          ></div>{" "}
-        </div>{" "}
-        <div className="price-inputs">
-          {" "}
-          <span className="price-tag">$50</span>{" "}
-          <span style={{ color: "#555" }}>—</span>{" "}
-          <span className="price-tag">$1500</span>{" "}
-        </div>{" "}
-      </div>{" "}
-      <div className="filter-section">
-        {" "}
-        <div className="filter-title">Marcas Populares</div>{" "}
+        <div className="filter-title">Marcas Populares</div>
         <div className="brand-tags">
-          {" "}
-          <span className="brand-tag active">Bosch</span>{" "}
-          <span className="brand-tag">Brembo</span>{" "}
-          <span className="brand-tag">Michelin</span>{" "}
-          <span className="brand-tag">Castrol</span>{" "}
-          <span className="brand-tag">Mobil1</span>{" "}
-        </div>{" "}
-      </div>{" "}
-      {/* <div className="trust-banner">
-        {" "}
-        <div style={{ color: "var(--primary-red)", marginBottom: 10 }}>
-          {" "}
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z" />
-          </svg>{" "}
-        </div>{" "}
-        <h4 style={{ marginBottom: 5 }}>15 Años de Experiencia</h4>{" "}
-        <p style={{ fontSize: "0.8rem", color: "#ccc", lineHeight: "1.4" }}>
-          {" "}
-          Garantía y confianza en cada pieza automotriz que vendemos.{" "}
-        </p>{" "}
-      </div>{" "} */}
+          {brands.map((brand) => {
+            const selected = filters.brands.includes(String(brand));
+
+            return (
+              <span
+                key={brand}
+                className={`brand-tag ${selected ? "active" : ""}`}
+                onClick={() => toggleFilter("brands", String(brand))}
+              >
+                {brand}
+              </span>
+            );
+          })}
+        </div>
+      </div>
     </aside>
   );
 }
