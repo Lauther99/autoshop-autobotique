@@ -1,7 +1,14 @@
+"use client";
+
+import { useProductStore } from "@/store/productStore";
 import Image from "next/image";
 import logo from "@/public/assets/logo1.png";
+import Link from "next/link";
 
 export default function Footer() {
+  const products = useProductStore((state) => state.products);
+  const categories = [...new Set(products.map((p) => p.category.trim()))];
+
   return (
     <footer className="footer">
       <div className="container">
@@ -27,20 +34,31 @@ export default function Footer() {
           <div>
             <h3>NAVEGACIÓN</h3>
             <ul>
-              <li>Inicio</li>
-              <li>Catálogo de Tienda</li>
+              <Link href="/">Inicio</Link>
+              <Link href="/tienda">Catálogo de Tienda</Link>
+              <Link href="/nosotros">Nosotros</Link>
+              {/* 
               <li>Galería de Proyectos</li>
-              <li>Servicios de Taller</li>
+              <li>Servicios de Taller</li> */}
             </ul>
           </div>
 
           <div>
             <h3>CATEGORÍAS</h3>
             <ul>
-              <li>Iluminación LED</li>
-              <li>Audio & Sonido</li>
-              <li>Interiores Premium</li>
-              <li>Seguridad & Alarmas</li>
+              {categories.map((cat) => {
+                return (
+                  <Link
+                    key={cat}
+                    href={{
+                      pathname: "/tienda",
+                      query: { cat: cat },
+                    }}
+                  >
+                    {cat}
+                  </Link>
+                );
+              })}
             </ul>
           </div>
 
