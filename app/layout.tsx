@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/app/components/layout/Header";
 import Footer from "@/app/components/layout/Footer";
+import CartModal from "@/app/components/cart/CartModal";
 
 // Puedes usar iconos SVG directos o una librería como Lucide React
 // Aquí usaré SVGs simples inline para asegurar que funcione sin instalar nada extra
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="es">
       <body>
         <Header />
+        <CartModal />
         <main>{children}</main>
         <Footer />
       </body>
