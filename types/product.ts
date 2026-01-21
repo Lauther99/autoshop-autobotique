@@ -16,4 +16,6 @@ export interface Product {
   isFreeShipping?: boolean | null;
   stock: number;
   images?: string[] | null;
+  backorder: boolean;
+  backorderDays: number
 }
