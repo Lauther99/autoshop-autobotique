@@ -6,9 +6,40 @@ import ProductGallery from "@/app/components/productDetail/ProductGallery";
 import ProductInfo from "@/app/components/productDetail/ProductInfo";
 import ProductTabs from "@/app/components/productDetail/ProductTabs";
 import RelatedProducts from "@/app/components/productDetail/RelatedProducts";
+import { Product } from "@/types/product";
 
 interface Props {
   params: { slug: string };
+}
+
+function getSlug(product: Product){
+  const brand = product.brand ?? "";
+
+  const slugParts = [];
+
+  if (brand) {
+    slugParts.push(
+      brand
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, ""),
+    );
+  }
+
+  slugParts.push(
+    product.title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, ""),
+  );
+
+  return `${slugParts.join("-")}-${product.id}`;
+}
+
+export function generateStaticParams() {
+  return products.map((p) => ({
+    slug: getSlug(p),
+  }));
 }
 
 export default async function ProductDetailPage({ params }: Props) {
