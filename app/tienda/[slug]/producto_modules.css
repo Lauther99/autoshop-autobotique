@@ -1,0 +1,369 @@
+/* =========================================
+   ESTILOS PÁGINA DE PRODUCTO (NUEVOS)
+   ========================================= */
+
+/* --- Estructura Superior --- */
+.p-detail-container {
+  padding: 40px 0;
+}
+
+.p-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 50% - 50% */
+  gap: 50px;
+  margin-bottom: 60px;
+}
+
+/* --- Galería de Imágenes --- */
+.gallery-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.main-image-frame {
+  background: #141414;
+  border: 1px solid #333;
+  border-radius: 12px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  position: relative;
+}
+
+.main-image-frame img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  /* Efecto de sombra sutil para dar profundidad al objeto */
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); 
+}
+
+.thumbnail-strip {
+  display: flex;
+  gap: 15px;
+}
+
+.thumb-btn {
+  width: 80px;
+  height: 80px;
+  background: #141414;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.thumb-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.thumb-btn:hover {
+  border-color: #666;
+}
+
+.thumb-btn.active {
+  border-color: var(--primary-red);
+  box-shadow: 0 0 10px rgba(255, 26, 26, 0.2);
+}
+
+/* --- Información del Producto --- */
+.product-info-col {
+  padding-top: 10px;
+}
+
+.badge-sold {
+  background: var(--primary-red);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  margin-right: 10px;
+}
+
+.sku-text {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.p-title {
+  font-size: 2.2rem;
+  margin: 15px 0 10px;
+  line-height: 1.2;
+}
+
+.rating-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.stars {
+  color: var(--primary-red);
+  display: flex;
+  gap: 2px;
+}
+
+.p-price {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--primary-red);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
+}
+
+.p-old-price {
+  font-size: 1.1rem;
+  color: #666;
+  text-decoration: line-through;
+  font-weight: 400;
+}
+
+.shipping-promo {
+  color: #2ecc71; /* Verde éxito */
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+.p-description-short {
+  color: #ccc;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 30px;
+}
+
+/* --- Controles de Compra --- */
+.purchase-controls {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.qty-selector {
+  display: flex;
+  align-items: center;
+  background: black;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 5px;
+}
+
+.qty-btn {
+  width: 35px;
+  height: 35px;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.qty-input {
+  width: 40px;
+  background: transparent;
+  border: none;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+
+.btn-add {
+  flex: 1;
+  background: var(--primary-red);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.btn-add:hover { background: #d90000; }
+
+.btn-buy-now {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--primary-red);
+  color: var(--primary-red);
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+.btn-buy-now:hover {
+  background: rgba(255, 26, 26, 0.1);
+}
+
+.trust-badges {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.trust-icon {
+  font-size: 1.5rem;
+  color: var(--primary-red);
+}
+
+.trust-text span {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: white;
+  text-transform: uppercase;
+}
+.trust-text small {
+  color: #888;
+  font-size: 0.7rem;
+}
+
+/* --- Sección de Pestañas e Info Detallada --- */
+.tabs-header {
+  border-bottom: 1px solid #333;
+  margin-bottom: 30px;
+  display: flex;
+  gap: 40px;
+}
+
+.tab-link {
+  background: transparent;
+  border: none;
+  color: #888;
+  padding: 15px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+}
+
+.tab-link.active {
+  color: var(--primary-red);
+}
+
+.tab-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--primary-red);
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 50px;
+}
+
+.detail-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.detail-content p {
+  color: #ccc;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  color: #ccc;
+}
+
+.check-icon {
+  color: var(--primary-red);
+  flex-shrink: 0;
+}
+
+/* Caja de Ficha Rápida */
+.quick-specs-box {
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 8px;
+  padding: 25px;
+}
+
+.quick-specs-box h4 {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #222;
+  font-size: 0.9rem;
+}
+
+.spec-row:last-child { border-bottom: none; }
+.spec-label { color: #888; }
+.spec-value { font-weight: 600; color: white; text-align: right;}
+
+/* --- Productos Relacionados --- */
+.related-section {
+  margin-top: 80px;
+  border-top: 1px solid #222;
+  padding-top: 50px;
+}
+
+.related-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+/* Reutilizando estilos de cards del Shop, 
+   pero asegurando compatibilidad por si acaso */
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .p-detail-grid { grid-template-columns: 1fr; }
+  .details-grid { grid-template-columns: 1fr; }
+  .quick-specs-box { margin-top: 20px; }
+}
