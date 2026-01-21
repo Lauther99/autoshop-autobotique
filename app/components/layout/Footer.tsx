@@ -1,12 +1,9 @@
-"use client";
-
-import { useProductStore } from "@/store/productStore";
 import Image from "next/image";
 import logo from "@/public/assets/logo1.png";
 import Link from "next/link";
+import { products } from "@/data/products";
 
 export default function Footer() {
-  const products = useProductStore((state) => state.products);
   const categories = [...new Set(products.map((p) => p.category.trim()))];
 
   return (
