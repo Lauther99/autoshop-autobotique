@@ -6,6 +6,7 @@ import "./cart_modules.css";
 import { CartItem, currencies } from "@/types/product";
 import { numero } from "@/data/information";
 import Toast from "../ui/Toast";
+import Link from "next/link";
 
 export default function CartModal() {
   const { isCartOpen, closeCart, items, removeItem, updateQuantity } =
@@ -164,8 +165,6 @@ export default function CartModal() {
                       </div>
                     </div>
                   </div>
-
-                  
                 </div>
               </div>
             ))}
@@ -301,20 +300,22 @@ export default function CartModal() {
                 </span>
               </div>
 
-              <button className="btn-checkout">
-                Finalizar Compra
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M5 12h14" />
-                  <path d="m12 5 7 7-7 7" />
-                </svg>
-              </button>
+              <Link href="/checkout">
+                <button className="btn-checkout">
+                  Finalizar Compra
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </button>
+              </Link>
 
               <div className="payment-methods">
                 <span className="payment-label">Métodos de pago seguros</span>
@@ -374,16 +375,20 @@ export default function CartModal() {
             </div>
 
             <div className="help-box">
-            <div className="help-icon">?</div>
-            <div>
-              <h5 style={{ marginBottom: 5 }}>¿Necesitas ayuda?</h5>
-              <p
-                style={{ fontSize: "0.8rem", color: "#ccc", lineHeight: "1.4" }}
-              >
-                Llámanos al +{numero} o chatea con un experto ahora.
-              </p>
+              <div className="help-icon">?</div>
+              <div>
+                <h5 style={{ marginBottom: 5 }}>¿Necesitas ayuda?</h5>
+                <p
+                  style={{
+                    fontSize: "0.8rem",
+                    color: "#ccc",
+                    lineHeight: "1.4",
+                  }}
+                >
+                  Llámanos al +{numero} o chatea con un experto ahora.
+                </p>
+              </div>
             </div>
-          </div>
           </div>
         </div>
       </div>

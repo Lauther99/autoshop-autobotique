@@ -1,4 +1,8 @@
 import type { Metadata } from "next";
+import "./globals.css";
+import Header from "@/app/components/layout/Header";
+import Footer from "@/app/components/layout/Footer";
+import CartProvider from "@/app/components/cart/CartProvider";
 
 
 export const metadata: Metadata = {
@@ -17,7 +21,10 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body>
+        <Header />
+        <CartProvider />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

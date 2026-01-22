@@ -1,7 +1,7 @@
 // export const dynamic = "force-dynamic";
 
 import { Suspense } from "react";
-import ShopPage from "../components/shop/ShopPage";
+import ShopPage from "@/app/components/shop/ShopPage";
 import './tienda_modules.css'
 
 export default function Page() {
