@@ -1,0 +1,93 @@
+/* Toast.css */
+.toast-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  min-width: 350px;
+  max-width: 450px;
+  background-color: #120f0f; /* Fondo oscuro según tu diseño */
+  border-radius: 24px;
+  padding: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  margin-bottom: 1rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Barra lateral de color */
+.toast-indicator {
+  position: absolute;
+  left: 0;
+  top: 15%;
+  height: 70%;
+  width: 4px;
+  border-radius: 0 4px 4px 0;
+}
+
+/* Contenedor del icono */
+.toast-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  margin-right: 16px;
+  font-size: 24px;
+}
+
+/* Textos */
+.toast-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.toast-title {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.toast-message {
+  color: #a0a0a0;
+  font-size: 0.875rem;
+  margin: 4px 0 0 0;
+}
+
+/* Botón cerrar */
+.toast-close-btn {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.toast-close-btn:hover {
+  color: #fff;
+}
+
+/* VARIANTES */
+
+/* Info (Azul) */
+.toast-info .toast-indicator { background-color: #3b82f6; }
+.toast-info .toast-icon-wrapper { background-color: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+
+/* Success (Verde) */
+.toast-success .toast-indicator { background-color: #10b981; }
+.toast-success .toast-icon-wrapper { background-color: rgba(16, 185, 129, 0.15); color: #10b981; }
+
+/* Error (Rojo) */
+.toast-error .toast-indicator { background-color: #ef4444; }
+.toast-error .toast-icon-wrapper { background-color: rgba(239, 68, 68, 0.15); color: #ef4444; }
+
+/* Warning (Amarillo - El que faltaba) */
+.toast-warning .toast-indicator { background-color: #f59e0b; }
+.toast-warning .toast-icon-wrapper { background-color: rgba(245, 158, 11, 0.15); color: #f59e0b; }
