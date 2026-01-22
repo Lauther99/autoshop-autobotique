@@ -1,18 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { Product } from "@/types/product";
+import { currencies, Product } from "@/types/product";
 import Image from "next/image";
-
-type CurrencyCode = "SOL" | "MXN" | "USD" | any;
-
-const currencies: Record<CurrencyCode, string> = {
-  SOL: "S/",
-  MXN: "$",
-  USD: "$",
-};
+import { useCartStore } from "@/store/cartStore";
 
 export default function ProductCard({ product }: { product: Product }) {
+  const { addItem } = useCartStore();
+
   const brand = product.brand ?? "";
 
   const slugParts = [];
@@ -53,7 +48,30 @@ export default function ProductCard({ product }: { product: Product }) {
           {currencies[product.currency]}
           {product.price.toFixed(2)}
         </div>
-        <button className="btn-add-cart">Añadir al Carrito</button>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            e.preventDefault();
+
+            addItem({
+              id: product.id,
+              title: product.title,
+              price: product.price,
+              quantity: 1,
+              image: product.images ? product.images[0] : "",
+              sku: product.sku ?? "",
+              currency: product.currency,
+              stock: product.stock,
+              isFreeShipping: product.isFreeShipping,
+              backorder: product.backorder,
+              backorderDays: product.backorderDays,
+              backorderQty: 0,
+            });
+          }}
+          className="btn-add-cart"
+        >
+          Añadir al Carrito
+        </button>
       </div>
     </Link>
   );
