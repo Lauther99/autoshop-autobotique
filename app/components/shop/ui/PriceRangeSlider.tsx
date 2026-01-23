@@ -8,6 +8,7 @@ interface Props {
   valueMin: number;
   valueMax: number;
   onChange: (min: number, max: number) => void;
+  onMouseUp?: (min: number, max: number) => void;
 }
 
 export default function PriceRangeSlider({
@@ -16,6 +17,7 @@ export default function PriceRangeSlider({
   valueMin,
   valueMax,
   onChange,
+  onMouseUp,
 }: Props) {
   const [minVal, setMinVal] = useState(valueMin);
   const [maxVal, setMaxVal] = useState(valueMax);
@@ -58,6 +60,7 @@ export default function PriceRangeSlider({
           onChange={(e) =>
             setMinVal(Math.min(Number(e.target.value), maxVal - 1))
           }
+          onMouseUp={() => onMouseUp?.(minVal, maxVal)}
           className="thumb thumb-left"
           style={{ zIndex: minVal > max - 100 ? "5" : undefined }} 
         />
@@ -69,6 +72,7 @@ export default function PriceRangeSlider({
           onChange={(e) =>
             setMaxVal(Math.max(Number(e.target.value), minVal + 1))
           }
+          onMouseUp={() => onMouseUp?.(minVal, maxVal)}
           className="thumb thumb-right"
         />
 

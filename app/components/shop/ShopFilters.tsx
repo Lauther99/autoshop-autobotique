@@ -59,7 +59,7 @@ export default function ShopFilters() {
     } else {
       params.delete("brand");
     }
-    router.replace(`${pathname}?${params.toString()}`);
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
   const updateURLWithPriceRange = (min: number, max: number) => {
@@ -79,13 +79,19 @@ export default function ShopFilters() {
       params.delete("price_max");
     }
 
-    router.replace(`${pathname}?${params.toString()}`);
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
   return (
     <aside className="shop-sidebar">
       <div className="filter-section">
-        <div style={{ display: "flex", justifyContent: "space-between", alignContent: "center"}}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignContent: "center",
+          }}
+        >
           <div style={{ display: "flex" }}>
             <svg
               width="18"
@@ -100,7 +106,9 @@ export default function ShopFilters() {
               <line x1="4" x2="20" y1="6" y2="6" />
               <line x1="4" x2="20" y1="18" y2="18" />
             </svg>
-            <h4 className="filter-title" style={{marginBottom: "0"}}>Filtros</h4>
+            <h4 className="filter-title" style={{ marginBottom: "0" }}>
+              Filtros
+            </h4>
           </div>
           <div
             className="filter-header"
@@ -120,7 +128,7 @@ export default function ShopFilters() {
                 border: "none",
               }}
             >
-              <MdCleaningServices style={{ width: "18px", height: "18px" }}/>
+              <MdCleaningServices style={{ width: "18px", height: "18px" }} />
             </button>
           </div>
         </div>
@@ -154,6 +162,8 @@ export default function ShopFilters() {
           setFilter("minPrice", min);
           setFilter("maxPrice", max);
           applyFilters();
+        }}
+        onMouseUp={(min, max) => {
           updateURLWithPriceRange(min, max);
         }}
       />
