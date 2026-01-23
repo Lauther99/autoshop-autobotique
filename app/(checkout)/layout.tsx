@@ -7,7 +7,6 @@ export default function CartLayout({
 }>) {
   return (
     <div className="flex min-h-screen">
-      {/* Contenido de las páginas de dashboard */}
       <main className="flex-1 p-6">{children}</main>
     </div>
   );
