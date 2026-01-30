@@ -373,3 +373,29 @@
   .cart-item-details { width: 100%; }
   .cart-controls-row { margin-top: 15px; }
 }
+
+
+/* Contenedor del Toast */
+.toast-wrapper {
+  position: fixed;
+  bottom: 20px; /* Posición inicial */
+  left: 50%;
+  transform: translateX(-50%) translateY(-200%); /* Oculto arriba */
+  z-index: 9999;
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+  pointer-events: none; /* Click through cuando está oculto */
+}
+
+/* Clase activa para mostrar */
+.toast-wrapper.active {
+  transform: translateX(-50%) translateY(0); /* Posición final */
+  opacity: 1;
+  pointer-events: all;
+}
+
+
+.btn-checkout:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

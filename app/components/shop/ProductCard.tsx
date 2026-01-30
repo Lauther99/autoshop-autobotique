@@ -30,6 +30,9 @@ export default function ProductCard({ product }: { product: Product }) {
 
   const slug = `${slugParts.join("-")}-${product.id}`;
 
+  const inStock = product.stock > 0;
+  const backorder = product.stock === 0 && product.backorder;
+
   return (
     <Link href={`/tienda/${slug}`} className="shop-card">
       <div className="shop-image-container">
@@ -49,6 +52,7 @@ export default function ProductCard({ product }: { product: Product }) {
           {product.price.toFixed(2)}
         </div>
         <button
+          disabled={!inStock && !backorder}
           onClick={(e) => {
             e.stopPropagation();
             e.preventDefault();

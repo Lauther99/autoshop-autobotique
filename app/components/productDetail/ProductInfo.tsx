@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Product } from "@/types/product";
+import { useCartStore } from "@/store/cartStore";
 
 type CurrencyCode = "SOL" | "MXN" | "USD" | any;
 
@@ -16,6 +17,8 @@ interface Props {
 }
 
 export default function ProductInfo({ product }: Props) {
+  const { items, addItem, updateQuantity } = useCartStore();
+
   const [quantity, setQuantity] = useState(1);
 
   const inStock = product.stock > 0;
@@ -49,8 +52,9 @@ export default function ProductInfo({ product }: Props) {
 
       <p className="p-description-short">{product.description}</p>
 
-      <div className="purchase-controls">
-        <div className="qty-selector">
+      <div>
+        <div className="purchase-controls">
+          {/* <div className="qty-selector">
           <button
             className="qty-btn"
             onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -61,15 +65,37 @@ export default function ProductInfo({ product }: Props) {
           <button className="qty-btn" onClick={() => setQuantity(quantity + 1)}>
             +
           </button>
+        </div> */}
+          <button
+            style={{}}
+            className="btn-add"
+            disabled={!inStock && !backorder}
+            onClick={() => {
+              addItem({
+                id: product.id,
+                title: product.title,
+                price: product.price,
+                quantity: 1,
+                image: product.images ? product.images[0] : "",
+                sku: product.sku ?? "",
+                currency: product.currency,
+                stock: product.stock,
+                isFreeShipping: product.isFreeShipping,
+                backorder: product.backorder,
+                backorderDays: product.backorderDays,
+                backorderQty: 0,
+              });
+            }}
+          >
+            Añadir al Carrito
+          </button>
         </div>
-        <button className="btn-add" disabled={!inStock && !backorder}>
-          Añadir al Carrito
-        </button>
+        {!inStock && !backorder && (
+          <button className="btn-buy-now" disabled={!inStock && !backorder}>
+            Consultar con un vendedor
+          </button>
+        )}
       </div>
-
-      <button className="btn-buy-now" disabled={!inStock && !backorder}>
-        Comprar Ahora
-      </button>
     </div>
   );
 }

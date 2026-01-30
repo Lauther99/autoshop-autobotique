@@ -1,11 +1,10 @@
 
-import { products } from "@/data/products";
 import "./producto_modules.css";
+import { products } from "@/data/products";
 import Breadcrumbs from "@/app/components/productDetail/Breadcrumbs";
 import ProductGallery from "@/app/components/productDetail/ProductGallery";
 import ProductInfo from "@/app/components/productDetail/ProductInfo";
 import ProductTabs from "@/app/components/productDetail/ProductTabs";
-import RelatedProducts from "@/app/components/productDetail/RelatedProducts";
 import { Product } from "@/types/product";
 
 interface Props {
@@ -58,7 +57,7 @@ export default async function ProductDetailPage({ params }: Props) {
       <Breadcrumbs product={product} />
 
       <div className="p-detail-grid">
-        <ProductGallery images={product.images ?? []} />
+        <ProductGallery images={product.images ?? []} productName={product.title}/>
         <ProductInfo product={product} />
       </div>
 

@@ -299,6 +299,11 @@
   border-color: var(--primary-red);
 }
 
+.btn-add-cart:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* Pagination */
 .pagination {
   display: flex;

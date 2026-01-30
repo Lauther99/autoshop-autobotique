@@ -46,7 +46,7 @@ export default function ShopPage() {
     applyFilters();
     setSortType(sort);
     goToPage(page);
-  }, [searchParams, setProducts]);
+  }, [searchParams, setProducts, applyFilters, goToPage, setFilter, setSortType]);
 
   return (
     <div className="container">

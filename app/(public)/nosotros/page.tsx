@@ -1,4 +1,3 @@
-import Image from "next/image";
 import "./nosotros_module.css";
 import { PiHandshake } from "react-icons/pi";
 import { FiUserCheck } from "react-icons/fi";

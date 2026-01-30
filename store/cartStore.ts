@@ -32,18 +32,16 @@ export const useCartStore = create<CartState>((set, get) => ({
       let backorderQty = 0;
 
       if (item.stock >= 1) {
-        console.log("✅ Stock suficiente para 1 unidad");
+        
       } else if (item.backorder) {
         backorderQty = 1;
-        console.log("⚠️ Sin stock, 1 unidad irá a backorder");
       } else {
-        console.log("❌ No hay stock y no admite backorder");
         return;
       }
 
       const newItem = {
         ...item,
-        quantity: 1,
+        // quantity: 1,
         backorderQty,
       };
 
@@ -71,13 +69,11 @@ export const useCartStore = create<CartState>((set, get) => ({
 
         // Eliminar si llega a 0
         if (newQuantity <= 0) {
-          console.log("🗑️ Producto eliminado del carrito");
           return null;
         }
 
         // Caso 1: alcanza stock
         if (newQuantity <= item.stock) {
-          console.log(`✅ ${newQuantity} unidades listas para envío`);
           return {
             ...item,
             quantity: newQuantity,
@@ -89,9 +85,6 @@ export const useCartStore = create<CartState>((set, get) => ({
         const backorderQty = newQuantity - item.stock;
 
         if (item.backorder) {
-          console.log(
-            `⚠️ ${item.stock} en stock, ${backorderQty} en backorder (${item.backorderDays} días)`,
-          );
           return {
             ...item,
             quantity: newQuantity,
@@ -100,7 +93,6 @@ export const useCartStore = create<CartState>((set, get) => ({
         }
 
         // Caso 3: no hay backorder → bloquear
-        console.log("❌ No se puede aumentar más, stock insuficiente");
         return item;
       })
       .filter(Boolean);

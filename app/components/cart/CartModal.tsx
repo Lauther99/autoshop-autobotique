@@ -1,16 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useCartStore } from "@/store/cartStore";
 import "./cart_modules.css";
-import { CartItem, currencies } from "@/types/product";
+import { useEffect } from "react";
+import { useCartStore } from "@/store/cartStore";
 import { numero } from "@/data/information";
-import Toast from "../ui/Toast";
 import Link from "next/link";
+import { currencies } from "@/types/product";
+import { CartItemComponent } from "./CartItem";
+import { useRouter } from "next/navigation";
 
 export default function CartModal() {
-  const { isCartOpen, closeCart, items, removeItem, updateQuantity } =
-    useCartStore();
+  const { isCartOpen, closeCart } = useCartStore();
+
+  const items = useCartStore.getState().items;
+
+  const router = useRouter();
 
   useEffect(() => {
     if (isCartOpen) {
@@ -101,72 +105,7 @@ export default function CartModal() {
           {/* --- COLUMNA IZQUIERDA: ITEMS --- */}
           <div className="cart-items-column">
             {items.map((item) => (
-              <div key={item.id} className="cart-item-card">
-                <button
-                  className="btn-remove"
-                  onClick={() => removeItem(item.id)}
-                  title="Eliminar producto"
-                >
-                  <svg
-                    width="18"
-                    height="18"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M3 6h18" />
-                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-                  </svg>
-                </button>
-
-                <div className="cart-item-image">
-                  <img src={item.image} alt={item.title} />
-                </div>
-
-                <div className="cart-item-details">
-                  <div className="cart-item-title">{item.title}</div>
-                  <div className="cart-item-sku">SKU: {item.sku}</div>
-
-                  <div className="cart-controls-row">
-                    <div className="cart-qty-selector">
-                      <button
-                        className="cart-qty-btn"
-                        onClick={() =>
-                          updateQuantity(item.id, item.quantity - 1)
-                        }
-                      >
-                        -
-                      </button>
-                      <input
-                        type="text"
-                        className="cart-qty-input"
-                        value={item.quantity}
-                        readOnly
-                      />
-                      <button
-                        className="cart-qty-btn"
-                        onClick={() =>
-                          updateQuantity(item.id, item.quantity + 1)
-                        }
-                      >
-                        +
-                      </button>
-                    </div>
-
-                    <div className="price-block">
-                      <div className="unit-price">
-                        Precio unitario: {currencies[item.currency]}
-                        {item.price.toFixed(2)}
-                      </div>
-                      <div className="total-row-price">
-                        {currencies[item.currency]}
-                        {(item.price * item.quantity).toFixed(2)}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <CartItemComponent key={item.id} item={item} />
             ))}
 
             {items.length === 0 && (
@@ -184,25 +123,6 @@ export default function CartModal() {
 
             {/* Footer de confianza */}
             <div className="cart-trust-footer">
-              {/* <div className="cart-trust-item">
-              <div className="cart-trust-icon">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                  <path d="m9 12 2 2 4-4" />
-                </svg>
-              </div>
-              <div className="cart-trust-text">
-                <h5>Garantía Extendida</h5>
-                <p>15 años de experiencia</p>
-              </div>
-            </div> */}
               <div className="cart-trust-item">
                 <div className="cart-trust-icon">
                   <svg
@@ -264,25 +184,6 @@ export default function CartModal() {
                 <span>Envío (Estimado)</span>
                 <span className="text-green">¡Gratis!</span>
               </div>
-              {/* <div className="summary-row">
-              <span>IVA (16%)</span>
-              <span>
-                {currencies["SOL"]}{iva.toLocaleString("en-US", { minimumFractionDigits: 2 })}
-              </span>
-            </div> */}
-
-              {/* <div className="discount-group">
-              <label className="discount-label">Código de descuento</label>
-              <div className="input-group">
-                <input
-                  type="text"
-                  className="input-discount"
-                  placeholder="AUTO15"
-                />
-                <button className="btn-apply">Aplicar</button>
-              </div>
-            </div> */}
-
               <div className="total-row">
                 <span className="total-label">Total</span>
                 <span className="total-amount">
@@ -301,7 +202,14 @@ export default function CartModal() {
               </div>
 
               <Link href="/checkout">
-                <button className="btn-checkout">
+                <button
+                  className="btn-checkout"
+                  disabled={items.length < 1}
+                  onClick={() => {
+                    if (items.length < 1) return;
+                    router.push("/checkout");
+                  }}
+                >
                   Finalizar Compra
                   <svg
                     width="20"
