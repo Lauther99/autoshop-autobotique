@@ -16,9 +16,8 @@ export default function Contact() {
     }
 
     const texto = `📩 Mensaje de: ${nombre}\n${mensaje}`;
-    const textoCodificado = encodeURIComponent(texto);
 
-    const link = `https://wa.me/${numero}?text=${textoCodificado}`;
+    const link = `https://api.whatsapp.com/send?phone=${numero}&text=${encodeURIComponent(texto)}`
 
     window.open(link, "_blank");
   };

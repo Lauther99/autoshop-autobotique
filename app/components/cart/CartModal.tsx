@@ -10,9 +10,9 @@ import { CartItemComponent } from "./CartItem";
 import { useRouter } from "next/navigation";
 
 export default function CartModal() {
-  const { isCartOpen, closeCart } = useCartStore();
-
-  const items = useCartStore.getState().items;
+  const isCartOpen = useCartStore((s) => s.isCartOpen);
+  const closeCart = useCartStore((s) => s.closeCart);
+  const items = useCartStore((s) => s.items);
 
   const router = useRouter();
 

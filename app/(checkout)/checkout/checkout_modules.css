@@ -203,6 +203,10 @@
   object-fit: contain;
 }
 
+.summary-product-info {
+  width: 100%;
+}
+
 .summary-product-info h4 {
   font-size: 0.85rem;
   line-height: 1.3;
@@ -293,3 +297,4 @@
   }
   .form-group.full { grid-column: auto; }
 }
+

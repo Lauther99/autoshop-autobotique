@@ -1,7 +1,9 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { CartItem, currencies } from "@/types/product";
 import { useCartStore } from "@/store/cartStore";
-import Toast from "../ui/Toast";
+import Toast from "@/app/components/ui/Toast";
 import Image from "next/image";
 
 interface CartItemProps {
@@ -9,7 +11,8 @@ interface CartItemProps {
 }
 
 export const CartItemComponent: React.FC<CartItemProps> = ({ item }) => {
-  const { removeItem, updateQuantity } = useCartStore();
+  const removeItem = useCartStore((s) => s.removeItem);
+  const updateQuantity = useCartStore((s) => s.updateQuantity);
 
   const [openToast, setOpenToast] = useState(false);
   const [newQuantity, setNewQuanitty] = useState(item.quantity);

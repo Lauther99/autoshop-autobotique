@@ -308,7 +308,7 @@ export default function AboutPage() {
               Explorar Catálogo
             </Link>
             <a
-              href={`https://wa.me/${numero}?text=Hola%20quiero%20más%20información`}
+              href={`https://api.whatsapp.com/send?phone=${numero}&text=${encodeURIComponent("Hola, me gustaría tener más información.")}`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-dark"
