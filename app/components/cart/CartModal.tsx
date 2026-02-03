@@ -1,18 +1,20 @@
 "use client";
 
 import "./cart_modules.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useCartStore } from "@/store/cartStore";
 import { numero } from "@/data/information";
 import Link from "next/link";
 import { currencies } from "@/types/product";
 import { CartItemComponent } from "./CartItem";
+import Toast from "@/app/components/ui/Toast";
 import { useRouter } from "next/navigation";
 
 export default function CartModal() {
   const isCartOpen = useCartStore((s) => s.isCartOpen);
   const closeCart = useCartStore((s) => s.closeCart);
   const items = useCartStore((s) => s.items);
+  const [deleteToast, setDeleteToast] = useState(false);
 
   const router = useRouter();
 
@@ -26,6 +28,14 @@ export default function CartModal() {
       document.body.style.overflow = "unset";
     };
   }, [isCartOpen]);
+
+  useEffect(() => {
+      if (!deleteToast) return;
+      const timer = setTimeout(() => {
+        setDeleteToast(false);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }, [deleteToast]);
 
   if (!isCartOpen) return null;
 
@@ -105,7 +115,7 @@ export default function CartModal() {
           {/* --- COLUMNA IZQUIERDA: ITEMS --- */}
           <div className="cart-items-column">
             {items.map((item) => (
-              <CartItemComponent key={item.id} item={item} />
+              <CartItemComponent key={item.id} item={item} setDeleteToast={setDeleteToast} />
             ))}
 
             {items.length === 0 && (
@@ -299,6 +309,15 @@ export default function CartModal() {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className={`toast-wrapper ${deleteToast ? "active" : ""}`}>
+        <Toast
+          title="Atención"
+          message="Item borrado!"
+          type="success"
+          onClose={() => setDeleteToast(false)}
+        />
       </div>
     </div>
   );

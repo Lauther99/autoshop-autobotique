@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Product } from "@/types/product";
 import { useCartStore } from "@/store/cartStore";
+import Toast from "@/app/components/ui/Toast";
 
 type CurrencyCode = "SOL" | "MXN" | "USD" | any;
 
@@ -20,6 +21,18 @@ export default function ProductInfo({ product }: Props) {
   const { items, addItem, updateQuantity } = useCartStore();
 
   const [quantity, setQuantity] = useState(1);
+
+  const [openToast, setOpenToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+
+  useEffect(() => {
+    if (!openToast) return;
+    const timer = setTimeout(() => {
+      setOpenToast(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [openToast]);
+
 
   const inStock = product.stock > 0;
   const backorder = product.stock === 0 && product.backorder;
@@ -85,6 +98,8 @@ export default function ProductInfo({ product }: Props) {
                 backorderDays: product.backorderDays,
                 backorderQty: 0,
               });
+              setOpenToast(true)
+              setToastMessage("Producto agregado.")
             }}
           >
             Añadir al Carrito
@@ -95,6 +110,14 @@ export default function ProductInfo({ product }: Props) {
             Consultar con un vendedor
           </button>
         )}
+      </div>
+      <div className={`toast-wrapper ${openToast ? "active" : ""}`}>
+        <Toast
+          title="Bien hecho!"
+          message={toastMessage}
+          type="success"
+          onClose={() => setOpenToast(false)}
+        />
       </div>
     </div>
   );

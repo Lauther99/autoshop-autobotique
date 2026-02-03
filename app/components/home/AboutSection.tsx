@@ -1,15 +1,17 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function About() {
   return (
     <section className="about-section">
       <div className="container about-grid">
         <div>
-          <img
-            src="https://images.unsplash.com/photo-1486006920555-c77dcf18193c?q=80&w=800&auto=format&fit=crop"
+          {/* <img
+            src="/lugar1.webp"
             alt="Autoshop Storefront"
             className="about-image"
-          />
+          /> */}
+          <Image src={"/lugar1.webp"} alt="Autoshop" className="about-image" width={500} height={400}/>
         </div>
 
         <div>

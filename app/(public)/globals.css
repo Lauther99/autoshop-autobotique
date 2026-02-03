@@ -577,6 +577,12 @@ ul {
 }
 
 /* Responsive adjustments */
+@media (max-width: 990px) {
+  .products-section {
+    margin-top: 80px;
+  }
+}
+
 @media (max-width: 768px) {
   .nav-links,
   .search-bar {

@@ -5,7 +5,15 @@ import { currencies, Product } from "@/types/product";
 import Image from "next/image";
 import { useCartStore } from "@/store/cartStore";
 
-export default function ProductCard({ product }: { product: Product }) {
+export default function ProductCard({
+  product,
+  setOpenToast,
+  setToastMessage,
+}: {
+  product: Product;
+  setOpenToast: (value: boolean) => void;
+  setToastMessage: (value: string) => void;
+}) {
   const { addItem } = useCartStore();
 
   const brand = product.brand ?? "";
@@ -71,6 +79,9 @@ export default function ProductCard({ product }: { product: Product }) {
               backorderDays: product.backorderDays,
               backorderQty: 0,
             });
+
+            setOpenToast(true);
+            setToastMessage("Producto agregado.");
           }}
           className="btn-add-cart"
         >

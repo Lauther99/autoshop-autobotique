@@ -8,9 +8,10 @@ import Image from "next/image";
 
 interface CartItemProps {
   item: CartItem;
+  setDeleteToast: (value: boolean) => void;
 }
 
-export const CartItemComponent: React.FC<CartItemProps> = ({ item }) => {
+export const CartItemComponent: React.FC<CartItemProps> = ({ item, setDeleteToast }) => {
   const removeItem = useCartStore((s) => s.removeItem);
   const updateQuantity = useCartStore((s) => s.updateQuantity);
 
@@ -38,7 +39,10 @@ export const CartItemComponent: React.FC<CartItemProps> = ({ item }) => {
     <div className="cart-item-card">
       <button
         className="btn-remove"
-        onClick={() => removeItem(item.id)}
+        onClick={() => { 
+          removeItem(item.id) 
+          setDeleteToast(true)
+        }}
         title="Eliminar producto"
       >
         <svg

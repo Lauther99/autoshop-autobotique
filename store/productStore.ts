@@ -27,8 +27,10 @@ type ProductState = {
     max: number;
   };
   applyFilters: () => void;
-  setFilter: (key: string, value: string[] | Number) => void;
+  setFilter: (key: string, value: string[] | number) => void;
   resetFilters: () => void;
+  // isLoading: boolean;
+  // setLoading: (value: boolean) => void;
 };
 
 export const useProductStore = create<ProductState>((set, get) => ({
@@ -50,6 +52,7 @@ export const useProductStore = create<ProductState>((set, get) => ({
     min: 0,
     max: 999999,
   },
+  // isLoading: true,
 
   setProducts: (products) => {
     const prices = products.map((p) => Number(p.price) || 0);
@@ -71,6 +74,7 @@ export const useProductStore = create<ProductState>((set, get) => ({
         maxPrice:
           state.filters.maxPrice === 999999 ? maxPrice : state.filters.maxPrice,
       },
+      isLoading: false,
     }));
   },
 
@@ -183,4 +187,5 @@ export const useProductStore = create<ProductState>((set, get) => ({
       sortType: "price-desc",
     });
   },
+  // setLoading: (value) => set({ isLoading: value }),
 }));

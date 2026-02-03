@@ -44,6 +44,7 @@ export function generateStaticParams() {
 export default async function ProductDetailPage({ params }: Props) {
   const { slug } = await params;
 
+
   const parts = slug.split("-");
   const id = Number(parts.pop());
   const product = products.find((p) => p.id === id);

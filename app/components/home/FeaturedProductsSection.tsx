@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Product } from "@/types/product";
 import { FeaturedProductCard } from "./FeaturedProductCard";
 import { products } from "@/data/products";
+import Reveal from "@/app/components/ui/Reveal";
 
 interface FeaturedProductsProps {
   products: Product[];
@@ -49,9 +50,11 @@ export default function FeaturedProducts() {
 
       <div className="products-grid">
         {products.slice(0, 4).map((product, index) => (
-          <Link href={`/tienda/${get_slug(product)}`} className="shop-card" key={index} >
-            <FeaturedProductCard product={product} />
-          </Link>
+          <Reveal key={product.id} delay={index * 0.1}>
+            <Link href={`/tienda/${get_slug(product)}`} className="shop-card">
+              <FeaturedProductCard product={product} />
+            </Link>
+          </Reveal>
         ))}
       </div>
     </section>

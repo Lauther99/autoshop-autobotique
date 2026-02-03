@@ -372,6 +372,11 @@
   .cart-item-image { width: 100%; height: 150px; }
   .cart-item-details { width: 100%; }
   .cart-controls-row { margin-top: 15px; }
+
+  .cart-page-container {
+  padding: 5px;
+}
+
 }
 
 .btn-checkout:disabled {
