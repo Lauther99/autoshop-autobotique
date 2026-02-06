@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   /* config options here */
   images: {
     domains: [
+      "ghsbftynenpfyoeaxsiw.supabase.co",
       "encrypted-tbn0.gstatic.com",
       "m.media-amazon.com",
       "caraudioexpress.pe",

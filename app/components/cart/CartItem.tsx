@@ -62,8 +62,7 @@ export const CartItemComponent: React.FC<CartItemProps> = ({ item, setDeleteToas
         <Image
           src={item.image ?? "/assets/logo1.png"}
           alt={item.title}
-          width={450}
-          height={370}
+          fill
           style={{ objectFit: "cover" }}
         />
       </div>

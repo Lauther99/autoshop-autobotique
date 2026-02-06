@@ -29,7 +29,7 @@ export function FeaturedProductCard({ product }: ProductCardProps) {
           src={product.images?.[0] ?? "/assets/logo1.png"}
           alt={title}
           fill
-          style={{ objectFit: "cover" }}
+          style={{ objectFit: "contain" }}
         />
       </div>
 

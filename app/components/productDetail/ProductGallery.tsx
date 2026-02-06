@@ -14,13 +14,11 @@ export default function ProductGallery({ images, productName }: Props) {
   return (
     <div className="gallery-wrapper">
       <div className="main-image-frame">
-        {/* <img src={images[activeImage]} alt="Producto Principal" /> */}
         <Image
-          src={images[0] ?? "/assets/logo1.png"}
+          src={images[activeImage] ?? "/assets/logo1.png"}
           alt={productName}
-          width={450}
-          height={370}
-          style={{ objectFit: "cover" }}
+          fill
+          style={{ objectFit: "contain" }}
         />
       </div>
       <div className="thumbnail-strip">
@@ -33,9 +31,8 @@ export default function ProductGallery({ images, productName }: Props) {
             <Image
               src={img ?? "/assets/logo1.png"}
               alt={`Thumb ${productName}`}
-              width={30}
-              height={30}
-              style={{ objectFit: "cover" }}
+              fill
+              style={{ objectFit: "cover", borderRadius: "8px" }}
             />
           </div>
         ))}

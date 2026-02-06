@@ -26,9 +26,7 @@ export default function SummaryProductItem({
         <Image
           src={imageUrl ?? "/assets/logo2.png"}
           alt={title}
-          width={450}
-          height={370}
-          style={{ objectFit: "cover" }}
+          fill
         />
       </div>
 

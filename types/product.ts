@@ -11,6 +11,12 @@ export interface ProductSpecs {
   value: string;
 }
 
+export interface ImagesType {
+  product_id: string;
+  url: string;
+  file: string;
+}
+
 export interface Product {
   id: number;
   sku?: string | null;

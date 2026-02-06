@@ -330,11 +330,17 @@ ul {
 }
 
 .product-image {
-  position: relative; /* <--- AGREGA ESTO */
+  position: relative;
   height: 200px;
   width: 100%;
-  background: #222;
+  /* background: #222; */
+  background: #fff;
 }
+
+.product-image img {
+  padding: 12px;
+}
+
 .card-info {
   padding: 15px;
 }

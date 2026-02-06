@@ -22,7 +22,8 @@
 }
 
 .main-image-frame {
-  background: #141414;
+  /* background: #141414; */
+  background: #fff;
   border: 1px solid #333;
   border-radius: 12px;
   height: 500px;
@@ -38,7 +39,9 @@
   max-height: 100%;
   object-fit: contain;
   /* Efecto de sombra sutil para dar profundidad al objeto */
-  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5)); 
+  /* filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));  */
+  border-radius: 12px;
+  padding: 12px;
 }
 
 .thumbnail-strip {
@@ -55,12 +58,15 @@
   padding: 10px;
   cursor: pointer;
   transition: 0.3s;
+  position: relative;
 }
 
 .thumb-btn img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  padding: 8px;
+  background: #fff;
 }
 
 .thumb-btn:hover {
