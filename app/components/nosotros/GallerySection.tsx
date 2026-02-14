@@ -29,7 +29,7 @@ export default function GallerySection() {
           whileHover={{ scale: 1.03 }}
           className="gallery-item large"
         >
-          <Image src={"/assets/gallery_section/lugar1.JPG"} alt="Showroom Principal" fill />
+          <Image src={"/assets/gallery_section/lugar1.jpg"} alt="Showroom Principal" fill />
           {/* <div className="gallery-caption">Showroom Principal</div> */}
         </motion.div>
         {/* Imagen Pequeña Arriba Derecha */}
@@ -41,7 +41,7 @@ export default function GallerySection() {
           whileHover={{ scale: 1.03 }}
           className="gallery-item"
         >
-          <Image src={"/assets/gallery_section/lugar2.JPG"} alt="Detalle auto" fill />
+          <Image src={"/assets/gallery_section/lugar2.jpg"} alt="Detalle auto" fill />
           {/* <div className="gallery-caption">Área de Detallado</div> */}
         </motion.div>
         {/* Imagen Pequeña Abajo Derecha */}
@@ -54,7 +54,7 @@ export default function GallerySection() {
           className="gallery-item"
         >
           
-          <Image src={"/assets/gallery_section/lugar3.JPG"} alt="Detalle auto" fill />
+          <Image src={"/assets/gallery_section/lugar3.jpg"} alt="Detalle auto" fill />
           {/* <div className="gallery-caption">Sala VIP</div> */}
         </motion.div>
       </div>
