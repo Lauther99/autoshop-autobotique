@@ -21,14 +21,14 @@ export default function AboutPage() {
           <AboutDescription />
         </RevealOnScroll>
 
-        <RevealOnScroll>
-          <MissionVision />
-        </RevealOnScroll>
-
-        <RevealOnScroll>
+         <RevealOnScroll>
           {/* <TeamEditorial /> */}
           {/* <TeamGrid /> */}
           <TeamGallery />
+        </RevealOnScroll>
+
+        <RevealOnScroll>
+          <MissionVision />
         </RevealOnScroll>
 
         {/* <RevealOnScroll> */}

@@ -11,7 +11,7 @@ interface Props {
   duration?: number; 
 }
 
-export default function HeroBackgroundSlider({ images, duration = 5000 }: Props) {
+export default function HeroBackgroundSlider({ images, duration = 3000 }: Props) {
   const [index, setIndex] = useState(0);
 
   // Lógica para cambiar la imagen automáticamente

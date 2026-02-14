@@ -7,7 +7,7 @@
   height: 70vh;
   background:
     linear-gradient(to bottom, rgba(10, 10, 10, 0.6), rgba(10, 10, 10, 1)),
-    url("/lugar3.webp"); /* Garage oscuro */
+    url("/assets/equipo.JPG"); /* Garage oscuro */
   background-size: cover;
   background-position: center;
   display: flex;
