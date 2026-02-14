@@ -1,0 +1,76 @@
+/* --- Sección Editorial --- */
+.editorial-section {
+  background-color: #111;
+  padding: 5rem 1rem;
+  overflow: hidden;
+  color: white;
+}
+
+.editorial-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  margin-bottom: 6rem;
+}
+
+/* Alternar orden: imagen derecha en filas pares */
+.editorial-row:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+/* --- Contenedor de Imagen --- */
+.editorial-img-box {
+  position: relative; /* CRUCIAL */
+  flex: 1;            /* Ocupa la mitad */
+  height: 500px;      /* Altura fija necesaria para fotos verticales */
+  width: 100%;
+  box-shadow: 15px 15px 0px rgba(200, 0, 0, 0.2); /* Sombra decorativa */
+  border: 1px solid #333;
+}
+
+/* --- Contenedor de Texto --- */
+.editorial-content {
+  flex: 1; /* Ocupa la otra mitad */
+  padding: 1rem;
+}
+
+.editorial-name {
+  font-size: 2.5rem;
+  font-weight: 800;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.editorial-role {
+  color: #ff0000;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.editorial-desc {
+  color: #ccc;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+/* --- Responsivo (Móvil) --- */
+@media (max-width: 768px) {
+  .editorial-row, .editorial-row:nth-child(even) {
+    flex-direction: column; /* Apilar en vertical */
+    gap: 2rem;
+  }
+  
+  .editorial-img-box {
+    height: 400px; /* Un poco más bajo en móvil */
+    width: 100%;
+  }
+  
+  .editorial-content {
+    text-align: center;
+  }
+}

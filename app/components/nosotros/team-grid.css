@@ -1,0 +1,76 @@
+/* --- Contenedor Principal --- */
+.team-section {
+  background-color: #050505; /* Fondo oscuro */
+  padding: 4rem 1rem;
+  color: white;
+}
+
+.team-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- La Cuadrícula --- */
+.team-grid {
+  display: grid;
+  /* Crea columnas automáticas. Mínimo 280px de ancho por tarjeta */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+/* --- La Tarjeta Individual --- */
+.team-card {
+  position: relative; /* CRUCIAL para que el contenido se posicione sobre la imagen */
+  overflow: hidden;   /* Para que la imagen no se salga al hacer zoom */
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid #333;
+}
+
+/* --- El Contenedor de la Imagen (Aspect Ratio) --- */
+.team-image-wrapper {
+  position: relative; /* CRUCIAL para next/image con 'fill' */
+  width: 100%;
+  /* Define la proporción vertical (3 ancho / 4 alto) */
+  aspect-ratio: 3 / 4; 
+}
+
+/* --- Información (Overlay) --- */
+.team-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+/* Efectos Hover */
+.team-card:hover .team-info {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.team-card:hover img {
+  transform: scale(1.05); /* Zoom suave a la imagen */
+  transition: transform 0.5s ease;
+}
+
+/* Tipografía */
+.team-name {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.team-role {
+  color: #ef4444; /* Rojo */
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}

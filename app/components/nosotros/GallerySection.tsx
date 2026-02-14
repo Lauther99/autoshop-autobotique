@@ -5,13 +5,7 @@ import Image from "next/image";
 export default function GallerySection() {
   return (
     <section className="gallery-section">
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "end",
-        }}
-      >
+      <div className="about-gallery-title">
         <div>
           <h2 className="section-title" style={{ marginBottom: 0 }}>
             Nuestras <span className="text-red">Instalaciones</span>

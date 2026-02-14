@@ -7,6 +7,9 @@ import ValuesGrid from "@/app/components/nosotros/ValuesGrid";
 import GallerySection from "@/app/components/nosotros/GallerySection";
 import CtaBanner from "@/app/components/nosotros/CtaBanner";
 import RevealOnScroll from "@/app/components/ui/RevealOnScroll";
+import TeamGrid from "@/app/components/nosotros/TeamGrid";
+import TeamEditorial from "@/app/components/nosotros/TeamEditorial";
+import TeamGallery from "@/app/components/nosotros/TeamGallery";
 
 export default function AboutPage() {
   return (
@@ -20,6 +23,12 @@ export default function AboutPage() {
 
         <RevealOnScroll>
           <MissionVision />
+        </RevealOnScroll>
+
+        <RevealOnScroll>
+          {/* <TeamEditorial /> */}
+          {/* <TeamGrid /> */}
+          <TeamGallery />
         </RevealOnScroll>
 
         {/* <RevealOnScroll> */}
