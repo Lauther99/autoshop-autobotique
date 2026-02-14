@@ -12,22 +12,10 @@ export default function Hero() {
   const { scrollY } = useScroll();
   const yContent = useTransform(scrollY, [0, 400], [0, 140]);
 
-  const backgroundSlides = [
-    "/assets/photos/8.JPG",
-    "/assets/photos/1.JPG",
-    "/assets/photos/2.JPG",
-    "/assets/photos/3.JPG",
-    "/assets/photos/4.JPG",
-    "/assets/photos/5.JPG",
-    "/assets/photos/6.JPG",
-    "/assets/photos/7.JPG",
-    "/assets/photos/9.JPG",
-    "/assets/photos/10.JPG",
-  ];
 
   return (
     <section className="hero-image relative overflow-hidden">
-      <HeroBackgroundSlider images={backgroundSlides} />
+      <HeroBackgroundSlider />
       {/* <HeroBackgroundSlider images={backgroundSlides} /> */}
 
       <motion.div style={{ y: yContent }} className="hero container relative z-10">

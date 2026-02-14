@@ -5,24 +5,32 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
-interface Props {
-  images: string[];
-  // Duración de cada imagen en milisegundos
-  duration?: number; 
-}
+const backgroundSlides = [
+  "/assets/photos/8.JPG",
+  "/assets/photos/1.JPG",
+  "/assets/photos/2.JPG",
+  "/assets/photos/3.JPG",
+  "/assets/photos/4.JPG",
+  "/assets/photos/5.JPG",
+  "/assets/photos/6.JPG",
+  "/assets/photos/7.JPG",
+  "/assets/photos/9.JPG",
+  "/assets/photos/10.JPG",
+];
 
-export default function HeroBackgroundSlider({ images, duration = 3000 }: Props) {
+export default function HeroBackgroundSlider({ duration = 3000 }) {
+  // const images = backgroundSlides;
   const [index, setIndex] = useState(0);
 
   // Lógica para cambiar la imagen automáticamente
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % images.length);
+      setIndex((prevIndex) => (prevIndex + 1) % backgroundSlides.length);
     }, duration);
 
     // Limpiar el intervalo cuando el componente se desmonte
     return () => clearInterval(interval);
-  }, [images.length, duration]);
+  }, [duration]);
 
   return (
     <div className="absolute inset-0 z-[-1]">
@@ -36,10 +44,10 @@ export default function HeroBackgroundSlider({ images, duration = 3000 }: Props)
           className="w-full h-full"
         >
           <Image
-            src={images[index]}
+            src={backgroundSlides[index]}
             alt={`Fondo de héroe ${index + 1}`}
             fill
-            className="object-cover" // object-cover es más común que hero-bg-img
+            className="hero-bg-img" // object-cover es más común que hero-bg-img
             priority={index === 0}
           />
         </motion.div>
