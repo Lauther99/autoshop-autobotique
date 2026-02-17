@@ -1,9 +1,8 @@
 "use client";
 
+import { numero } from "@/data/information";
 import { motion } from "framer-motion";
 import Link from "next/link";
-
-const numero = "51952295928";
 
 export default function CtaBanner() {
   return (
