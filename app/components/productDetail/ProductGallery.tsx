@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 interface Props {
   images: string[];
@@ -10,10 +10,29 @@ interface Props {
 
 export default function ProductGallery({ images, productName }: Props) {
   const [activeImage, setActiveImage] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const delta = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(delta) < 50) return;
+    if (delta > 0) {
+      setActiveImage((prev) => (prev + 1) % images.length);
+    } else {
+      setActiveImage((prev) => (prev - 1 + images.length) % images.length);
+    }
+    touchStartX.current = null;
+  };
 
   return (
-    <div className="flex flex-col gap-4 md:flex-row">
-      <div className="order-2 flex gap-3 overflow-x-auto md:order-1 md:flex-col md:overflow-visible">
+    <div className="flex flex-col gap-3 sm:gap-4 md:flex-row md:gap-4">
+
+      {/* Thumbnails — ocultos en mobile, columna en desktop */}
+      <div className="hidden md:flex md:flex-col md:gap-3">
         {images.map((img, index) => (
           <button
             key={index}
@@ -27,7 +46,7 @@ export default function ProductGallery({ images, productName }: Props) {
             aria-label={`Seleccionar imagen ${index + 1} de ${productName}`}
           >
             <Image
-              src={img ?? "/assets/logo1.png"}
+              src={img ?? "/assets/logo2.png"}
               alt={`Thumb ${productName}`}
               fill
               style={{ objectFit: "contain" }}
@@ -37,15 +56,39 @@ export default function ProductGallery({ images, productName }: Props) {
         ))}
       </div>
 
-      <div className="order-1 relative flex h-[500px] flex-1 rounded-xl border border-[#333] bg-white md:order-2">
+      {/* Imagen principal */}
+      <div
+        className="relative min-h-[300px] flex-1 rounded-xl border border-[#333] bg-white sm:min-h-[360px] md:h-[440px] lg:h-[500px]"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         <Image
-          src={images[activeImage] ?? "/assets/logo1.png"}
+          src={images[activeImage] ?? "/assets/logo2.png"}
           alt={productName}
           fill
           style={{ objectFit: "contain" }}
           className="rounded-xl"
         />
       </div>
+
+      {/* Dots — solo en mobile, ocultos en desktop */}
+      {images.length > 1 && (
+        <div className="flex items-center justify-center gap-2 md:hidden">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              type="button"
+              onClick={() => setActiveImage(index)}
+              aria-label={`Imagen ${index + 1}`}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                activeImage === index
+                  ? "w-6 bg-[var(--primary-red)]"
+                  : "w-2 bg-[#555] hover:bg-[#888]"
+              }`}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

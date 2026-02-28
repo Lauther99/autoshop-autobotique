@@ -71,7 +71,7 @@ export const CartItemComponent: React.FC<CartItemProps> = ({
                   max-[900px]:h-[150px] max-[900px]:w-full"
       >
         <Image
-          src={item.image ?? "/assets/logo1.png"}
+          src={item.image ?? "/assets/logo2.png"}
           alt={item.title}
           fill
           className="rounded-md object-contain p-2"
