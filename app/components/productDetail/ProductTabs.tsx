@@ -9,6 +9,7 @@ interface Props {
 
 export default function ProductTabs({ product }: Props) {
   const [activeTab, setActiveTab] = useState("descripcion");
+  const specs = product.specs ?? [];
 
   return (
     <div className="mt-16">
@@ -58,15 +59,15 @@ export default function ProductTabs({ product }: Props) {
                 Ficha Técnica
               </h4>
 
-              {product.specs?.length ? (
+              {specs.length ? (
                 <div>
-                  {product.specs.map((s, index) => (
+                  {specs.map((s, index) => (
                     <div
                       key={s.label}
                       className={`
                         flex justify-between py-3 text-sm
-                        ${index !== product.specs.length - 1 
-                          ? "border-b border-[#222]" 
+                        ${index !== specs.length - 1
+                          ? "border-b border-[#222]"
                           : ""}
                       `}
                     >
