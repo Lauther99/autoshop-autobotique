@@ -1,4 +1,4 @@
-import "./nosotros_module.css";
+// import "./nosotros_module.css";
 
 import AboutHero from "@/app/components/nosotros/AboutHero";
 import AboutDescription from "@/app/components/nosotros/AboutDescription";

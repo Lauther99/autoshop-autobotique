@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
-import './PriceRangeSlider_module.css'
+import { useCallback } from "react";
+
 interface Props {
   min: number;
   max: number;
@@ -19,78 +19,60 @@ export default function PriceRangeSlider({
   onChange,
   onMouseUp,
 }: Props) {
-  const [minVal, setMinVal] = useState(valueMin);
-  const [maxVal, setMaxVal] = useState(valueMax);
+  const getPercent = useCallback((value: number) => Math.round(((value - min) / (max - min)) * 100), [min, max]);
 
-  const getPercent = useCallback(
-    (value: number) => Math.round(((value - min) / (max - min)) * 100),
-    [min, max]
-  );
-
-  const range = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    setMinVal(valueMin);
-    setMaxVal(valueMax);
-  }, [valueMin, valueMax]);
-
-  useEffect(() => {
-    if (range.current) {
-      const minPercent = ((minVal - min) / (max - min)) * 100;
-      const maxPercent = ((maxVal - min) / (max - min)) * 100;
-
-      range.current.style.left = `${minPercent}%`;
-      range.current.style.width = `${maxPercent - minPercent}%`;
-    }
-  }, [minVal, maxVal, min, max]);
-
-  useEffect(() => {
-    onChange(minVal, maxVal);
-  }, [minVal, maxVal]);
+  const handleRangeCommit = () => {
+    onMouseUp?.(valueMin, valueMax);
+  };
 
   return (
-    <div className="filter-section price-slider-container">
-      <h4 className="filter-title">Rango de Precio</h4>
+    <div className="mb-7 w-full text-text">
+      <h4 className="mb-4 text-[0.85rem] font-bold uppercase tracking-[1px] text-text">Rango de Precio</h4>
 
-      <div className="slider-wrapper">
+      <div className="relative flex h-[25px] w-full items-center">
         <input
           type="range"
           min={min}
           max={max}
-          value={minVal}
-          onChange={(e) =>
-            setMinVal(Math.min(Number(e.target.value), maxVal - 1))
-          }
-          onMouseUp={() => onMouseUp?.(minVal, maxVal)}
+          value={valueMin}
+          onChange={(e) => {
+            const nextMin = Math.min(Number(e.target.value), valueMax - 1);
+            onChange(nextMin, valueMax);
+          }}
+          onMouseUp={handleRangeCommit}
+          onTouchEnd={handleRangeCommit}
           className="thumb thumb-left"
-          style={{ zIndex: minVal > max - 100 ? "5" : undefined }} 
+          style={{ zIndex: valueMin > max - 100 ? "5" : undefined }}
         />
         <input
           type="range"
           min={min}
           max={max}
-          value={maxVal}
-          onChange={(e) =>
-            setMaxVal(Math.max(Number(e.target.value), minVal + 1))
-          }
-          onMouseUp={() => onMouseUp?.(minVal, maxVal)}
+          value={valueMax}
+          onChange={(e) => {
+            const nextMax = Math.max(Number(e.target.value), valueMin + 1);
+            onChange(valueMin, nextMax);
+          }}
+          onMouseUp={handleRangeCommit}
+          onTouchEnd={handleRangeCommit}
           className="thumb thumb-right"
         />
-
 
         <div className="slider-track" />
         <div
           className="slider-range"
           style={{
-            left: `${getPercent(minVal)}%`,
-            width: `${getPercent(maxVal) - getPercent(minVal)}%`,
+            left: `${getPercent(valueMin)}%`,
+            width: `${getPercent(valueMax) - getPercent(valueMin)}%`,
           }}
         />
       </div>
-      <div className="price-inputs">
-      <span className="price-tag">S/{minVal}</span>
-      <span className="dash">—</span>
-      <span className="price-tag">S/{maxVal}</span>
-    </div>
+
+      <div className="mt-5 flex items-center justify-between gap-2.5">
+        <span className="rounded bg-[#1f1f1f] px-2.5 py-1 text-sm font-bold text-[#fff]">S/{valueMin}</span>
+        <span className="text-[#888]">-</span>
+        <span className="rounded bg-[#1f1f1f] px-2.5 py-1 text-sm font-bold text-[#fff]">S/{valueMax}</span>
+      </div>
     </div>
   );
 }

@@ -2,6 +2,8 @@
 import { useProductStore } from "@/store/productStore";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
+type SortType = "price-asc" | "price-desc";
+
 export default function ShopHeader() {
   const setSortType = useProductStore((state) => state.setSortType);
   const type = useProductStore((state) => state.sortType); // Valor del store
@@ -12,8 +14,8 @@ export default function ShopHeader() {
   // Leemos el valor de la URL o usamos el del Store como respaldo
   const currentSort = searchParams.get("sort") || type;
 
-  const handleSort = (value: string) => {
-    setSortType(value as any);
+  const handleSort = (value: SortType) => {
+    setSortType(value);
 
     const params = new URLSearchParams(searchParams.toString());
     params.set("sort", value);
@@ -23,15 +25,16 @@ export default function ShopHeader() {
   };
 
   return (
-    <header className="shop-header">
-      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-        <span style={{ fontSize: "0.9rem", color: "#888" }}>Ordenar por:</span>
+    <header className="mb-5 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
+      <h2 className="text-[1.8rem]">Tienda</h2>
+
+      <div className="flex w-full items-center gap-2.5 sm:w-auto">
+        <span className="text-[0.9rem] text-gray-500">Ordenar por:</span>
+
         <select
-          onChange={(e) => handleSort(e.target.value)}
-          style={{ padding: "8px", borderRadius: "6px" }}
-          className="sort-select"
-          // ✅ CAMBIO CLAVE: Usa 'value' para que React lo mantenga sincronizado
-          value={currentSort} 
+          onChange={(e) => handleSort(e.target.value as SortType)}
+          value={currentSort}
+          className="w-full rounded-md border border-[#333] bg-[#1f1f1f] px-[15px] py-2 text-white outline-none sm:w-auto"
         >
           <option value="price-asc">Menor Precio</option>
           <option value="price-desc">Mayor Precio</option>

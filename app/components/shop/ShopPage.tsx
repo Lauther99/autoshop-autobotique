@@ -49,11 +49,11 @@ export default function ShopPage() {
   }, [searchParams, setProducts, applyFilters, goToPage, setFilter, setSortType]);
 
   return (
-    <div className="container">
+    <div className="mx-auto w-full max-w-[1200px] px-5">
       <ShopBreadcrumbs />
-      <div className="shop-container">
+      <div className="relative flex flex-col gap-[30px] py-10 min-[901px]:flex-row">
         <ShopFilters />
-        <div className="shop-content">
+        <div className="flex-1">
           <ShopHeader />
           <ProductGrid />
           <ShopPagination />

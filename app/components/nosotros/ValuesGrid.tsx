@@ -32,15 +32,15 @@ export default function ValuesGrid() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-100px" }}
-        className="values-grid"
+        className="mt-10 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-[30px]"
       >
         <motion.div
           variants={item}
           whileHover={{ y: -6, scale: 1.02 }}
           transition={{ type: "spring", stiffness: 260, damping: 18 }}
-          className="value-card"
+          className="rounded-lg border border-[#333] px-5 py-[30px] text-center transition-all duration-300 hover:border-[var(--primary-red)] hover:bg-[rgba(255,26,26,0.05)]"
         >
-          <div className="value-icon">
+          <div className="mb-[15px] inline-block text-[var(--primary-red)]">
             {/* Calidad → Shield Check */}
             <svg
               width="40"
@@ -54,8 +54,8 @@ export default function ValuesGrid() {
               <path d="m9 12 2 2 4-4" />
             </svg>
           </div>
-          <h4>Calidad</h4>
-          <p style={{ fontSize: "0.9rem", color: "#888", marginTop: "10px" }}>
+          <h4 className="font-semibold">Calidad</h4>
+          <p className="mt-[10px] text-[0.9rem] text-[#888]">
             Solo trabajamos con productos probados y marcas confiables.
           </p>
         </motion.div>
@@ -64,13 +64,13 @@ export default function ValuesGrid() {
           variants={item}
           whileHover={{ y: -6, scale: 1.02 }}
           transition={{ type: "spring", stiffness: 260, damping: 18 }}
-          className="value-card"
+          className="rounded-lg border border-[#333] px-5 py-[30px] text-center transition-all duration-300 hover:border-[var(--primary-red)] hover:bg-[rgba(255,26,26,0.05)]"
         >
-          <div className="value-icon">
+          <div className="mb-[15px] inline-block text-[var(--primary-red)]">
             <PiHandshake style={{ width: "40px", height: "40px" }} />
           </div>
-          <h4>Confianza</h4>
-          <p style={{ fontSize: "0.9rem", color: "#888", marginTop: "10px" }}>
+          <h4 className="font-semibold">Confianza</h4>
+          <p className="mt-[10px] text-[0.9rem] text-[#888]">
             Transparencia total en cada venta.
           </p>
         </motion.div>
@@ -79,9 +79,9 @@ export default function ValuesGrid() {
           variants={item}
           whileHover={{ y: -6, scale: 1.02 }}
           transition={{ type: "spring", stiffness: 260, damping: 18 }}
-          className="value-card"
+          className="rounded-lg border border-[#333] px-5 py-[30px] text-center transition-all duration-300 hover:border-[var(--primary-red)] hover:bg-[rgba(255,26,26,0.05)]"
         >
-          <div className="value-icon">
+          <div className="mb-[15px] inline-block text-[var(--primary-red)]">
             {/* Experiencia → Award */}
             <svg
               width="40"
@@ -95,8 +95,8 @@ export default function ValuesGrid() {
               <path d="m8.21 13.89-1.16 7A1 1 0 0 0 8 22l4-2 4 2a1 1 0 0 0 1-1.11l-1.16-7" />
             </svg>
           </div>
-          <h4>Experiencia</h4>
-          <p style={{ fontSize: "0.9rem", color: "#888", marginTop: "10px" }}>
+          <h4 className="font-semibold">Experiencia</h4>
+          <p className="mt-[10px] text-[0.9rem] text-[#888]">
             Más de 15 años respaldan nuestro conocimiento.
           </p>
         </motion.div>
@@ -105,14 +105,14 @@ export default function ValuesGrid() {
           variants={item}
           whileHover={{ y: -6, scale: 1.02 }}
           transition={{ type: "spring", stiffness: 260, damping: 18 }}
-          className="value-card"
+          className="rounded-lg border border-[#333] px-5 py-[30px] text-center transition-all duration-300 hover:border-[var(--primary-red)] hover:bg-[rgba(255,26,26,0.05)]"
         >
-          <div className="value-icon">
+          <div className="mb-[15px] inline-block text-[var(--primary-red)]">
             {/* Atención personalizada → User Check */}
             <FiUserCheck style={{ width: "40px", height: "40px" }} />
           </div>
-          <h4>Atención personalizada</h4>
-          <p style={{ fontSize: "0.9rem", color: "#888", marginTop: "10px" }}>
+          <h4 className="font-semibold">Atención personalizada</h4>
+          <p className="mt-[10px] text-[0.9rem] text-[#888]">
             Cada cliente es único.
           </p>
         </motion.div>
@@ -121,9 +121,9 @@ export default function ValuesGrid() {
           variants={item}
           whileHover={{ y: -6, scale: 1.02 }}
           transition={{ type: "spring", stiffness: 260, damping: 18 }}
-          className="value-card"
+          className="rounded-lg border border-[#333] px-5 py-[30px] text-center transition-all duration-300 hover:border-[var(--primary-red)] hover:bg-[rgba(255,26,26,0.05)]"
         >
-          <div className="value-icon">
+          <div className="mb-[15px] inline-block text-[var(--primary-red)]">
             {/* Innovación → Lightbulb */}
             <svg
               width="40"
@@ -138,8 +138,8 @@ export default function ValuesGrid() {
               <circle cx="12" cy="10" r="7" />
             </svg>
           </div>
-          <h4>Innovación</h4>
-          <p style={{ fontSize: "0.9rem", color: "#888", marginTop: "10px" }}>
+          <h4 className="font-semibold">Innovación</h4>
+          <p className="mt-[10px] text-[0.9rem] text-[#888]">
             Siempre a la vanguardia del mundo automotriz.
           </p>
         </motion.div>

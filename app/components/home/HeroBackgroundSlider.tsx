@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const backgroundSlides = [
   "/assets/photos/8.JPG",
@@ -18,40 +18,39 @@ const backgroundSlides = [
   "/assets/photos/10.JPG",
 ];
 
-export default function HeroBackgroundSlider({ duration = 3000 }) {
-  // const images = backgroundSlides;
+export default function HeroBackgroundSlider({ duration = 5000 }) {
   const [index, setIndex] = useState(0);
 
-  // Lógica para cambiar la imagen automáticamente
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % backgroundSlides.length);
+      setIndex((prev) => (prev + 1) % backgroundSlides.length);
     }, duration);
 
-    // Limpiar el intervalo cuando el componente se desmonte
     return () => clearInterval(interval);
   }, [duration]);
 
   return (
     <div className="absolute inset-0 z-[-1]">
-      <AnimatePresence>
+      {backgroundSlides.map((img, i) => (
         <motion.div
-          // La 'key' es crucial para que AnimatePresence detecte el cambio de elemento
-          key={index}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, transition: { duration: 1.5 } }}
-          exit={{ opacity: 0, transition: { duration: 1.5 } }}
-          className="w-full h-full"
+          key={i}
+          initial={false}
+          animate={{ opacity: i === index ? 1 : 0 }}
+          transition={{ duration: 2, ease: "easeInOut" }}
+          className="absolute inset-0"
         >
           <Image
-            src={backgroundSlides[index]}
-            alt={`Fondo de héroe ${index + 1}`}
+            src={img}
+            alt={`Fondo de héroe ${i + 1}`}
             fill
-            className="hero-bg-img" // object-cover es más común que hero-bg-img
-            priority={index === 0}
+            className="hero-bg-img"
+            priority={i === 0}
           />
+
+          {/* Overlay oscuro */}
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]" />
         </motion.div>
-      </AnimatePresence>
+      ))}
     </div>
   );
 }

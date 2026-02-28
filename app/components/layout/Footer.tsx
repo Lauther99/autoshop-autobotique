@@ -1,110 +1,64 @@
 import Image from "next/image";
-import logo from "@/public/assets/logo1.png";
 import Link from "next/link";
+import logo from "@/public/assets/logo1.png";
 import { products } from "@/data/products";
 
 export default function Footer() {
   const categories = [...new Set(products.map((p) => p.category.trim()))];
 
   return (
-    <footer className="footer">
-      <div className="container">
-        <div className="footer-grid">
-          <div
-            className=""
-            style={{
-              marginBottom: "15px",
-              display: "flex",
-              flexDirection: "row",
-              alignContent: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Image
-              src={logo}
-              alt="Logo Autoshop Autoboutique"
-              width={180}
-              height={160}
-            />
+    <footer className="bg-[var(--color-surface)]">
+      <div className="mx-auto w-full max-w-[1200px] px-5 pb-5 pt-14">
+        <div className="mb-10 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_2fr]">
+          <div className="mb-4 flex items-center justify-center">
+            <Image src={logo} alt="Logo Autoshop Autoboutique" width={180} height={160} />
           </div>
 
           <div>
-            <h3>NAVEGACIÓN</h3>
-            <ul>
-              <Link href="/">Inicio</Link>
-              <Link href="/tienda">Catálogo de Tienda</Link>
-              <Link href="/nosotros">Nosotros</Link>
-              {/* 
-              <li>Galería de Proyectos</li>
-              <li>Servicios de Taller</li> */}
+            <h3 className="mb-5 text-sm tracking-[1px] text-text">NAVEGACION</h3>
+            <ul className="flex flex-col gap-2.5 text-sm text-[var(--text-gray)]">
+              <li>
+                <Link className="transition-colors duration-200 hover:text-white" href="/">
+                  Inicio
+                </Link>
+              </li>
+              <li>
+                <Link className="transition-colors duration-200 hover:text-white" href="/tienda">
+                  Catalogo de Tienda
+                </Link>
+              </li>
+              <li>
+                <Link className="transition-colors duration-200 hover:text-white" href="/nosotros">
+                  Nosotros
+                </Link>
+              </li>
             </ul>
           </div>
 
           <div>
-            <h3>CATEGORÍAS</h3>
-            <ul>
-              {categories.map((cat) => {
-                return (
+            <h3 className="mb-5 text-sm tracking-[1px] text-text">CATEGORIAS</h3>
+            <ul className="flex flex-col gap-2.5 text-sm text-[var(--text-gray)]">
+              {categories.map((cat) => (
+                <li key={cat}>
                   <Link
-                    key={cat}
-                    href={{
-                      pathname: "/tienda",
-                      query: { cat: cat },
-                    }}
+                    className="transition-colors duration-200 hover:text-white"
+                    href={{ pathname: "/tienda", query: { cat } }}
                   >
                     {cat}
                   </Link>
-                );
-              })}
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* <div>
-            <h3>NEWSLETTER</h3>
-            <p
-              style={{
-                color: "#777",
-                fontSize: "0.9rem",
-                marginBottom: "10px",
-              }}
-            >
-              Suscríbete para recibir promociones y lanzamientos exclusivos.
-            </p>
-            <div className="newsletter-input">
-              <input type="email" placeholder="Tu correo" />
-              <button className="newsletter-btn">
-                <svg
-                  width="20"
-                  height="20"
-                  fill="none"
-                  stroke="white"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="m22 2-7 20-4-9-9-4Z" />
-                  <path d="M22 2 11 13" />
-                </svg>
-              </button>
-            </div>
-          </div> */}
-
           <div>
-            {/* <div className="logo" style={{ marginBottom: "15px" }}>
-              <Image
-                src={logo}
-                alt="Logo Autoshop Autoboutique"
-                width={80}
-                height={60}
-              />
-            </div> */}
-            <p style={{ color: "#777", fontSize: "0.9rem", lineHeight: "1.5" }}>
-              Líderes en personalización y equipamiento automotriz. 15 años
-              transformando autos comunes en vehículos extraordinarios.
+            <p className="text-sm leading-6 text-[#777]">
+              Lideres en personalizacion y equipamiento automotriz. 15 anos transformando autos comunes en vehiculos
+              extraordinarios.
             </p>
-            <div style={{ display: "flex", gap: "10px", marginTop: "15px" }}>
-              {/* Instagram */}
+            <div className="mt-4 flex gap-2.5">
               <a
-                className="social-icon"
+                className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-[#333] transition-colors duration-200 hover:bg-[var(--primary-red)]"
                 href="https://www.instagram.com/autoboutiqueautoshop"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -114,16 +68,8 @@ export default function Footer() {
                 </svg>
               </a>
 
-              {/* Tiktok */}
-              {/* <a className="social-icon" href="#" target="_blank" rel="noopener noreferrer">
-                <svg width="16" height="16" fill="white" viewBox="0 0 24 24">
-                  <path d="M12.71 2H16c.09.74.31 1.41.66 2.01.36.61.83 1.1 1.41 1.47.58.38 1.21.61 1.89.7v3.37c-.91-.09-1.76-.32-2.54-.68a7.07 7.07 0 01-1.89-1.35v7.46a6.51 6.51 0 01-.5 2.61c-.34.79-.82 1.46-1.45 2.01-.63.56-1.38.99-2.26 1.27-.88.29-1.82.39-2.82.31A6.7 6.7 0 014 18.44c-.73-.87-1.17-1.95-1.31-3.24-.14-1.29.03-2.43.52-3.44.5-1 1.25-1.8 2.25-2.38 1-.58 2.17-.83 3.5-.75v3.47a2.9 2.9 0 00-1.52.55c-.46.33-.8.79-.99 1.38-.2.59-.22 1.2-.06 1.83.16.64.46 1.16.91 1.56.45.4 1 .64 1.66.71.66.07 1.26-.03 1.8-.3.54-.28.95-.67 1.22-1.18.28-.51.41-1.1.41-1.75V2z" />
-                </svg>
-              </a> */}
-
-              {/* Facebook */}
               <a
-                className="social-icon"
+                className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-[#333] transition-colors duration-200 hover:bg-[var(--primary-red)]"
                 href="https://www.facebook.com/profile.php?id=100083540434022"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -136,7 +82,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="copyright">
+        <div className="border-t border-[#222] pt-5 text-center text-xs text-[#555]">
           © 2026 Autoshop Autoboutique. Todos los derechos reservados.
         </div>
       </div>

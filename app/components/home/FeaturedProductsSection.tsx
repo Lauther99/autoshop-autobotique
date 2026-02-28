@@ -4,10 +4,6 @@ import { FeaturedProductCard } from "./FeaturedProductCard";
 import { products } from "@/data/products";
 import Reveal from "@/app/components/ui/Reveal";
 
-interface FeaturedProductsProps {
-  products: Product[];
-}
-
 function get_slug(product: Product) {
   const brand = product.brand ?? "";
 
@@ -34,24 +30,20 @@ function get_slug(product: Product) {
 
 export default function FeaturedProducts() {
   return (
-    <section className="products-section container">
-      <div className="section-header">
-        <h2>
-          PRODUCTOS <span className="text-red">DESTACADOS</span>
+    <section className="mx-auto w-full max-w-[1200px] px-5 py-20">
+      <div className="mb-10 flex flex-col items-start justify-between gap-3 border-b-2 border-[#333] pb-2.5 sm:flex-row sm:items-end">
+        <h2 className="text-3xl font-extrabold uppercase">
+          PRODUCTOS <span className="text-[var(--primary-red)]">DESTACADOS</span>
         </h2>
-        <Link
-          className="text-red"
-          style={{ fontSize: "0.9rem" }}
-          href="/tienda"
-        >
-          Ver todo el catálogo &#x2197;
+        <Link className="text-sm text-[var(--primary-red)] transition-colors hover:text-[#ff4d4d]" href="/tienda">
+          Ver todo el catalogo &#8599;
         </Link>
       </div>
 
-      <div className="products-grid">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-5">
         {products.slice(0, 4).map((product, index) => (
           <Reveal key={product.id} delay={index * 0.1}>
-            <Link href={`/tienda/${get_slug(product)}`} className="shop-card">
+            <Link href={`/tienda/${get_slug(product)}`} className="block">
               <FeaturedProductCard product={product} />
             </Link>
           </Reveal>

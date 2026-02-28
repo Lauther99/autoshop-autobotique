@@ -5,6 +5,7 @@ import Breadcrumbs from "@/app/components/productDetail/Breadcrumbs";
 import ProductGallery from "@/app/components/productDetail/ProductGallery";
 import ProductInfo from "@/app/components/productDetail/ProductInfo";
 import ProductTabs from "@/app/components/productDetail/ProductTabs";
+import RelatedProducts from "@/app/components/productDetail/RelatedProducts";
 import { Product } from "@/types/product";
 
 interface Props {
@@ -54,7 +55,7 @@ export default async function ProductDetailPage({ params }: Props) {
   }
 
   return (
-    <div className="container p-detail-container">
+    <div className="max-w-[1200px] mx-auto px-5 py-8">
       <Breadcrumbs product={product} />
 
       <div className="p-detail-grid">
@@ -63,6 +64,7 @@ export default async function ProductDetailPage({ params }: Props) {
       </div>
 
       <ProductTabs product={product} />
+      <RelatedProducts currentProduct={product} />
     </div>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import "./team-gallery.css";
 
 const teamMembers = [
   { img: "/assets/team/1.JPG" },
@@ -16,14 +15,33 @@ const teamMembers = [
 
 export default function TeamGallery() {
   return (
-    <section className="team-gallery-section">
+    <section
+      className="
+    group
+    my-[60px]
+    flex h-[530px] w-full overflow-hidden
+    bg-black
+  "
+    >
       {teamMembers.map((member, i) => (
-        <div key={i} className="gallery-team-item">
+        <div
+          key={i}
+          className="
+        relative flex-1 overflow-hidden
+        transition-all duration-500 ease-in-out
+        cursor-crosshair
+        grayscale
+        hover:flex-[4] hover:grayscale-0 hover:contrast-125
+        group-hover:opacity-70 hover:!opacity-100
+        max-[768px]:hover:flex-none
+        max-[768px]:hover:w-[60%]
+      "
+        >
           <Image
             src={member.img}
             alt="Equipo Autoshop"
             fill
-            className="gallery-team-img"
+            className="object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>

@@ -1,8 +1,6 @@
 "use client";
 
-import "./checkout_modules.css";
-import { useState, ChangeEvent, useEffect } from "react";
-import Breadcrumbs from "./components/Breadcrumbs";
+import { useState, useEffect } from "react";
 import CheckoutHeader from "./components/CheckoutHeader";
 import ShippingForm from "./components/ShippingForm";
 import OrderSummary from "./components/OrderSummary";
@@ -18,8 +16,16 @@ interface ShippingData {
 }
 
 export default function CheckoutPage() {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [isClient, setIsClient] = useState(false);
+  const [cartItems] = useState<CartItem[] | null>(() => {
+    if (typeof window === "undefined") return null;
+    const stored = localStorage.getItem("cart");
+    if (!stored) return [];
+    try {
+      return JSON.parse(stored);
+    } catch {
+      return [];
+    }
+  });
   const [openToast, setOpenToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
 
@@ -38,24 +44,12 @@ export default function CheckoutPage() {
     return () => clearTimeout(timer);
   }, [openToast]);
 
-  useEffect(() => {
-    setIsClient(true);
-    const stored = localStorage.getItem("cart");
-    if (stored) {
-      try {
-        setCartItems(JSON.parse(stored));
-      } catch {
-        setCartItems([]);
-      }
-    }
-  }, []);
-
   const handleShippingChange = (field: keyof ShippingData, value: string) => {
     setShipping((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSendWhatsapp = () => {
-    if (!shipping.fullName || !shipping.phone || cartItems.length === 0) {
+    if (!shipping.fullName || !shipping.phone || !cartItems || cartItems.length === 0) {
       setToastMessage("Completa tus datos.");
       setOpenToast(true);
       return;
@@ -84,19 +78,17 @@ ${productsText}
   };
 
   return (
-    <div className="container" suppressHydrationWarning>
-      {/* <Breadcrumbs /> */}
+    <div className="mx-auto w-full max-w-[1200px] px-5" suppressHydrationWarning>
       <CheckoutHeader />
-      <div className="checkout-container">
-        <div className="checkout-main">
+      <div className="grid grid-cols-1 items-start gap-10 py-10 min-[1000px]:grid-cols-[1fr_380px] min-[1000px]:gap-[50px]">
+        <div>
           <ShippingForm
             shipping={shipping}
             onChange={handleShippingChange}
-            // onPhoneChange={handlePhoneChange}
           />
         </div>
         <aside>
-          {isClient ? (
+          {cartItems ? (
             <OrderSummary
               cartItems={cartItems}
               onConfirm={handleSendWhatsapp}

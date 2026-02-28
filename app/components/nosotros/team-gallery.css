@@ -34,23 +34,4 @@
     flex: none;
     width: 60%;
   }
-  /* .team-gallery-section {
-    flex-direction: column; 
-    width: 100%;
-    height: 80vh;
-  }
-
-  .gallery-item {
-    width: 100%;
-    height: auto;
-    border-bottom: 1px solid #333;
-  }
-
-  .gallery-item:hover {
-    flex: 8;
-  }
-  
-  .gallery-img {
-    object-position: top center; 
-  } */
 }

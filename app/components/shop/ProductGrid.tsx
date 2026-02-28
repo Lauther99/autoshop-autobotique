@@ -21,14 +21,11 @@ export default function ProductGrid() {
   }, [openToast]);
 
   return (
-    <div className="shop-grid">
+    <div className="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-[25px]">
       {products.map((product, index) => (
         <Reveal key={product.id} delay={index * 0.05}>
           <motion.div
-            whileHover={{
-              y: -6,
-              scale: 1.02,
-            }}
+            whileHover={{ y: -6, scale: 1.02 }}
             transition={{ type: "spring", stiffness: 260, damping: 18 }}
           >
             <ProductCard
@@ -39,7 +36,16 @@ export default function ProductGrid() {
           </motion.div>
         </Reveal>
       ))}
-      <div className={`toast-wrapper ${openToast ? "active" : ""}`}>
+
+      <div
+        className={`fixed bottom-5 left-1/2 z-[999999]
+    -translate-x-1/2 transform transition-all duration-300
+    ${
+      openToast
+        ? "translate-y-0 opacity-100 pointer-events-auto"
+        : "-translate-y-[200%] opacity-0 pointer-events-none"
+    }`}
+      >
         <Toast
           title="Bien hecho!"
           message={toastMessage}

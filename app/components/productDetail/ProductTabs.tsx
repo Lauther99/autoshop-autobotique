@@ -11,42 +11,87 @@ export default function ProductTabs({ product }: Props) {
   const [activeTab, setActiveTab] = useState("descripcion");
 
   return (
-    <div className="tabs-section">
-      <div className="tabs-header">
-        {["descripcion", "especificaciones"].map((tab) => (
-          <button
-            key={tab}
-            className={`tab-link ${activeTab === tab ? "active" : ""}`}
-            onClick={() => setActiveTab(tab)}
-          >
-            {tab.charAt(0).toUpperCase() + tab.slice(1)}
-          </button>
-        ))}
+    <div className="mt-16">
+
+      {/* Tabs Header */}
+      <div className="flex gap-10 border-b border-[#333] mb-8">
+        {["descripcion", "especificaciones"].map((tab) => {
+          const isActive = activeTab === tab;
+
+          return (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`
+                relative pb-4 text-base font-semibold transition-colors duration-300
+                ${isActive 
+                  ? "text-[var(--primary-red)]" 
+                  : "text-gray hover:text-[var(--color-text)]"}
+              `}
+            >
+              {tab.charAt(0).toUpperCase() + tab.slice(1)}
+
+              {isActive && (
+                <span className="absolute bottom-[-1px] left-0 h-[3px] w-full bg-[var(--primary-red)]" />
+              )}
+            </button>
+          );
+        })}
       </div>
 
-      <div className="details-grid">
-        <div className="detail-content">
+      {/* Content Grid */}
+      <div className="grid grid-cols-[2fr_1fr] gap-12 max-[900px]:grid-cols-1">
+
+        {/* Main Content */}
+        <div>
           {activeTab === "descripcion" && (
-            <div>
-              <p>{product.description ?? "Descripción no disponible"}</p>
+            <div className="space-y-4">
+              <p className="text-gray leading-relaxed">
+                {product.description ?? "Descripción no disponible"}
+              </p>
             </div>
           )}
+
           {activeTab === "especificaciones" && (
-            <div className="quick-specs-box">
-              <h4>Ficha Técnica</h4>
+            <div className="bg-[#111] border border-[#222] rounded-lg p-6">
+              <h4 className="mb-5 text-white font-semibold text-lg">
+                Ficha Técnica
+              </h4>
+
               {product.specs?.length ? (
-                product.specs.map((s) => (
-                  <div key={s.label} className="spec-row">
-                    <span>{s.label}</span>
-                    <span>{s.value}</span>
-                  </div>
-                ))
+                <div>
+                  {product.specs.map((s, index) => (
+                    <div
+                      key={s.label}
+                      className={`
+                        flex justify-between py-3 text-sm
+                        ${index !== product.specs.length - 1 
+                          ? "border-b border-[#222]" 
+                          : ""}
+                      `}
+                    >
+                      <span className="text-[#888]">
+                        {s.label}
+                      </span>
+
+                      <span className="font-semibold text-white text-right">
+                        {s.value}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               ) : (
-                <p>No hay especificaciones disponibles.</p>
+                <p className="text-[#888]">
+                  No hay especificaciones disponibles.
+                </p>
               )}
             </div>
           )}
         </div>
+
+        {/* Espacio reservado si luego quieres sidebar */}
+        <div className="hidden max-[900px]:block"></div>
+
       </div>
     </div>
   );

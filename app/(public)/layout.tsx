@@ -1,4 +1,4 @@
-import "./globals.css";
+// import "./globals.css";
 import Header from "@/app/components/layout/Header";
 import Footer from "@/app/components/layout/Footer";
 import CartProvider from "@/app/components/cart/CartProvider";

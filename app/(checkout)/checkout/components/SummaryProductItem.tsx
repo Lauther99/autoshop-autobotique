@@ -5,38 +5,25 @@ interface SummaryProductItemProps {
   title: string;
   quantity: number;
   price: number;
-  currency?: string;
 }
 
-export default function SummaryProductItem({
-  imageUrl,
-  title,
-  quantity,
-  price,
-  currency = "",
-}: SummaryProductItemProps) {
+export default function SummaryProductItem({ imageUrl, title, quantity, price }: SummaryProductItemProps) {
   const formattedTotal = new Intl.NumberFormat("es-PE", {
     style: "currency",
-    currency: "PEN", // <--- Código para Sol Peruano
+    currency: "PEN",
   }).format(price);
 
   return (
-    <div className="summary-product-item">
-      <div className="summary-product-img">
-        <Image
-          src={imageUrl ?? "/assets/logo2.png"}
-          alt={title}
-          fill
-        />
+    <div className="flex items-center gap-3.5">
+      <div className="relative h-[60px] w-[60px] shrink-0 overflow-hidden rounded-lg bg-white">
+        <Image src={imageUrl ?? "/assets/logo2.png"} alt={title} fill style={{ objectFit: "contain", padding: 4 }} />
       </div>
 
-      <div className="summary-product-info">
-        <h4>{title}</h4>
-        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
-          <span>Cant: {quantity}</span>
-          <span>
-            {formattedTotal}
-          </span>
+      <div className="w-full">
+        <h4 className="mb-1 text-[0.85rem] leading-[1.3] text-[var(--text-white)]">{title}</h4>
+        <div className="flex items-center justify-between text-sm">
+          <span className="text-text">Cant: {quantity}</span>
+          <span className="font-semibold text-[var(--primary-red)]">{formattedTotal}</span>
         </div>
       </div>
     </div>

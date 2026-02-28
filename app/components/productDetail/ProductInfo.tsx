@@ -63,7 +63,7 @@ export default function ProductInfo({ product }: Props) {
         <div className="shipping-promo">No disponible</div>
       )}
 
-      <p className="p-description-short">{product.description}</p>
+      <p className="text-gray leading-[1.6] mb-[30px] border-b border-[#333] pb-[30px]">{product.description}</p>
 
       <div>
         <div className="purchase-controls">

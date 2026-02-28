@@ -1,9 +1,8 @@
 export default function AboutDescription() {
   return (
-
     <div style={{ textAlign: "center", marginBottom: "80px" }}>
-        {/* --- TIMELINE --- */}
-        {/* <section className="timeline-section">
+      {/* --- TIMELINE --- */}
+      {/* <section className="timeline-section">
           <div className="timeline-header">
             <h2>Nuestra Evolución</h2>
             <p style={{color: '#888'}}>Un recorrido marcado por la innovación y el compromiso.</p>
@@ -45,23 +44,18 @@ export default function AboutDescription() {
           </div>
         </section> */}
 
-      <h2 className="section-title">
+      <h2 className="section-title mt-10">
         Quienes <span className="text-red">Somos</span>
       </h2>
 
       <p
-        style={{
-          textAlign: "justify",
-          lineHeight: 1.9,
-          fontSize: "1.05rem",
-          color: "#e5e5e5",
-          maxWidth: "850px",
-          margin: "0 auto",
-          padding: "0 10px",
-          letterSpacing: "0.3px",
-        }}
+        className="
+    mx-auto max-w-[850px] px-2.5
+    text-justify text-[1.05rem] leading-[1.9]
+    tracking-[0.3px] text-gray
+  "
       >
-        <span style={{ color: "var(--primary-red)", fontWeight: 600 }}>
+        <span className="font-semibold text-[var(--primary-red)]">
           AutoShop Autoboutique
         </span>{" "}
         es una tienda especializada en productos exclusivos para autos,

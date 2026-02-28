@@ -19,12 +19,12 @@ export default function Breadcrumbs({ product }: Props) {
   const slug = ` ${slugParts.join(" - ")}`;
 
   return (
-    <div className="breadcrumbs" style={{ marginBottom: 30 }}>
-      <Link href="/tienda">Tienda</Link> <span>&gt;</span> {product.category}{" "}
-      <span>&gt;</span>
-      <span className="active" style={{ color: "white" }}>
-        {slug}
-      </span>
+    <div style={{ marginBottom: 30 }}>
+      <Link href="/tienda" className="text-gray">
+        Tienda
+      </Link>{" "}
+      <span>&gt;</span> <span className="text-gray">{product.category}</span><span> &gt;</span>
+      <span className="active text-text">{slug}</span>
     </div>
   );
 }

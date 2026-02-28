@@ -1,21 +1,19 @@
 "use client";
 
-import "./cart_modules.css";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useCartStore } from "@/store/cartStore";
 import { numero } from "@/data/information";
-import Link from "next/link";
 import { currencies } from "@/types/product";
 import { CartItemComponent } from "./CartItem";
 import Toast from "@/app/components/ui/Toast";
-import { useRouter } from "next/navigation";
 
 export default function CartModal() {
   const isCartOpen = useCartStore((s) => s.isCartOpen);
   const closeCart = useCartStore((s) => s.closeCart);
   const items = useCartStore((s) => s.items);
   const [deleteToast, setDeleteToast] = useState(false);
-
   const router = useRouter();
 
   useEffect(() => {
@@ -30,30 +28,30 @@ export default function CartModal() {
   }, [isCartOpen]);
 
   useEffect(() => {
-      if (!deleteToast) return;
-      const timer = setTimeout(() => {
-        setDeleteToast(false);
-      }, 2000);
-      return () => clearTimeout(timer);
-    }, [deleteToast]);
+    if (!deleteToast) return;
+    const timer = setTimeout(() => {
+      setDeleteToast(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [deleteToast]);
 
   if (!isCartOpen) return null;
 
-  // Cálculos
-  const subtotal = items.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0,
-  );
+  const subtotal = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const iva = subtotal * 0.16 * 0;
   const total = subtotal + iva;
 
   return (
-    <div className="cart-page-container">
-      <div className="container">
-        <header className="cart-header">
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <h1>Tu Carrito</h1>
-            <button className="btn-close-cart" onClick={closeCart}>
+    <div className="fixed inset-0 z-[99999] m-auto overflow-y-auto bg-[var(--color-bg)] p-1.5 sm:p-10">
+      <div className="mx-auto w-full max-w-[1200px]">
+        <header className="mb-8">
+          <div className="flex justify-between gap-4">
+            <h1 className="mb-2.5 text-3xl font-bold sm:text-[2.5rem]">Tu Carrito</h1>
+            <button
+              className="flex h-[35px] w-[35px] items-center justify-center rounded-full bg-[#1a1a1a] text-white shadow-[0_4px_10px_rgba(0,0,0,0.3)] transition-colors hover:bg-[var(--primary-red)]"
+              onClick={closeCart}
+              aria-label="Cerrar carrito"
+            >
               <svg
                 width="18"
                 height="18"
@@ -64,36 +62,21 @@ export default function CartModal() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
               </svg>
             </button>
           </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <p>
-              Tienes{" "}
-              <strong style={{ color: "white" }}>
-                {items.length} productos
-              </strong>{" "}
-              listos para el envío
+
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <p className="text-[#888]">
+              Tienes <strong className="text-text">{items.length} productos</strong> listos para el envio
             </p>
 
-            <div
-              className="text-red"
+            <button
+              type="button"
+              className="flex cursor-pointer items-center gap-1.5 font-semibold text-[var(--primary-red)]"
               onClick={closeCart}
-              style={{
-                fontWeight: 600,
-                display: "flex",
-                alignItems: "center",
-                gap: 5,
-                cursor: "pointer",
-              }}
             >
               <svg
                 width="20"
@@ -107,34 +90,25 @@ export default function CartModal() {
                 <path d="m12 19-7-7 7-7" />
               </svg>
               Seguir comprando
-            </div>
+            </button>
           </div>
         </header>
 
-        <div className="cart-layout">
-          {/* --- COLUMNA IZQUIERDA: ITEMS --- */}
-          <div className="cart-items-column">
+        <div className="grid grid-cols-1 gap-10 min-[900px]:grid-cols-[2fr_1fr]">
+          <div className="flex flex-col gap-5">
             {items.map((item) => (
               <CartItemComponent key={item.id} item={item} setDeleteToast={setDeleteToast} />
             ))}
 
             {items.length === 0 && (
-              <div
-                style={{
-                  padding: 40,
-                  textAlign: "center",
-                  border: "1px dashed #333",
-                  borderRadius: 8,
-                }}
-              >
-                <p>Tu carrito está vacío.</p>
+              <div className="rounded-lg border border-dashed border-[#333] p-10 text-center">
+                <p>Tu carrito esta vacio.</p>
               </div>
             )}
 
-            {/* Footer de confianza */}
-            <div className="cart-trust-footer">
-              <div className="cart-trust-item">
-                <div className="cart-trust-icon">
+            <div className="mt-2.5 flex flex-wrap justify-evenly gap-5 border-t border-[#222] pt-[30px]">
+              <div className="flex items-center gap-3.5">
+                <div className="text-[var(--primary-red)]">
                   <svg
                     width="24"
                     height="24"
@@ -143,19 +117,19 @@ export default function CartModal() {
                     stroke="currentColor"
                     strokeWidth="2"
                   >
-                    <rect x="1" y="3" width="15" height="13"></rect>
-                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
-                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                    <rect x="1" y="3" width="15" height="13" />
+                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                    <circle cx="5.5" cy="18.5" r="2.5" />
+                    <circle cx="18.5" cy="18.5" r="2.5" />
                   </svg>
                 </div>
-                <div className="cart-trust-text">
-                  <h5>Envío Seguro</h5>
-                  <p>Rastreo en tiempo real</p>
+                <div>
+                  <h5 className="mb-1 text-sm">Envio Seguro</h5>
+                  <p className="text-xs text-[#888]">Rastreo en tiempo real</p>
                 </div>
               </div>
-              <div className="cart-trust-item">
-                <div className="cart-trust-icon">
+              <div className="flex items-center gap-3.5">
+                <div className="text-[var(--primary-red)]">
                   <svg
                     width="24"
                     height="24"
@@ -168,52 +142,42 @@ export default function CartModal() {
                     <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
                   </svg>
                 </div>
-                <div className="cart-trust-text">
-                  <h5>Soporte Técnico</h5>
-                  <p>Asesoría especializada</p>
+                <div>
+                  <h5 className="mb-1 text-sm">Soporte Tecnico</h5>
+                  <p className="text-xs text-[#888]">Asesoria especializada</p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* --- COLUMNA DERECHA: RESUMEN --- */}
           <div>
-            <div className="order-summary-card">
-              <h3 className="summary-title">Resumen del Pedido</h3>
+            <div className="h-fit rounded-xl border border-[#222] bg-[var(--bg-card)] p-[30px]">
+              <h3 className="mb-6 text-[1.3rem] font-bold">Resumen del Pedido</h3>
 
-              <div className="summary-row">
+              <div className="mb-3.5 flex justify-between text-[0.95rem] text-text">
                 <span>Subtotal</span>
                 <span>
-                  {currencies["SOL"]}
-                  {subtotal.toLocaleString("en-US", {
-                    minimumFractionDigits: 2,
-                  })}
+                  {currencies.SOL}
+                  {subtotal.toLocaleString("en-US", { minimumFractionDigits: 2 })}
                 </span>
               </div>
-              <div className="summary-row">
-                <span>Envío (Estimado)</span>
-                <span className="text-green">¡Gratis!</span>
+
+              <div className="mb-3.5 flex justify-between text-[0.95rem] text-text">
+                <span>Envio (Estimado)</span>
+                <span className="font-semibold text-[#2ecc71]">Gratis!</span>
               </div>
-              <div className="total-row">
-                <span className="total-label">Total</span>
-                <span className="total-amount">
-                  {currencies["SOL"]}
-                  {total.toLocaleString("en-US", {
-                    minimumFractionDigits: 2,
-                  })}{" "}
-                  <small
-                    style={{
-                      fontSize: "0.9rem",
-                      color: "#888",
-                      fontWeight: 400,
-                    }}
-                  ></small>
+
+              <div className="my-5 flex items-center justify-between border-t border-[#333] pt-5">
+                <span className="text-[1.1rem] font-bold">Total</span>
+                <span className="text-[1.8rem] font-extrabold text-[var(--primary-red)]">
+                  {currencies.SOL}
+                  {total.toLocaleString("en-US", { minimumFractionDigits: 2 })}
                 </span>
               </div>
 
               <Link href="/checkout">
                 <button
-                  className="btn-checkout"
+                  className="flex w-full items-center justify-center gap-2.5 rounded-md bg-[var(--primary-red)] p-4 text-base font-extrabold uppercase text-white transition-colors hover:bg-[#d90000] disabled:cursor-not-allowed disabled:opacity-50"
                   disabled={items.length < 1}
                   onClick={() => {
                     if (items.length < 1) return;
@@ -235,9 +199,11 @@ export default function CartModal() {
                 </button>
               </Link>
 
-              <div className="payment-methods">
-                <span className="payment-label">Métodos de pago seguros</span>
-                <div className="payment-icons">
+              <div className="mt-5 text-center">
+                <span className="mb-2.5 block text-[0.7rem] font-bold uppercase text-[#666]">
+                  Metodos de pago seguros
+                </span>
+                <div className="flex justify-center gap-3.5 text-[#888]">
                   <svg
                     width="28"
                     height="28"
@@ -286,25 +252,17 @@ export default function CartModal() {
                     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                   </svg>
                 </div>
-                <p className="ssl-note">
-                  Tus datos están protegidos por encriptación.
-                </p>
+                <p className="mt-3.5 text-[0.7rem] text-[#555]">Tus datos estan protegidos por encriptacion.</p>
               </div>
             </div>
 
-            <div className="help-box">
-              <div className="help-icon">?</div>
+            <div className="mt-5 flex items-start gap-3.5 rounded-lg border border-[rgba(255,26,26,0.2)] bg-[rgba(255,26,26,0.08)] p-5">
+              <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--primary-red)] text-xs font-bold text-white">
+                ?
+              </div>
               <div>
-                <h5 style={{ marginBottom: 5 }}>¿Necesitas ayuda?</h5>
-                <p
-                  style={{
-                    fontSize: "0.8rem",
-                    color: "#ccc",
-                    lineHeight: "1.4",
-                  }}
-                >
-                  Llámanos al +{numero} o chatea con un experto ahora.
-                </p>
+                <h5 className="mb-1 text-sm font-semibold">Necesitas ayuda?</h5>
+                <p className="text-xs leading-[1.4] text-text">Llamanos al +{numero} o chatea con un experto ahora.</p>
               </div>
             </div>
           </div>
@@ -312,12 +270,7 @@ export default function CartModal() {
       </div>
 
       <div className={`toast-wrapper ${deleteToast ? "active" : ""}`}>
-        <Toast
-          title="Atención"
-          message="Item borrado!"
-          type="success"
-          onClose={() => setDeleteToast(false)}
-        />
+        <Toast title="Atencion" message="Item borrado!" type="success" onClose={() => setDeleteToast(false)} />
       </div>
     </div>
   );
