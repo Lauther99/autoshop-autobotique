@@ -18,18 +18,18 @@ export default function Footer() {
             <h3 className="mb-5 text-sm tracking-[1px] text-text">NAVEGACION</h3>
             <ul className="flex flex-col gap-2.5 text-sm text-[var(--text-gray)]">
               <li>
-                <Link className="transition-colors duration-200 hover:text-white" href="/">
-                  Inicio
+                <Link className="transition-colors duration-200 hover:text-[var(--primary-red)]" href="/">
+                  INICIO
                 </Link>
               </li>
               <li>
-                <Link className="transition-colors duration-200 hover:text-white" href="/tienda">
-                  Catalogo de Tienda
+                <Link className="transition-colors duration-200 hover:text-[var(--primary-red)]" href="/tienda">
+                  CATALOGO
                 </Link>
               </li>
               <li>
-                <Link className="transition-colors duration-200 hover:text-white" href="/nosotros">
-                  Nosotros
+                <Link className="transition-colors duration-200 hover:text-[var(--primary-red)]" href="/nosotros">
+                  NOSOTROS
                 </Link>
               </li>
             </ul>
@@ -41,7 +41,7 @@ export default function Footer() {
               {categories.map((cat) => (
                 <li key={cat}>
                   <Link
-                    className="transition-colors duration-200 hover:text-white"
+                    className="transition-colors duration-200 hover:text-[var(--primary-red)]"
                     href={{ pathname: "/tienda", query: { cat } }}
                   >
                     {cat}
@@ -53,7 +53,7 @@ export default function Footer() {
 
           <div>
             <p className="text-sm leading-6 text-[#777]">
-              Lideres en personalizacion y equipamiento automotriz. 15 anos transformando autos comunes en vehiculos
+              Lideres en personalizacióm y equipamiento automotriz. 15 años transformando autos comunes en vehículos
               extraordinarios.
             </p>
             <div className="mt-4 flex gap-2.5">

@@ -45,17 +45,17 @@ export default function Header() {
         <nav className="flex items-center">
           <ul className="hidden items-center gap-6 text-sm font-medium md:flex">
             <li>
-              <Link className="transition-colors duration-300 hover:text-[var(--primary-red)]" href="/">
+              <Link className="relative pb-0.5 transition-colors duration-300 hover:text-[var(--primary-red)] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[var(--primary-red)] after:transition-transform after:duration-300 after:content-[''] hover:after:scale-x-100" href="/">
                 Inicio
               </Link>
             </li>
             <li>
-              <Link className="transition-colors duration-300 hover:text-[var(--primary-red)]" href="/tienda">
+              <Link className="relative pb-0.5 transition-colors duration-300 hover:text-[var(--primary-red)] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[var(--primary-red)] after:transition-transform after:duration-300 after:content-[''] hover:after:scale-x-100" href="/tienda">
                 Tienda
               </Link>
             </li>
             <li>
-              <Link className="transition-colors duration-300 hover:text-[var(--primary-red)]" href="/nosotros">
+              <Link className="relative pb-0.5 transition-colors duration-300 hover:text-[var(--primary-red)] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[var(--primary-red)] after:transition-transform after:duration-300 after:content-[''] hover:after:scale-x-100" href="/nosotros">
                 Sobre Nosotros
               </Link>
             </li>
