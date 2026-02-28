@@ -7,7 +7,7 @@ export default function About() {
       <div className="mx-auto grid w-full max-w-[1200px] grid-cols-1 items-center gap-12 px-5 md:grid-cols-2">
         <div>
           <Image
-            src="/assets/photos/8.jpg"
+            src="/assets/photos/8.JPG"
             alt="Autoshop"
             className="h-[400px] w-full rounded-lg border-l-[5px] border-[var(--primary-red)] object-cover"
             width={500}
