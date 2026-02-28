@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { MdCleaningServices } from "react-icons/md";
 import PriceRangeSlider from "./ui/PriceRangeSlider";
@@ -10,12 +11,27 @@ type SortType = "price-asc" | "price-desc";
 export default function ShopFilters() {
   const products = useProductStore((state) => state.products);
   const priceRange = useProductStore((state) => state.priceRange);
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(true);
+  const [isPriceOpen, setIsPriceOpen] = useState(true);
+  const [isBrandsOpen, setIsBrandsOpen] = useState(true);
 
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
 
-  const categories = [...new Set(products.map((p) => p.category.trim()))];
+  const categoriesWithCount = useMemo(() => {
+    const counts = new Map<string, number>();
+    products.forEach((p) => {
+      const key = p.category.trim();
+      if (!key) return;
+      counts.set(key, (counts.get(key) ?? 0) + 1);
+    });
+
+    return Array.from(counts.entries())
+      .map(([name, count]) => ({ name, count }))
+      .sort((a, b) => b.count - a.count);
+  }, [products]);
+
   const brands = [...new Set(products.map((p) => String(p.brand).trim()))];
 
   const filters = useProductStore((s) => s.filters);
@@ -116,64 +132,131 @@ export default function ShopFilters() {
       </div>
 
       <div className="mb-7">
-        <div className="mb-4 text-[0.85rem] font-bold uppercase tracking-[1px] text-text">Categorias</div>
-        <ul>
-          {categories.map((cat) => {
-            const selected = filters.categories.includes(cat);
+        <button
+          type="button"
+          onClick={() => setIsCategoriesOpen((prev) => !prev)}
+          className="mb-4 flex w-full items-center justify-between text-[0.85rem] font-bold uppercase tracking-[1px] text-text"
+          aria-expanded={isCategoriesOpen}
+        >
+          <span>Categorias</span>
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            className={`transition-transform ${isCategoriesOpen ? "rotate-180" : ""}`}
+          >
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </button>
 
-            return (
-              <li
-                key={cat}
-                className={`mb-1 flex cursor-pointer items-center gap-2.5 rounded-md px-4 py-3 text-[0.95rem] transition-colors ${
-                  selected
-                    ? "border-l-[3px] border-[var(--primary-red)] bg-[rgba(255,26,26,0.1)] text-[var(--primary-red)]"
-                    : "text-gray hover:bg-[#1a1a1a] hover:text-white"
-                }`}
-                onClick={() => toggleFilter("categories", cat)}
-              >
-                {cat}
-              </li>
-            );
-          })}
-        </ul>
+        {isCategoriesOpen && (
+          <ul className="space-y-1">
+            {categoriesWithCount.map((cat) => {
+              const selected = filters.categories.includes(cat.name);
+
+              return (
+                <li
+                  key={cat.name}
+                  className={`flex cursor-pointer items-center justify-between gap-2.5 rounded-md px-4 py-3 text-[0.95rem] transition-colors ${
+                    selected
+                      ? "border-l-[3px] border-[var(--primary-red)] bg-[rgba(255,26,26,0.1)] text-[var(--primary-red)]"
+                      : "text-gray hover:bg-[#1a1a1a] hover:text-white"
+                  }`}
+                  onClick={() => toggleFilter("categories", cat.name)}
+                >
+                  <span>{cat.name}</span>
+                  <span className="rounded bg-[#1f1f1f] px-2 py-0.5 text-xs text-[#aaa]">{cat.count}</span>
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </div>
 
-      <PriceRangeSlider
-        min={priceRange.min}
-        max={priceRange.max}
-        valueMin={filters.minPrice}
-        valueMax={filters.maxPrice}
-        onChange={(min, max) => {
-          setFilter("minPrice", min);
-          setFilter("maxPrice", max);
-          applyFilters();
-        }}
-        onMouseUp={(min, max) => {
-          updateURLWithPriceRange(min, max);
-        }}
-      />
+      <div className="mb-7">
+        <button
+          type="button"
+          onClick={() => setIsPriceOpen((prev) => !prev)}
+          className="mb-4 flex w-full items-center justify-between text-[0.85rem] font-bold uppercase tracking-[1px] text-text"
+          aria-expanded={isPriceOpen}
+        >
+          <span>Rango de Precio</span>
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            className={`transition-transform ${isPriceOpen ? "rotate-180" : ""}`}
+          >
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </button>
+
+        {isPriceOpen && (
+          <PriceRangeSlider
+            min={priceRange.min}
+            max={priceRange.max}
+            valueMin={filters.minPrice}
+            valueMax={filters.maxPrice}
+            onChange={(min, max) => {
+              setFilter("minPrice", min);
+              setFilter("maxPrice", max);
+              applyFilters();
+            }}
+            onMouseUp={(min, max) => {
+              updateURLWithPriceRange(min, max);
+            }}
+          />
+        )}
+      </div>
 
       <div className="mb-7">
-        <div className="mb-4 text-[0.85rem] font-bold uppercase tracking-[1px] text-text">Marcas Populares</div>
-        <div className="flex flex-wrap gap-2.5">
-          {brands.map((brand) => {
-            const selected = filters.brands.includes(String(brand));
+        <button
+          type="button"
+          onClick={() => setIsBrandsOpen((prev) => !prev)}
+          className="mb-4 flex w-full items-center justify-between text-[0.85rem] font-bold uppercase tracking-[1px] text-text"
+          aria-expanded={isBrandsOpen}
+        >
+          <span>Marcas Populares</span>
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            className={`transition-transform ${isBrandsOpen ? "rotate-180" : ""}`}
+          >
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </button>
 
-            return (
-              <span
-                key={brand}
-                className={`cursor-pointer rounded border px-3 py-1.5 text-[0.85rem] transition-colors ${
-                  selected
-                    ? "border-[var(--primary-red)] text-text"
-                    : "border-[#333] bg-[#1f1f1f] text-[#ccc] hover:border-[var(--primary-red)] hover:text-white"
-                }`}
-                onClick={() => toggleFilter("brands", String(brand))}
-              >
-                {brand}
-              </span>
-            );
-          })}
-        </div>
+        {isBrandsOpen && (
+          <div className="flex flex-wrap gap-2.5">
+            {brands.map((brand) => {
+              const selected = filters.brands.includes(String(brand));
+
+              return (
+                <span
+                  key={brand}
+                  className={`cursor-pointer rounded border px-3 py-1.5 text-[0.85rem] transition-colors ${
+                    selected
+                      ? "border-[var(--primary-red)] text-text"
+                      : "border-[#333] bg-[#1f1f1f] text-[#ccc] hover:border-[var(--primary-red)] hover:text-white"
+                  }`}
+                  onClick={() => toggleFilter("brands", String(brand))}
+                >
+                  {brand}
+                </span>
+              );
+            })}
+          </div>
+        )}
       </div>
     </aside>
   );

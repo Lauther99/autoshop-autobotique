@@ -27,8 +27,6 @@ export default function PriceRangeSlider({
 
   return (
     <div className="mb-7 w-full text-text">
-      <h4 className="mb-4 text-[0.85rem] font-bold uppercase tracking-[1px] text-text">Rango de Precio</h4>
-
       <div className="relative flex h-[25px] w-full items-center">
         <input
           type="range"
