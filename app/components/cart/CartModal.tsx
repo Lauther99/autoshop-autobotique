@@ -37,7 +37,10 @@ export default function CartModal() {
 
   if (!isCartOpen) return null;
 
-  const subtotal = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const subtotal = items.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0,
+  );
   const iva = subtotal * 0.16 * 0;
   const total = subtotal + iva;
 
@@ -46,7 +49,9 @@ export default function CartModal() {
       <div className="mx-auto w-full max-w-[1200px]">
         <header className="mb-8">
           <div className="flex justify-between gap-4">
-            <h1 className="mb-2.5 text-3xl font-bold sm:text-[2.5rem]">Tu Carrito</h1>
+            <h1 className="mb-2.5 text-3xl font-bold sm:text-[2.5rem]">
+              Tu Carrito
+            </h1>
             <button
               className="flex h-[35px] w-[35px] items-center justify-center rounded-full bg-[#1a1a1a] text-white shadow-[0_4px_10px_rgba(0,0,0,0.3)] transition-colors hover:bg-[var(--primary-red)]"
               onClick={closeCart}
@@ -70,7 +75,9 @@ export default function CartModal() {
 
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p className="text-[#888]">
-              Tienes <strong className="text-text">{items.length} productos</strong> listos para el envio
+              Tienes{" "}
+              <strong className="text-text">{items.length} productos</strong>{" "}
+              listos para el envio
             </p>
 
             <button
@@ -97,7 +104,11 @@ export default function CartModal() {
         <div className="grid grid-cols-1 gap-10 min-[900px]:grid-cols-[2fr_1fr]">
           <div className="flex flex-col gap-5">
             {items.map((item) => (
-              <CartItemComponent key={item.id} item={item} setDeleteToast={setDeleteToast} />
+              <CartItemComponent
+                key={item.id}
+                item={item}
+                setDeleteToast={setDeleteToast}
+              />
             ))}
 
             {items.length === 0 && (
@@ -152,13 +163,17 @@ export default function CartModal() {
 
           <div>
             <div className="h-fit rounded-xl border border-[#222] bg-[var(--bg-card)] p-[30px]">
-              <h3 className="mb-6 text-[1.3rem] font-bold">Resumen del Pedido</h3>
+              <h3 className="mb-6 text-[1.3rem] font-bold">
+                Resumen del Pedido
+              </h3>
 
               <div className="mb-3.5 flex justify-between text-[0.95rem] text-text">
                 <span>Subtotal</span>
                 <span>
                   {currencies.SOL}
-                  {subtotal.toLocaleString("en-US", { minimumFractionDigits: 2 })}
+                  {subtotal.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                  })}
                 </span>
               </div>
 
@@ -252,7 +267,9 @@ export default function CartModal() {
                     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                   </svg>
                 </div>
-                <p className="mt-3.5 text-[0.7rem] text-[#555]">Tus datos estan protegidos por encriptacion.</p>
+                <p className="mt-3.5 text-[0.7rem] text-[#555]">
+                  Tus datos estan protegidos por encriptacion.
+                </p>
               </div>
             </div>
 
@@ -262,15 +279,32 @@ export default function CartModal() {
               </div>
               <div>
                 <h5 className="mb-1 text-sm font-semibold">Necesitas ayuda?</h5>
-                <p className="text-xs leading-[1.4] text-text">Llamanos al +{numero} o chatea con un experto ahora.</p>
+                <p className="text-xs leading-[1.4] text-text">
+                  Llamanos al +{numero} o chatea con un experto ahora.
+                </p>
               </div>
+            </div>
+            <div className="mt-5 mb-[30px] rounded-xl border border-[rgba(255,26,26,0.25)] bg-[rgba(255,26,26,0.06)] p-4">
+              <h4 className="mb-2 text-sm font-bold uppercase tracking-wide text-[var(--primary-red)]">
+                Informacion de entrega
+              </h4>
+              <ul className="space-y-1.5 text-sm leading-relaxed text-[var(--text-white)]">
+                <li>Envio gratis a todo Piura.</li>
+                <li>Delivery fuera de Piura: entre 3 y 5 dias habiles.</li>
+                <li>Retiro en tienda gratis en horario de atencion.</li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
 
       <div className={`toast-wrapper ${deleteToast ? "active" : ""}`}>
-        <Toast title="Atencion" message="Item borrado!" type="success" onClose={() => setDeleteToast(false)} />
+        <Toast
+          title="Atencion"
+          message="Item borrado!"
+          type="success"
+          onClose={() => setDeleteToast(false)}
+        />
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import { Product } from "@/types/product";
 import { useCartStore } from "@/store/cartStore";
 import Toast from "@/app/components/ui/Toast";
 
-type CurrencyCode = "SOL" | "MXN" | "USD" | any;
+type CurrencyCode = "SOL" | "MXN" | "USD" | string;
 
 const currencies: Record<CurrencyCode, string> = {
   SOL: "S/",
@@ -18,9 +18,7 @@ interface Props {
 }
 
 export default function ProductInfo({ product }: Props) {
-  const { items, addItem, updateQuantity } = useCartStore();
-
-  const [quantity, setQuantity] = useState(1);
+  const { addItem } = useCartStore();
 
   const [openToast, setOpenToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -46,7 +44,7 @@ export default function ProductInfo({ product }: Props) {
           <span className="badge-sold">{product.brand}</span>
         </div>
       )}
-      <h1 className="p-title">{product.title}</h1>
+      <h1 className="p-title font-bold">{product.title}</h1>
 
       <div className="p-price">
         {currencies[product.currency]}
@@ -63,7 +61,18 @@ export default function ProductInfo({ product }: Props) {
         <div className="shipping-promo">No disponible</div>
       )}
 
-      <p className="text-gray leading-[1.6] mb-[30px] border-b border-[#333] pb-[30px]">{product.description}</p>
+      <p className="text-gray mb-[30px] border-b border-[#333] pb-[30px] leading-[1.6]">{product.description}</p>
+
+      <div className="mb-[30px] rounded-xl border border-[rgba(255,26,26,0.25)] bg-[rgba(255,26,26,0.06)] p-4">
+        <h4 className="mb-2 text-sm font-bold uppercase tracking-wide text-[var(--primary-red)]">
+          Informacion de entrega
+        </h4>
+        <ul className="space-y-1.5 text-sm leading-relaxed text-[var(--text-white)]">
+          <li>Envio gratis a todo Piura.</li>
+          <li>Delivery fuera de Piura: entre 3 y 5 dias habiles.</li>
+          <li>Retiro en tienda gratis en horario de atencion.</li>
+        </ul>
+      </div>
 
       <div>
         <div className="purchase-controls">
