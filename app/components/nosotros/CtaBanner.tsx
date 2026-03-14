@@ -11,7 +11,7 @@ export default function CtaBanner() {
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="relative my-20 flex flex-col items-center justify-between gap-7 overflow-hidden rounded-2xl bg-[var(--primary-red)] px-6 py-12 text-center md:flex-row md:px-10 md:py-14 md:text-left"
+      className="relative my-20 flex flex-col items-center justify-between gap-7 overflow-hidden rounded-2xl bg-[var(--primary-red)] px-6 py-12 text-center md:flex-row md:px-10 md:py-14 md:text-left w-full max-w-[1200px] m-auto"
     >
       <div className="z-[2] max-w-[600px]">
         <h2 className="mb-2.5 text-[2rem] font-extrabold leading-tight text-[var(--text-white)]">

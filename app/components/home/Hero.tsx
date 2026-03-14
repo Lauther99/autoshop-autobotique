@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useAnimate, useScroll, useTransform } from "framer-motion";
+import { useEffect } from "react";
 import { numero } from "@/data/information";
 import Reveal from "@/app/components/ui/Reveal";
 import HeroBackgroundSlider from "@/app/components/home/HeroBackgroundSlider";
@@ -10,9 +11,27 @@ import HeroBackgroundSlider from "@/app/components/home/HeroBackgroundSlider";
 export default function Hero() {
   const { scrollY } = useScroll();
   const yContent = useTransform(scrollY, [0, 400], [0, 140]);
+  const [logoRef, animateLogo] = useAnimate();
+
+  useEffect(() => {
+    async function sequence() {
+      await animateLogo(
+        logoRef.current,
+        { x: 0, opacity: 1 },
+        { type: "spring", stiffness: 180, damping: 10, delay: 0.3 },
+      );
+      await new Promise((r) => setTimeout(r, 1000));
+      await animateLogo(
+        logoRef.current,
+        { x: -600, opacity: 0 },
+        { duration: 0.5, ease: "easeIn" },
+      );
+    }
+    sequence();
+  }, [animateLogo, logoRef]);
 
   return (
-    <section className="relative isolate h-[85vh] overflow-hidden">
+    <section className="relative isolate h-[85vh] overflow-hidden bg-[var(--color-bg)]">
       <HeroBackgroundSlider />
 
       <motion.div
@@ -56,7 +75,7 @@ export default function Hero() {
           </div>
         </Reveal>
 
-        <Reveal direction="left" delay={0.4}>
+        <motion.div ref={logoRef} initial={{ x: 600, opacity: 0 }}>
           <Image
             src="/assets/logo1.png"
             alt="Logo"
@@ -64,7 +83,7 @@ export default function Hero() {
             height={370}
             priority
           />
-        </Reveal>
+        </motion.div>
       </motion.div>
     </section>
   );

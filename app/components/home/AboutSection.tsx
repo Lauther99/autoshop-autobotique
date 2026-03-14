@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function About() {
   return (
-    <section className="bg-[var(--color-surface)] py-20">
+    <section className="bg-[var(--color-bg)] py-20">
       <div className="mx-auto grid w-full max-w-[1200px] grid-cols-1 items-center gap-12 px-5 md:grid-cols-2">
         <div>
           <Image

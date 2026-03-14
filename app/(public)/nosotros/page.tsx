@@ -1,15 +1,13 @@
-// import "./nosotros_module.css";
 
 import AboutHero from "@/app/components/nosotros/AboutHero";
 import AboutDescription from "@/app/components/nosotros/AboutDescription";
 import MissionVision from "@/app/components/nosotros/MissionVision";
 import ValuesGrid from "@/app/components/nosotros/ValuesGrid";
 import GallerySection from "@/app/components/nosotros/GallerySection";
-import CtaBanner from "@/app/components/nosotros/CtaBanner";
 import RevealOnScroll from "@/app/components/ui/RevealOnScroll";
-import TeamGrid from "@/app/components/nosotros/TeamGrid";
-import TeamEditorial from "@/app/components/nosotros/TeamEditorial";
 import TeamGallery from "@/app/components/nosotros/TeamGallery";
+import CategoriesSection from "@/app/components/home/CategoriesSection";
+import WhatsAppButton from "@/app/components/ui/WhatsAppButton";
 
 export default function AboutPage() {
   return (
@@ -31,13 +29,15 @@ export default function AboutPage() {
           <MissionVision />
         </RevealOnScroll>
 
-        {/* <RevealOnScroll> */}
+        <RevealOnScroll>
         <ValuesGrid />
-        {/* </RevealOnScroll> */}
+       </RevealOnScroll>
+
+        <CategoriesSection />
 
         <GallerySection />
 
-        <CtaBanner />
+        <WhatsAppButton />
       </div>
     </>
   );

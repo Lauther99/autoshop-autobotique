@@ -1,10 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import logo from "@/public/assets/logo1.png";
-import { products } from "@/data/products";
+
+const footerCategories = [
+  "PARLANTES",
+  "COMPONENTES",
+  "RADIO",
+  "CONSOLAS",
+  "CAMARA RETRO",
+];
 
 export default function Footer() {
-  const categories = [...new Set(products.map((p) => p.category.trim()))];
 
   return (
     <footer className="bg-[var(--color-surface)]">
@@ -38,7 +44,7 @@ export default function Footer() {
           <div>
             <h3 className="mb-5 text-sm tracking-[1px] text-text">CATEGORIAS</h3>
             <ul className="flex flex-col gap-2.5 text-sm text-[var(--text-gray)]">
-              {categories.map((cat) => (
+              {footerCategories.map((cat) => (
                 <li key={cat}>
                   <Link
                     className="transition-colors duration-200 hover:text-[var(--primary-red)]"
@@ -48,6 +54,14 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  className="transition-colors duration-200 hover:text-[var(--primary-red)]"
+                  href="/tienda"
+                >
+                  Y muchas más...
+                </Link>
+              </li>
             </ul>
           </div>
 

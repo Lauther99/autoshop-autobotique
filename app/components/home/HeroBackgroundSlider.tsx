@@ -39,16 +39,20 @@ export default function HeroBackgroundSlider({ duration = 5000 }) {
           transition={{ duration: 2, ease: "easeInOut" }}
           className="absolute inset-0"
         >
-          <Image
-            src={img}
-            alt={`Fondo de héroe ${i + 1}`}
-            fill
-            className="hero-bg-img"
-            priority={i === 0}
-          />
+          <div className="absolute inset-0 flex justify-center">
+            <div className="relative w-full max-w-[1200px]">
+              <Image
+                src={img}
+                alt={`Fondo de héroe ${i + 1}`}
+                fill
+                className="hero-bg-img"
+                priority={i === 0}
+              />
+            </div>
+          </div>
 
           {/* Overlay oscuro */}
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-black/60 w-full max-w-[1200px] m-auto" />
         </motion.div>
       ))}
     </div>

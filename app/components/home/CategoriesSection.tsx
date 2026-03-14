@@ -50,15 +50,15 @@ export default function CategoriesSection() {
   return (
     <section className="py-[70px]">
       <div className="mx-auto w-full max-w-[1200px] px-5">
-        <div className="mb-10 flex flex-col items-start justify-between gap-3 border-b-2 border-[#222] pb-3 sm:flex-row sm:items-end">
-          <h2 className="text-[clamp(1.4rem,3vw,2rem)] font-extrabold uppercase text-[var(--text-white)]">
+        <div className="mb-10 flex flex-col items-start justify-between gap-3 sm:items-end">
+          <h2 className="text-[clamp(1.4rem,3vw,2rem)] font-extrabold uppercase text-[var(--text-white)] text-center w-full">
             EXPLORAR POR <span className="text-[var(--primary-red)]">CATEGORIA</span>
           </h2>
           <Link
             href="/tienda"
             className="text-sm font-semibold text-[var(--primary-red)] transition-colors hover:text-[#ff4d4d]"
           >
-            Ver todo &#8599;
+            Ver todo →
           </Link>
         </div>
 
@@ -81,7 +81,7 @@ export default function CategoriesSection() {
 
                 <div>
                   <div className="mb-1 text-[0.95rem] font-bold text-[var(--text-white)]">{cat.label}</div>
-                  <div className="text-xs text-[#666]">{cat.count} productos</div>
+                  {/* <div className="text-xs text-[#666]">{cat.count} productos</div> */}
                 </div>
               </Link>
             </motion.div>
