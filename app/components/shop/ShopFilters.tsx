@@ -4,6 +4,7 @@ import { useState } from "react";
 // import Image from "next/image";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { MdCleaningServices } from "react-icons/md";
+import { motion } from "framer-motion";
 import PriceRangeSlider from "./ui/PriceRangeSlider";
 import { useProductStore } from "@/store/productStore";
 import { STATIC_BRANDS, STATIC_CATEGORIES } from "@/docs/categories";
@@ -140,33 +141,41 @@ export default function ShopFilters() {
         </button>
 
         {isCategoriesOpen && (
-          <ul className="space-y-1">
-            {STATIC_CATEGORIES.map((cat) => {
-              const selected = filters.categories.includes(cat.value);
+          <motion.ul layout className="space-y-1">
+            {[...STATIC_CATEGORIES]
+              .sort((a, b) => {
+                const aSelected = filters.categories.includes(a.value) ? 1 : 0;
+                const bSelected = filters.categories.includes(b.value) ? 1 : 0;
+                return bSelected - aSelected;
+              })
+              .map((cat) => {
+                const selected = filters.categories.includes(cat.value);
 
-              return (
-                <li
-                  key={cat.value}
-                  className={`flex cursor-pointer items-center gap-2.5 rounded-md px-3 py-2.5 text-[0.9rem] transition-colors ${
-                    selected
-                      ? "border-l-[3px] border-[var(--primary-red)] bg-[rgba(255,26,26,0.1)] text-[var(--primary-red)]"
-                      : "text-gray hover:bg-[#1a1a1a] hover:text-white"
-                  }`}
-                  onClick={() => toggleFilter("categories", cat.value)}
-                >
-                  {/* <div className="relative h-6 w-6 shrink-0 overflow-hidden rounded-sm">
-                    <Image
-                      src={cat.img}
-                      alt={cat.tag}
-                      fill
-                      className="object-contain"
-                    />
-                  </div> */}
-                  <span>{cat.tag}</span>
-                </li>
-              );
-            })}
-          </ul>
+                return (
+                  <motion.li
+                    key={cat.value}
+                    layout
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    className={`flex cursor-pointer items-center gap-2.5 rounded-md px-3 py-2.5 text-[0.9rem] transition-colors ${
+                      selected
+                        ? "border-l-[3px] border-[var(--primary-red)] bg-[rgba(255,26,26,0.1)] text-[var(--primary-red)]"
+                        : "text-gray hover:bg-[#1a1a1a] hover:text-white"
+                    }`}
+                    onClick={() => toggleFilter("categories", cat.value)}
+                  >
+                    {/* <div className="relative h-6 w-6 shrink-0 overflow-hidden rounded-sm">
+                      <Image
+                        src={cat.img}
+                        alt={cat.tag}
+                        fill
+                        className="object-contain"
+                      />
+                    </div> */}
+                    <span>{cat.tag}</span>
+                  </motion.li>
+                );
+              })}
+          </motion.ul>
         )}
       </div>
 
@@ -233,34 +242,42 @@ export default function ShopFilters() {
         </button>
 
         {isBrandsOpen && (
-          <div className="flex flex-wrap gap-2">
-            {STATIC_BRANDS.map((brand) => {
-              const selected = filters.brands.includes(brand.value);
+          <motion.div layout className="flex flex-wrap gap-2">
+            {[...STATIC_BRANDS]
+              .sort((a, b) => {
+                const aSelected = filters.brands.includes(a.value) ? 1 : 0;
+                const bSelected = filters.brands.includes(b.value) ? 1 : 0;
+                return bSelected - aSelected;
+              })
+              .map((brand) => {
+                const selected = filters.brands.includes(brand.value);
 
-              return (
-                <button
-                  key={brand.value}
-                  type="button"
-                  onClick={() => toggleFilter("brands", brand.value)}
-                  className={`flex cursor-pointer items-center gap-1.5 rounded border px-2.5 py-1.5 text-[0.8rem] transition-colors ${
-                    selected
-                      ? "border-[var(--primary-red)] bg-[rgba(255,26,26,0.1)] text-[var(--primary-red)]"
-                      : "border-[#333] bg-[#1f1f1f] text-[#ccc] hover:border-[var(--primary-red)] hover:text-white"
-                  }`}
-                >
-                  {/* <div className="relative h-5 w-5 shrink-0 overflow-hidden rounded-sm">
-                    <Image
-                      src={brand.img}
-                      alt={brand.tag}
-                      fill
-                      className="object-contain"
-                    />
-                  </div> */}
-                  {brand.tag}
-                </button>
-              );
-            })}
-          </div>
+                return (
+                  <motion.button
+                    key={brand.value}
+                    layout
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    type="button"
+                    onClick={() => toggleFilter("brands", brand.value)}
+                    className={`flex cursor-pointer items-center gap-1.5 rounded border px-2.5 py-1.5 text-[0.8rem] transition-colors ${
+                      selected
+                        ? "border-[var(--primary-red)] bg-[rgba(255,26,26,0.1)] text-[var(--primary-red)]"
+                        : "border-[#333] bg-[#1f1f1f] text-[#ccc] hover:border-[var(--primary-red)] hover:text-white"
+                    }`}
+                  >
+                    {/* <div className="relative h-5 w-5 shrink-0 overflow-hidden rounded-sm">
+                      <Image
+                        src={brand.img}
+                        alt={brand.tag}
+                        fill
+                        className="object-contain"
+                      />
+                    </div> */}
+                    {brand.tag}
+                  </motion.button>
+                );
+              })}
+          </motion.div>
         )}
       </div>
     </aside>
