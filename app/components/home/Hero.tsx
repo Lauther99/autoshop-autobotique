@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import { motion, useAnimate, useScroll, useTransform } from "framer-motion";
 import { useEffect } from "react";
@@ -75,7 +75,7 @@ export default function Hero() {
           </div>
         </Reveal>
 
-        <motion.div ref={logoRef} initial={{ x: 600, opacity: 0 }}>
+        {/* <motion.div ref={logoRef} initial={{ x: 600, opacity: 0 }}>
           <Image
             src="/assets/logo1.png"
             alt="Logo"
@@ -83,7 +83,7 @@ export default function Hero() {
             height={370}
             priority
           />
-        </motion.div>
+        </motion.div> */}
       </motion.div>
     </section>
   );

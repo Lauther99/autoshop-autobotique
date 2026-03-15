@@ -16,7 +16,7 @@ export default function ProductTabs({ product }: Props) {
 
       {/* Tabs Header */}
       <div className="flex gap-10 border-b border-[#333] mb-8">
-        {["descripcion", "especificaciones"].map((tab) => {
+        {["especificaciones"].map((tab) => {
           const isActive = activeTab === tab;
 
           return (
@@ -30,7 +30,8 @@ export default function ProductTabs({ product }: Props) {
                   : "text-gray hover:text-[var(--color-text)]"}
               `}
             >
-              {tab.charAt(0).toUpperCase() + tab.slice(1)}
+              {/* {tab.charAt(0).toUpperCase() + tab.slice(1)} */}
+              Detalles
 
               {isActive && (
                 <span className="absolute bottom-[-1px] left-0 h-[3px] w-full bg-[var(--primary-red)]" />
@@ -45,13 +46,13 @@ export default function ProductTabs({ product }: Props) {
 
         {/* Main Content */}
         <div>
-          {activeTab === "descripcion" && (
+          {/* {activeTab === "descripcion" && (
             <div className="space-y-4">
               <p className="text-gray leading-relaxed">
                 {product.description ?? "Descripción no disponible"}
               </p>
             </div>
-          )}
+          )} */}
 
           {activeTab === "especificaciones" && (
             <div className="bg-[#111] border border-[#222] rounded-lg p-6">

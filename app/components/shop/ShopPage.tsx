@@ -1,6 +1,5 @@
 "use client";
 
-import { products } from "@/data/products";
 import ShopBreadcrumbs from "./ShopBreadcrumbs";
 import ShopFilters from "./ShopFilters";
 import ShopHeader from "./ShopHeader";
@@ -9,8 +8,13 @@ import ShopPagination from "./ShopPagination";
 import { useEffect } from "react";
 import { useProductStore } from "@/store/productStore";
 import { useSearchParams } from "next/navigation";
+import { Product } from "@/types/product";
 
-export default function ShopPage() {
+interface Props {
+  products: Product[];
+}
+
+export default function ShopPage({ products }: Props) {
   const searchParams = useSearchParams();
   const goToPage = useProductStore((s) => s.goToPage);
   const setProducts = useProductStore((state) => state.setProducts);

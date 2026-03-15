@@ -1,6 +1,6 @@
 
 import "./producto_modules.css";
-import { products } from "@/data/products";
+import { getProductById, getProducts } from "@/lib/products";
 import Breadcrumbs from "@/app/components/productDetail/Breadcrumbs";
 import ProductGallery from "@/app/components/productDetail/ProductGallery";
 import ProductInfo from "@/app/components/productDetail/ProductInfo";
@@ -9,10 +9,10 @@ import RelatedProducts from "@/app/components/productDetail/RelatedProducts";
 import { Product } from "@/types/product";
 
 interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
-function getSlug(product: Product){
+function getSlug(product: Product) {
   const brand = product.brand ?? "";
 
   const slugParts = [];
@@ -36,7 +36,8 @@ function getSlug(product: Product){
   return `${slugParts.join("-")}-${product.id}`;
 }
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const products = await getProducts();
   return products.map((p) => ({
     slug: getSlug(p),
   }));
@@ -45,10 +46,9 @@ export function generateStaticParams() {
 export default async function ProductDetailPage({ params }: Props) {
   const { slug } = await params;
 
-
   const parts = slug.split("-");
   const id = Number(parts.pop());
-  const product = products.find((p) => p.id === id);
+  const product = await getProductById(id);
 
   if (!product) {
     return <div>Producto no encontrado</div>;
@@ -59,7 +59,7 @@ export default async function ProductDetailPage({ params }: Props) {
       <Breadcrumbs product={product} />
 
       <div className="p-detail-grid">
-        <ProductGallery images={product.images ?? []} productName={product.title}/>
+        <ProductGallery images={product.images ?? []} productName={product.title} />
         <ProductInfo product={product} />
       </div>
 
