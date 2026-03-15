@@ -20,7 +20,7 @@ Object.values(imagesByProductId).forEach(urls => urls.sort())
 
 export const products: Product[] = productsData.map(p => ({
   ...p,
-  specs: p.specs?.map(s => ({
+  specs: p.specs?.map((s: { label: string; content: string }) => ({
     label: s.label,
     value: s.content
   })) ?? null,
