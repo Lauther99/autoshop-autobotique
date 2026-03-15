@@ -39,6 +39,20 @@ export default function HeroBackgroundSlider({ duration = 5000 }) {
           transition={{ duration: 2, ease: "easeInOut" }}
           className="absolute inset-0"
         >
+          {/* Imagen borrosa full-width de fondo */}
+          <div className="absolute inset-0">
+            <Image
+              src={img}
+              alt=""
+              fill
+              className="object-cover scale-110"
+              style={{ filter: "blur(18px)", transform: "scale(1.1)" }}
+              priority={i === 0}
+            />
+            <div className="absolute inset-0 bg-black/60" />
+          </div>
+
+          {/* Imagen nítida centrada */}
           <div className="absolute inset-0 flex justify-center">
             <div className="relative w-full max-w-[1200px]">
               <Image
@@ -51,7 +65,7 @@ export default function HeroBackgroundSlider({ duration = 5000 }) {
             </div>
           </div>
 
-          {/* Overlay oscuro */}
+          {/* Overlay oscuro sobre imagen nítida */}
           <div className="absolute inset-0 bg-black/60 w-full max-w-[1200px] m-auto" />
         </motion.div>
       ))}

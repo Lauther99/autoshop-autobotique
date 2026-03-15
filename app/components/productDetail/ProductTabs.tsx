@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function ProductTabs({ product }: Props) {
-  const [activeTab, setActiveTab] = useState("descripcion");
+  const [activeTab, setActiveTab] = useState("especificaciones");
   const specs = product.specs ?? [];
 
   return (
