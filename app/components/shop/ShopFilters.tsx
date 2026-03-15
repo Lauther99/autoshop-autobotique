@@ -11,9 +11,9 @@ type SortType = "price-asc" | "price-desc";
 export default function ShopFilters() {
   const products = useProductStore((state) => state.products);
   const priceRange = useProductStore((state) => state.priceRange);
-  const [isCategoriesOpen, setIsCategoriesOpen] = useState(true);
-  const [isPriceOpen, setIsPriceOpen] = useState(true);
-  const [isBrandsOpen, setIsBrandsOpen] = useState(true);
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+  const [isPriceOpen, setIsPriceOpen] = useState(false);
+  const [isBrandsOpen, setIsBrandsOpen] = useState(false);
 
   const router = useRouter();
   const searchParams = useSearchParams();

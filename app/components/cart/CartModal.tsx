@@ -8,6 +8,28 @@ import { numero } from "@/data/information";
 import { currencies } from "@/types/product";
 import { CartItemComponent } from "./CartItem";
 import Toast from "@/app/components/ui/Toast";
+import {
+  FaStore,
+  FaTruck,
+  FaLocationDot,
+  FaEarthAmericas,
+} from "react-icons/fa6";
+
+function IconPin() {
+  return <FaLocationDot size={18} color="var(--primary-red)" />;
+}
+
+function IconTruck() {
+  return <FaTruck size={18} color="var(--primary-red)" />;
+}
+
+function IconStore() {
+  return <FaStore size={18} color="var(--primary-red)" />;
+}
+
+function IconGlobe() {
+  return <FaEarthAmericas size={18} color="var(--primary-red)" />;
+}
 
 export default function CartModal() {
   const isCartOpen = useCartStore((s) => s.isCartOpen);
@@ -77,7 +99,7 @@ export default function CartModal() {
             <p className="text-[#888]">
               Tienes{" "}
               <strong className="text-text">{items.length} productos</strong>{" "}
-              listos para el envio
+              listos para el envío
             </p>
 
             <button
@@ -101,7 +123,7 @@ export default function CartModal() {
           </div>
         </header>
 
-        <div className="grid grid-cols-1 gap-10 min-[900px]:grid-cols-[2fr_1fr]">
+        <div className="grid grid-cols-1 gap-10 min-[1100px]:grid-cols-[2fr_1fr]">
           <div className="flex flex-col gap-5">
             {items.map((item) => (
               <CartItemComponent
@@ -113,7 +135,7 @@ export default function CartModal() {
 
             {items.length === 0 && (
               <div className="rounded-lg border border-dashed border-[#333] p-10 text-center">
-                <p>Tu carrito esta vacio.</p>
+                <p>Tu carrito esta vacío.</p>
               </div>
             )}
 
@@ -154,8 +176,8 @@ export default function CartModal() {
                   </svg>
                 </div>
                 <div>
-                  <h5 className="mb-1 text-sm">Soporte Tecnico</h5>
-                  <p className="text-xs text-[#888]">Asesoria especializada</p>
+                  <h5 className="mb-1 text-sm">Soporte Técnico</h5>
+                  <p className="text-xs text-[#888]">Asesoría especializada</p>
                 </div>
               </div>
             </div>
@@ -178,7 +200,7 @@ export default function CartModal() {
               </div>
 
               <div className="mb-3.5 flex justify-between text-[0.95rem] text-text">
-                <span>Envio (Estimado)</span>
+                <span>Envío (Estimado)</span>
                 <span className="font-semibold text-[#2ecc71]">Gratis!</span>
               </div>
 
@@ -268,7 +290,7 @@ export default function CartModal() {
                   </svg>
                 </div>
                 <p className="mt-3.5 text-[0.7rem] text-[#555]">
-                  Tus datos estan protegidos por encriptacion.
+                  Tus datos estan protegidos por encriptación.
                 </p>
               </div>
             </div>
@@ -280,19 +302,85 @@ export default function CartModal() {
               <div>
                 <h5 className="mb-1 text-sm font-semibold">Necesitas ayuda?</h5>
                 <p className="text-xs leading-[1.4] text-text">
-                  Llamanos al +{numero} o chatea con un experto ahora.
+                  Llámanos al +{numero} o chatea con un experto ahora.
                 </p>
               </div>
             </div>
             <div className="mt-5 mb-[30px] rounded-xl border border-[rgba(255,26,26,0.25)] bg-[rgba(255,26,26,0.06)] p-4">
               <h4 className="mb-2 text-sm font-bold uppercase tracking-wide text-[var(--primary-red)]">
-                Informacion de entrega
+                Información de entrega
               </h4>
-              <ul className="space-y-1.5 text-sm leading-relaxed text-[var(--text-white)]">
-                <li>Envio gratis a todo Piura.</li>
-                <li>Delivery fuera de Piura: entre 3 y 5 dias hábiles.</li>
-                <li>Retiro en tienda gratis en horario de atención.</li>
-              </ul>
+              <div className="space-y-3">
+                {/* Envío a Piura */}
+                <div className="flex items-center gap-3">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#1a1a1a]">
+                    <IconPin />
+                  </div>
+                  <div className="flex flex-1 items-center justify-between gap-2">
+                    <span className="text-sm text-[#ccc]">
+                      Envío a todo Piura
+                    </span>
+                    <span className="shrink-0 rounded-md bg-[rgba(34,197,94,0.12)] px-2 py-0.5 text-xs font-semibold text-green-400">
+                      Gratis
+                    </span>
+                  </div>
+                </div>
+
+                {/* Despacho a domicilio */}
+                <div className="flex items-center gap-3">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#1a1a1a]">
+                    <IconTruck />
+                  </div>
+                  <div className="flex flex-1 items-center justify-between gap-2">
+                    <span className="text-sm text-[#ccc]">
+                      Despacho a domicilio
+                    </span>
+                    <div className="flex shrink-0 gap-1.5">
+                      <span className="rounded-md bg-[rgba(34,197,94,0.12)] px-2 py-0.5 text-xs font-semibold text-green-400">
+                        Llega mañana
+                      </span>
+                      <span className="rounded-md bg-[rgba(34,197,94,0.12)] px-2 py-0.5 text-xs font-semibold text-green-400">
+                        Gratis
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Retiro en tienda */}
+                <div className="flex items-center gap-3">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#1a1a1a]">
+                    <IconStore />
+                  </div>
+                  <div className="flex flex-1 items-center justify-between gap-2">
+                    <span className="text-sm text-[#ccc]">
+                      Retira en tienda
+                    </span>
+                    <div className="flex shrink-0 gap-1.5">
+                      <span className="rounded-md bg-[rgba(34,197,94,0.12)] px-2 py-0.5 text-xs font-semibold text-green-400">
+                        Retira mañana
+                      </span>
+                      <span className="rounded-md bg-[rgba(34,197,94,0.12)] px-2 py-0.5 text-xs font-semibold text-green-400">
+                        Gratis
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Despacho nacional */}
+                <div className="flex items-center gap-3">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#1a1a1a]">
+                    <IconGlobe />
+                  </div>
+                  <div className="flex flex-1 items-center justify-between gap-2">
+                    <span className="text-sm text-[#ccc]">
+                      Despacho a todo el Perú
+                    </span>
+                    <span className="shrink-0 rounded-md bg-[#1f1f1f] px-2 py-0.5 text-xs font-semibold text-[#aaa]">
+                      3 a 5 días hábiles
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -81,7 +81,7 @@ export default function Contact() {
                 <p>+51 902 270 018</p>
               </div>
               <div>
-                <h5 className="mb-1 text-[var(--primary-red)]">UBICACION</h5>
+                <h5 className="mb-1 text-[var(--primary-red)]">UBICACIÓN</h5>
                 <p>
                   Jr.Tambogrande 589 <br />
                   Urb. Santa Ana <br />

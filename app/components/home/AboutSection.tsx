@@ -20,9 +20,9 @@ export default function About() {
             SOBRE <span className="text-[var(--primary-red)]">NOSOTROS</span>
           </h2>
           <p className="leading-relaxed text-text text-justify">
-            Desde 2009, Autoshop Autoboutique ha sido el referente en accesorios automotrices. Nuestra mision es
+            Desde 2009, Autoshop Autoboutique ha sido el referente en accesorios automotrices. Nuestra misión es
             brindar soluciones esteticas y funcionales que superen las expectativas de nuestros clientes, manteniendo
-            siempre los mas altos estandares de calidad.
+            siempre los mas altos estándares de calidad.
           </p>
 
           <div className="my-7 flex flex-wrap gap-7">

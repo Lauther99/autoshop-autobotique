@@ -19,7 +19,7 @@ export default function ShippingForm({ shipping, onChange }: ShippingFormProps) 
 
   return (
     <section className="mb-11">
-      <StepHeader number={1} title="Datos de Envio" />
+      <StepHeader number={1} title="Datos de Envío" />
 
       <div className="grid grid-cols-1 gap-5 min-[600px]:grid-cols-2">
         <div className="min-[600px]:col-span-2">

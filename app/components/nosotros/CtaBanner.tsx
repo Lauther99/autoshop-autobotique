@@ -14,8 +14,8 @@ export default function CtaBanner() {
       className="relative my-20 flex flex-col items-center justify-between gap-7 overflow-hidden rounded-2xl bg-[var(--primary-red)] px-6 py-12 text-center md:flex-row md:px-10 md:py-14 md:text-left w-full max-w-[1200px] m-auto"
     >
       <div className="z-[2] max-w-[600px]">
-        <h2 className="mb-2.5 text-[2rem] font-extrabold leading-tight text-[var(--text-white)]">
-          Listo para mejorar tu vehiculo?
+        <h2 className="mb-2.5 text-[2rem] font-extrabold leading-tight text-white">
+          Listo para mejorar tu vehículo?
         </h2>
         <p className="text-[rgba(255,255,255,0.9)]">
           Se parte de nuestra historia. Unete a los miles de conductores que ya
@@ -29,7 +29,7 @@ export default function CtaBanner() {
             href="/tienda"
             className="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-sm font-semibold text-[var(--primary-red)] transition-colors hover:bg-[#f0f0f0]"
           >
-            Explorar Catalogo
+            Explorar Catálogo
           </Link>
         </motion.div>
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>

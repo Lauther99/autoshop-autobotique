@@ -66,8 +66,8 @@ export default function Footer() {
           </div>
 
           <div>
-            <p className="text-sm leading-6 text-[#777]">
-              Lideres en personalizacióm y equipamiento automotriz. 15 años transformando autos comunes en vehículos
+            <p className="text-sm leading-6 text-[#777] text-justify">
+              Líderes en personalización y equipamiento automotriz. 15 años transformando autos comunes en vehículos
               extraordinarios.
             </p>
             <div className="mt-4 flex gap-2.5">
