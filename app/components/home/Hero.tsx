@@ -18,13 +18,13 @@ export default function Hero() {
       await animateLogo(
         logoRef.current,
         { x: 0, opacity: 1 },
-        { type: "spring", stiffness: 180, damping: 10, delay: 0.3 },
+        { type: "spring", stiffness: 180, damping: 10, delay: 0.1 },
       );
-      await new Promise((r) => setTimeout(r, 1000));
+      await new Promise((r) => setTimeout(r, 300));
       await animateLogo(
         logoRef.current,
         { x: -600, opacity: 0 },
-        { duration: 0.5, ease: "easeIn" },
+        { duration: 0.2, ease: "easeIn" },
       );
     }
     sequence();

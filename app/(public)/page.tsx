@@ -5,6 +5,7 @@ import ContactSection from "@/app/components/home/ContactSection";
 import RevealOnScroll from "@/app/components/ui/RevealOnScroll";
 import CtaBanner from "@/app/components/nosotros/CtaBanner";
 import WhatsAppButton from "@/app/components/ui/WhatsAppButton";
+import CategoriesSection from "@/app/components/home/CategoriesSection";
 
 export default function Home() {
   return (
@@ -17,6 +18,10 @@ export default function Home() {
 
       <RevealOnScroll>
         <CtaBanner />
+      </RevealOnScroll>
+
+      <RevealOnScroll>
+        <CategoriesSection />
       </RevealOnScroll>
       
       <RevealOnScroll>

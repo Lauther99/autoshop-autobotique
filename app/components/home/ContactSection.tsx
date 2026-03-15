@@ -37,7 +37,7 @@ export default function Contact() {
 
           <div className="flex-1 p-8 md:p-10">
             <h2 className="mb-4 text-[2rem] font-extrabold uppercase">
-              NECESITAS <span className="text-[var(--primary-red)]">AYUDA?</span>
+              CONTACTAR A UN <span className="text-[var(--primary-red)]"><br/>ASESOR COMERCIAL</span>
             </h2>
             <p className="mb-5 text-[#888]">Envia un mensaje para responder todas tus dudas.</p>
 

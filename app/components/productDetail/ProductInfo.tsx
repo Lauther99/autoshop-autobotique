@@ -69,8 +69,8 @@ export default function ProductInfo({ product }: Props) {
         </h4>
         <ul className="space-y-1.5 text-sm leading-relaxed text-[var(--text-white)]">
           <li>Envio gratis a todo Piura.</li>
-          <li>Delivery fuera de Piura: entre 3 y 5 dias habiles.</li>
-          <li>Retiro en tienda gratis en horario de atencion.</li>
+          <li>Delivery fuera de Piura: entre 3 y 5 dias hábiles.</li>
+          <li>Retiro en tienda gratis en horario de atención.</li>
         </ul>
       </div>
 

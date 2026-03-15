@@ -77,7 +77,7 @@ export default function GallerySection() {
           className="group relative overflow-hidden rounded-xl max-[768px]:h-[300px] max-[768px]:w-full"
         >
           <Image
-            src="/assets/gallery_section/lugar3.jpg"
+            src="/assets/photos/8.JPG"
             alt="Sala VIP"
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
