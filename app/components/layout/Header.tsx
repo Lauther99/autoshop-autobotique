@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useCartStore } from "@/store/cartStore";
+import SearchBar from "@/app/components/layout/SearchBar";
 
 type ThemeMode = "dark" | "light";
 
@@ -63,24 +64,7 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <div className="hidden w-[250px] items-center rounded-[20px] border border-[var(--color-border)] bg-[var(--bg-input)] px-[15px] py-2 text-[var(--text-white)] md:flex">
-            <svg
-              width="18"
-              height="18"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-            >
-              <circle cx="11" cy="11" r="8" />
-              <path d="m21 21-4.3-4.3" />
-            </svg>
-            <input
-              className="ml-2.5 w-full border-none bg-transparent text-[var(--text-white)] outline-none placeholder:text-[var(--text-gray)]"
-              type="text"
-              placeholder="Buscar accesorios..."
-            />
-          </div>
+          <SearchBar />
 
           <button
             type="button"

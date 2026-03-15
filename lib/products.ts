@@ -66,12 +66,17 @@ export async function getProductById(id: number): Promise<Product | null> {
   return mapToProduct(data);
 }
 
-export async function searchProducts(query: string): Promise<Product[]> {
+export async function searchProducts(
+  query: string,
+  offset = 0,
+  limit = 8
+): Promise<Product[]> {
   const { data, error } = await supabase
     .from("products")
     .select(SELECT_QUERY)
     .ilike("name", `%${query}%`)
-    .order("id");
+    .order("id")
+    .range(offset, offset + limit - 1);
 
   if (error) throw new Error(error.message);
 
