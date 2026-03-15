@@ -171,13 +171,13 @@ export default function Header() {
 
       {/* Drawer */}
       <div
-        className={`fixed right-0 top-0 z-[70] flex h-full w-[85%] flex-col bg-[#120808] transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed right-0 top-0 z-[70] flex h-full bg-[var(--color-bg)] w-[85%] flex-col bg-[#120808] transition-transform duration-300 ease-in-out md:hidden ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Header del drawer */}
         <div className="flex items-center justify-between px-6 py-5">
-          <span className="text-2xl font-black text-white">MENÚ</span>
+          <span className="text-2xl font-black text-text">MENÚ</span>
           <button
             type="button"
             onClick={() => setMenuOpen(false)}
@@ -207,8 +207,8 @@ export default function Header() {
                     onClick={() => setMenuOpen(false)}
                     className={`flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium transition-colors ${
                       isActive
-                        ? "bg-[var(--primary-red)] text-white"
-                        : "text-white hover:bg-white/5"
+                        ? "bg-[var(--primary-red)] text-text"
+                        : "text-text hover:bg-[var(--primary-red)]/5"
                     }`}
                   >
                     <span className="flex-shrink-0">{icon}</span>
@@ -230,7 +230,7 @@ export default function Header() {
 
         {/* Theme toggle */}
         <div className="flex items-center justify-between px-7 py-4">
-          <div className="flex items-center gap-3 text-white">
+          <div className="flex items-center gap-3 text-text">
             <ThemeIcon />
             <span className="text-sm font-medium">Modo oscuro</span>
           </div>
