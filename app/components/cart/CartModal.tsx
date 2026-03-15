@@ -45,7 +45,7 @@ export default function CartModal() {
   const total = subtotal + iva;
 
   return (
-    <div className="fixed inset-0 z-[99999] m-auto overflow-y-auto bg-[var(--color-bg)] p-1.5 sm:p-10">
+    <div className="fixed inset-0 z-[99999] m-auto overflow-y-auto bg-[var(--color-bg)] p-5 sm:p-10">
       <div className="mx-auto w-full max-w-[1200px]">
         <header className="mb-8">
           <div className="flex justify-between gap-4">

@@ -238,11 +238,13 @@ export default function Header() {
             type="button"
             onClick={toggleTheme}
             aria-label="Cambiar tema"
+            suppressHydrationWarning
             className={`relative h-6 w-11 rounded-full transition-colors duration-200 ${
               theme === "dark" ? "bg-[var(--primary-red)]" : "bg-gray-600"
             }`}
           >
             <span
+              suppressHydrationWarning
               className={`absolute left-0 top-1 h-4 w-4 rounded-full bg-white shadow transition-transform duration-200 ${
                 theme === "dark" ? "translate-x-1" : "translate-x-6"
               }`}

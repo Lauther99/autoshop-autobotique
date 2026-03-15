@@ -50,7 +50,7 @@ export const CartItemComponent: React.FC<CartItemProps> = ({
           setDeleteToast(true);
         }}
         title="Eliminar producto"
-        className="absolute right-5 top-5 text-[#666] transition hover:text-[var(--primary-red)]"
+        className="absolute right-5 top-5 text-[#666] transition hover:text-[var(--primary-red)] max-[900px]:static max-[900px]:self-end max-[900px]:order-last"
       >
         <svg
           width="18"
