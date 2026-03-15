@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { numero } from "@/data/information";
+import { numero } from "@/docs/information";
 
 export default function CtaBannerHome() {
   return (

@@ -6,7 +6,7 @@ import ShippingForm from "./components/ShippingForm";
 import OrderSummary from "./components/OrderSummary";
 import { CartItem } from "@/types/product";
 import Toast from "@/app/components/ui/Toast";
-import { numero } from "@/data/information";
+import { numero } from "@/docs/information";
 
 interface ShippingData {
   fullName: string;

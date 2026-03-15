@@ -117,7 +117,7 @@ export default function Header() {
             <ul className="hidden items-center gap-6 text-sm font-medium md:flex">
               {NAV_LINKS.map(({ href, label }) => (
                 <li key={href}>
-                  <Link className={linkClass} href={href}>{label}</Link>
+                  <Link className={linkClass} href={href}><b>{label}</b></Link>
                 </li>
               ))}
             </ul>

@@ -1,6 +1,6 @@
 "use client";
 
-import { numero, whatsappMessage } from "@/data/information";
+import { numero, whatsappMessage } from "@/docs/information";
 
 export default function WhatsAppButton() {
   const url = `https://wa.me/${numero}?text=${encodeURIComponent(whatsappMessage)}`;

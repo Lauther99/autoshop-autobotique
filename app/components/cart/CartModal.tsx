@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCartStore } from "@/store/cartStore";
-import { numero } from "@/data/information";
+import { numero } from "@/docs/information";
 import { currencies } from "@/types/product";
 import { CartItemComponent } from "./CartItem";
 import Toast from "@/app/components/ui/Toast";

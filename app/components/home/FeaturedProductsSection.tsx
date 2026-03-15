@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Product } from "@/types/product";
 import { FeaturedProductCard } from "./FeaturedProductCard";
-import { products } from "@/data/products";
+import { products } from "@/docs/products";
 import Reveal from "@/app/components/ui/Reveal";
 
 function get_slug(product: Product) {
@@ -36,7 +36,7 @@ export default function FeaturedProducts() {
           PRODUCTOS <span className="text-[var(--primary-red)]">DESTACADOS</span>
         </h2>
         <Link className="text-sm text-[var(--primary-red)] transition-colors hover:text-[#ff4d4d]" href="/tienda">
-          Ver todo el catálogo &#8599;
+          Ver todo el catálogo →
         </Link>
       </div>
 

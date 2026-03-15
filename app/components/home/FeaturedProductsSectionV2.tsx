@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { products } from "@/data/products";
+import { products } from "@/docs/products";
 import ProductCard from "@/app/components/shop/ProductCard";
 import Toast from "@/app/components/ui/Toast";
 import Reveal from "@/app/components/ui/Reveal";

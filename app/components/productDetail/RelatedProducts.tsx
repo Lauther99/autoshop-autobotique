@@ -3,7 +3,7 @@
 import { useEffect, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { products as fallbackProducts } from "@/data/products";
+import { products as fallbackProducts } from "@/docs/products";
 import { useProductStore } from "@/store/productStore";
 import { currencies, Product } from "@/types/product";
 

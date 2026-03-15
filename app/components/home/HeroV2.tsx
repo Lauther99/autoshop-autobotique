@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import HeroBackgroundSlider from "@/app/components/home/HeroBackgroundSlider";
-import { numero } from "@/data/information";
+import { numero } from "@/docs/information";
 
 const trustItems = [
   { label: "+15 años de experiencia" },

@@ -1,0 +1,42 @@
+import { FilterItem } from "@/types/product";
+
+export const STATIC_BRANDS: FilterItem[] = [
+  { value: "MUSWAY",      tag: "MUSWAY",       slug: "MUSWAY",      img: "/assets/logo1.png" },
+  { value: "JBL",         tag: "JBL",          slug: "JBL",         img: "/assets/logo1.png" },
+  { value: "HERTZ",       tag: "HERTZ",        slug: "HERTZ",       img: "/assets/logo1.png" },
+  { value: "GROUND ZERO", tag: "GROUND ZERO",  slug: "GROUND ZERO", img: "/assets/logo1.png" },
+  { value: "AUDISON",     tag: "AUDISON",      slug: "AUDISON",     img: "/assets/logo1.png" },
+  { value: "KICKER",      tag: "KICKER",       slug: "KICKER",      img: "/assets/logo1.png" },
+  { value: "PIONEER",     tag: "PIONEER",      slug: "PIONEER",     img: "/assets/logo1.png" },
+  { value: "RD FIRE",     tag: "RD FIRE",      slug: "RD FIRE",     img: "/assets/logo1.png" },
+  { value: "CARAV",       tag: "CARAV",        slug: "CARAV",       img: "/assets/logo1.png" },
+  { value: "AUTORUS",     tag: "AUTORUS",      slug: "AUTORUS",     img: "/assets/logo1.png" },
+  { value: "CARGUIA",     tag: "CARGUIA",      slug: "CARGUIA",     img: "/assets/logo1.png" },
+  { value: "IROM",        tag: "IROM",         slug: "IROM",        img: "/assets/logo1.png" },
+  { value: "AUTOSHOP",    tag: "AUTOSHOP",     slug: "AUTOSHOP",    img: "/assets/logo1.png" },
+  { value: "ATP",         tag: "ATP",          slug: "ATP",         img: "/assets/logo1.png" },
+  { value: "SKY",         tag: "SKY",          slug: "SKY",         img: "/assets/logo1.png" },
+  { value: "B.V",         tag: "B.V",          slug: "B.V",         img: "/assets/logo1.png" },
+];
+
+export const STATIC_CATEGORIES: FilterItem[] = [
+  { value: "PISO 5D",        tag: "PISO 5D",        slug: "PISO 5D",        img: "/assets/categorias_imagenes/PISO5D.webp" },
+  { value: "ESTRIBOS",       tag: "ESTRIBOS",       slug: "ESTRIBOS",       img: "/assets/categorias_imagenes/ESTRIBOS.webp" },
+  { value: "ANTIVUELCO",     tag: "ANTIVUELCO",     slug: "ANTIVUELCO",     img: "/assets/categorias_imagenes/ANTIVUELCO.webp" },
+  { value: "PARACHOQUE",     tag: "PARACHOQUE",     slug: "PARACHOQUE",     img: "/assets/categorias_imagenes/PARACHOQUE.webp" },
+  { value: "PARLANTES",      tag: "PARLANTES",      slug: "PARLANTES",      img: "/assets/categorias_imagenes/PARLANTES.webp" },
+  { value: "REMOLQUE",       tag: "REMOLQUE",       slug: "REMOLQUE",       img: "/assets/categorias_imagenes/REMOLQUE.webp" },
+  { value: "COMPONENTES",    tag: "COMPONENTES",    slug: "COMPONENTES",    img: "/assets/categorias_imagenes/COMPONENTES.webp" },
+  { value: "LONA MARITIMA",  tag: "LONA MARITIMA",  slug: "LONA MARITIMA",  img: "/assets/categorias_imagenes/LONAMARITIMA.webp" },
+  { value: "BARRAS",         tag: "BARRAS",         slug: "BARRAS",         img: "/assets/categorias_imagenes/BARRAS.webp" },
+  { value: "FENDER",         tag: "FENDER",         slug: "FENDER",         img: "/assets/categorias_imagenes/FENDER.webp" },
+  { value: "FARO POSTERIOR", tag: "FARO POSTERIOR", slug: "FARO POSTERIOR", img: "/assets/categorias_imagenes/FAROPOSTERIOR.webp" },
+  { value: "FOCOS LED",      tag: "FOCOS LED",      slug: "FOCOS LED",      img: "/assets/logo1.png" },
+  { value: "DEFENSA",        tag: "DEFENSA",        slug: "DEFENSA",        img: "/assets/categorias_imagenes/DEFENSA.webp" },
+  { value: "CONSOLAS",       tag: "CONSOLAS",       slug: "CONSOLAS",       img: "/assets/categorias_imagenes/CONSOLAS.webp" },
+  { value: "CAMARA RETRO",   tag: "CAMARA RETRO",   slug: "CAMARA RETRO",   img: "/assets/categorias_imagenes/CAMARARETRO.webp" },
+  { value: "PARRILLA",       tag: "PARRILLA",       slug: "PARRILLA",       img: "/assets/categorias_imagenes/PARRILLA.webp" },
+  { value: "RADIO",          tag: "RADIO",          slug: "RADIO",          img: "/assets/categorias_imagenes/RADIO.webp" },
+  { value: "PORTAEQUIPAJE",  tag: "PORTAEQUIPAJE",  slug: "PORTAEQUIPAJE",  img: "/assets/categorias_imagenes/PORTAEQUIPAJE.webp" },
+  { value: "TAPA RIGIDA",    tag: "TAPA RIGIDA",    slug: "TAPA RIGIDA",    img: "/assets/logo1.png" },
+];

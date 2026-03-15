@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { motion, useAnimate, useScroll, useTransform } from "framer-motion";
 import { useEffect } from "react";
-import { numero } from "@/data/information";
+import { numero } from "@/docs/information";
 import Reveal from "@/app/components/ui/Reveal";
 import HeroBackgroundSlider from "@/app/components/home/HeroBackgroundSlider";
 

@@ -1,15 +1,16 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
+// import Image from "next/image";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { MdCleaningServices } from "react-icons/md";
 import PriceRangeSlider from "./ui/PriceRangeSlider";
 import { useProductStore } from "@/store/productStore";
+import { STATIC_BRANDS, STATIC_CATEGORIES } from "@/docs/categories";
 
 type SortType = "price-asc" | "price-desc";
 
 export default function ShopFilters() {
-  const products = useProductStore((state) => state.products);
   const priceRange = useProductStore((state) => state.priceRange);
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [isPriceOpen, setIsPriceOpen] = useState(false);
@@ -18,21 +19,6 @@ export default function ShopFilters() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
-
-  const categoriesWithCount = useMemo(() => {
-    const counts = new Map<string, number>();
-    products.forEach((p) => {
-      const key = p.category.trim();
-      if (!key) return;
-      counts.set(key, (counts.get(key) ?? 0) + 1);
-    });
-
-    return Array.from(counts.entries())
-      .map(([name, count]) => ({ name, count }))
-      .sort((a, b) => b.count - a.count);
-  }, [products]);
-
-  const brands = [...new Set(products.map((p) => String(p.brand).trim()))];
 
   const filters = useProductStore((s) => s.filters);
   const setFilter = useProductStore((s) => s.setFilter);
@@ -131,6 +117,7 @@ export default function ShopFilters() {
         </div>
       </div>
 
+      {/* CATEGORIAS */}
       <div className="mb-7">
         <button
           type="button"
@@ -154,21 +141,28 @@ export default function ShopFilters() {
 
         {isCategoriesOpen && (
           <ul className="space-y-1">
-            {categoriesWithCount.map((cat) => {
-              const selected = filters.categories.includes(cat.name);
+            {STATIC_CATEGORIES.map((cat) => {
+              const selected = filters.categories.includes(cat.value);
 
               return (
                 <li
-                  key={cat.name}
-                  className={`flex cursor-pointer items-center justify-between gap-2.5 rounded-md px-4 py-3 text-[0.95rem] transition-colors ${
+                  key={cat.value}
+                  className={`flex cursor-pointer items-center gap-2.5 rounded-md px-3 py-2.5 text-[0.9rem] transition-colors ${
                     selected
                       ? "border-l-[3px] border-[var(--primary-red)] bg-[rgba(255,26,26,0.1)] text-[var(--primary-red)]"
                       : "text-gray hover:bg-[#1a1a1a] hover:text-white"
                   }`}
-                  onClick={() => toggleFilter("categories", cat.name)}
+                  onClick={() => toggleFilter("categories", cat.value)}
                 >
-                  <span>{cat.name}</span>
-                  <span className="rounded bg-[#1f1f1f] px-2 py-0.5 text-xs text-[#aaa]">{cat.count}</span>
+                  {/* <div className="relative h-6 w-6 shrink-0 overflow-hidden rounded-sm">
+                    <Image
+                      src={cat.img}
+                      alt={cat.tag}
+                      fill
+                      className="object-contain"
+                    />
+                  </div> */}
+                  <span>{cat.tag}</span>
                 </li>
               );
             })}
@@ -176,6 +170,7 @@ export default function ShopFilters() {
         )}
       </div>
 
+      {/* RANGO DE PRECIO */}
       <div className="mb-7">
         <button
           type="button"
@@ -215,6 +210,7 @@ export default function ShopFilters() {
         )}
       </div>
 
+      {/* MARCAS */}
       <div className="mb-7">
         <button
           type="button"
@@ -237,22 +233,31 @@ export default function ShopFilters() {
         </button>
 
         {isBrandsOpen && (
-          <div className="flex flex-wrap gap-2.5">
-            {brands.map((brand) => {
-              const selected = filters.brands.includes(String(brand));
+          <div className="flex flex-wrap gap-2">
+            {STATIC_BRANDS.map((brand) => {
+              const selected = filters.brands.includes(brand.value);
 
               return (
-                <span
-                  key={brand}
-                  className={`cursor-pointer rounded border px-3 py-1.5 text-[0.85rem] transition-colors ${
+                <button
+                  key={brand.value}
+                  type="button"
+                  onClick={() => toggleFilter("brands", brand.value)}
+                  className={`flex cursor-pointer items-center gap-1.5 rounded border px-2.5 py-1.5 text-[0.8rem] transition-colors ${
                     selected
-                      ? "border-[var(--primary-red)] text-text"
+                      ? "border-[var(--primary-red)] bg-[rgba(255,26,26,0.1)] text-[var(--primary-red)]"
                       : "border-[#333] bg-[#1f1f1f] text-[#ccc] hover:border-[var(--primary-red)] hover:text-white"
                   }`}
-                  onClick={() => toggleFilter("brands", String(brand))}
                 >
-                  {brand}
-                </span>
+                  {/* <div className="relative h-5 w-5 shrink-0 overflow-hidden rounded-sm">
+                    <Image
+                      src={brand.img}
+                      alt={brand.tag}
+                      fill
+                      className="object-contain"
+                    />
+                  </div> */}
+                  {brand.tag}
+                </button>
               );
             })}
           </div>

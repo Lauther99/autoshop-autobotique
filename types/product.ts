@@ -49,3 +49,6 @@ export interface CartItem {
   backorderDays: number;
   backorderQty: number;
 }
+
+export type FilterItem = { value: string; tag: string; slug: string; img: string };
+
