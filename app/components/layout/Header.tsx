@@ -30,7 +30,7 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-surface)]/90 backdrop-blur-sm">
+    <header className="fixed top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-surface)]/10 backdrop-blur-[10px] w-full">
       <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-5 py-4">
         <div className="inline-block skew-x-[-15deg] py-2.5 text-left">
           <h1 className="m-0 p-0 text-[2rem] font-black leading-none tracking-[-1px] tracking-[-2px]">

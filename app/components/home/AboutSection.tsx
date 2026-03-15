@@ -3,23 +3,23 @@ import Link from "next/link";
 
 export default function About() {
   return (
-    <section className="bg-[var(--color-bg)] py-20">
-      <div className="mx-auto grid w-full max-w-[1200px] grid-cols-1 items-center gap-12 px-5 md:grid-cols-2">
-        <div>
+    <section className="py-20">
+      <div className="mx-auto w-full max-w-[1200px] px-5">
+      <div className="flex flex-col overflow-hidden rounded-xl bg-[var(--bg-card)] lg:flex-row">
+        <div className="relative min-h-[300px] flex-1 lg:min-h-[400px]">
           <Image
-            src="/assets/gallery_section/lugar3.jpg"
+            src="/assets/photos/lugar3.webp"
             alt="Autoshop"
-            className="h-[400px] w-full rounded-lg border-l-[5px] object-cover"
-            width={500}
-            height={400}
+            className="border-l-[5px] object-cover"
+            fill
           />
         </div>
 
-        <div>
+        <div className="flex-1 p-8 md:p-10">
           <h2 className="mb-4 text-[2rem] font-extrabold uppercase">
             SOBRE <span className="text-[var(--primary-red)]">NOSOTROS</span>
           </h2>
-          <p className="leading-relaxed text-text">
+          <p className="leading-relaxed text-text text-justify">
             Desde 2009, Autoshop Autoboutique ha sido el referente en accesorios automotrices. Nuestra mision es
             brindar soluciones esteticas y funcionales que superen las expectativas de nuestros clientes, manteniendo
             siempre los mas altos estandares de calidad.
@@ -87,6 +87,7 @@ export default function About() {
             Conocer nuestra historia &rarr;
           </Link>
         </div>
+      </div>
       </div>
     </section>
   );

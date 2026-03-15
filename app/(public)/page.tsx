@@ -6,12 +6,12 @@ import RevealOnScroll from "@/app/components/ui/RevealOnScroll";
 import CtaBanner from "@/app/components/nosotros/CtaBanner";
 import WhatsAppButton from "@/app/components/ui/WhatsAppButton";
 import CategoriesSection from "@/app/components/home/CategoriesSection";
+import { HexagonBackground } from "@/components/animate-ui/components/backgrounds/hexagon";
 
 export default function Home() {
   return (
     <>
       <Hero />
-
       <RevealOnScroll>
         <FeaturedProductsSection />
       </RevealOnScroll>
@@ -23,7 +23,7 @@ export default function Home() {
       <RevealOnScroll>
         <CategoriesSection />
       </RevealOnScroll>
-      
+
       <RevealOnScroll>
         <AboutSection />
       </RevealOnScroll>

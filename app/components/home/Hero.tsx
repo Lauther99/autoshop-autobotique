@@ -31,7 +31,7 @@ export default function Hero() {
   }, [animateLogo, logoRef]);
 
   return (
-    <section className="relative isolate h-[85vh] overflow-hidden bg-[var(--color-bg)]">
+    <section className="relative isolate h-[85vh] overflow-hidden">
       <HeroBackgroundSlider />
 
       <motion.div

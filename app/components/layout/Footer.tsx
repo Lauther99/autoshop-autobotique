@@ -13,7 +13,7 @@ const footerCategories = [
 export default function Footer() {
 
   return (
-    <footer className="bg-[var(--color-surface)]">
+    <footer className="bg-[var(--color-surface)]/10 backdrop-blur-[10px] ">
       <div className="mx-auto w-full max-w-[1200px] px-5 pb-5 pt-14">
         <div className="mb-10 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_2fr]">
           <div className="mb-4 flex items-center justify-center">
