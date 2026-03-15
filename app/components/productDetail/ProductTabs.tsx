@@ -55,7 +55,7 @@ export default function ProductTabs({ product }: Props) {
           )} */}
 
           {activeTab === "especificaciones" && (
-            <div className="bg-[#111] border border-[#222] rounded-lg p-6">
+            <div className="bg-[#111]/90 border border-[#222] rounded-lg p-6">
               <h4 className="mb-5 text-white font-semibold text-lg">
                 Ficha Técnica
               </h4>
@@ -68,11 +68,11 @@ export default function ProductTabs({ product }: Props) {
                       className={`
                         flex justify-between py-3 text-sm
                         ${index !== specs.length - 1
-                          ? "border-b border-[#222]"
+                          ? "border-b border-[gray]/20"
                           : ""}
                       `}
                     >
-                      <span className="text-[#888]">
+                      <span className="text-[#e1e1e1]">
                         {s.label}
                       </span>
 

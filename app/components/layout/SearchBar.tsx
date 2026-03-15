@@ -24,7 +24,7 @@ function getSlug(product: Product) {
   return `${slugParts.join("-")}-${product.id}`;
 }
 
-export default function SearchBar() {
+export default function SearchBar({ className }: { className?: string }) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<Product[]>([]);
   const [open, setOpen] = useState(false);
@@ -35,7 +35,7 @@ export default function SearchBar() {
   const router = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
-  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+  const timerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const currentQueryRef = useRef("");
 
   const fetchResults = useCallback(async (q: string, offset: number, append: boolean) => {
@@ -114,7 +114,7 @@ export default function SearchBar() {
   };
 
   return (
-    <div ref={containerRef} className="relative hidden w-[250px] md:block">
+    <div ref={containerRef} className={className ?? "relative hidden w-[250px] md:block"}>
       <div className="flex items-center rounded-[20px] border border-[var(--color-border)] bg-[var(--bg-input)] px-[15px] py-2 text-[var(--text-white)]">
         <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
           <circle cx="11" cy="11" r="8" />
