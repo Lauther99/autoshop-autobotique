@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCartStore } from "@/store/cartStore";
 import SearchBar from "@/app/components/layout/SearchBar";
+import Image from "next/image";
+import Link from "next/link";
 
 type ThemeMode = "dark" | "light";
 
@@ -13,7 +14,14 @@ const NAV_LINKS = [
     href: "/",
     label: "Inicio",
     icon: (
-      <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+      <svg
+        width="18"
+        height="18"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        viewBox="0 0 24 24"
+      >
         <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
         <polyline points="9 22 9 12 15 12 15 22" />
       </svg>
@@ -23,7 +31,14 @@ const NAV_LINKS = [
     href: "/tienda",
     label: "Tienda",
     icon: (
-      <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+      <svg
+        width="18"
+        height="18"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        viewBox="0 0 24 24"
+      >
         <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
         <path d="M3 6h18" />
         <path d="M16 10a4 4 0 0 1-8 0" />
@@ -34,7 +49,14 @@ const NAV_LINKS = [
     href: "/nosotros",
     label: "Sobre Nosotros",
     icon: (
-      <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+      <svg
+        width="18"
+        height="18"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        viewBox="0 0 24 24"
+      >
         <circle cx="12" cy="12" r="10" />
         <path d="M12 16v-4" />
         <path d="M12 8h.01" />
@@ -48,19 +70,37 @@ const linkClass =
 
 function ThemeIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
       <circle cx="12" cy="12" r="4" />
-      <path d="M12 2v2" /><path d="M12 20v2" />
-      <path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" />
-      <path d="M2 12h2" /><path d="M20 12h2" />
-      <path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" />
+      <path d="M12 2v2" />
+      <path d="M12 20v2" />
+      <path d="m4.93 4.93 1.41 1.41" />
+      <path d="m17.66 17.66 1.41 1.41" />
+      <path d="M2 12h2" />
+      <path d="M20 12h2" />
+      <path d="m6.34 17.66-1.41 1.41" />
+      <path d="m19.07 4.93-1.41 1.41" />
     </svg>
   );
 }
 
 function CartIcon() {
   return (
-    <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+    <svg
+      width="20"
+      height="20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
       <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
       <path d="M3 6h18" />
       <path d="M16 10a4 4 0 0 1-8 0" />
@@ -90,7 +130,9 @@ export default function Header() {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [menuOpen]);
 
   const toggleTheme = () => {
@@ -99,10 +141,20 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed top-0 z-50 w-full border-b border-[var(--color-border)] bg-[var(--color-surface)]/10 backdrop-blur-[10px]">
+      <header className="fixed top-0 z-50 w-full bg-[var(--color-surface)]/10 backdrop-blur-[10px]">
         <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-5 py-4">
           {/* Logo */}
-          <div className="inline-block skew-x-[-15deg] py-2.5 text-left">
+          <Link href="/">
+            <div className="inline-block">
+              <Image
+                src={theme === "dark" ? "/assets/logos_nav/22.png" : "/assets/logos_nav/11.png"}
+                alt="Logo Autoshop Autoboutique"
+                width={180}
+                height={70}
+              />
+            </div>
+          </Link>
+          {/* <div className="inline-block skew-x-[-15deg] py-2.5 text-left">
             <h1 className="m-0 p-0 text-[2rem] font-black leading-none tracking-[-2px]">
               <span className="text-[var(--primary-red)]">AUTO</span>
               <span className="text-[var(--text-white)]">SHOP</span>
@@ -110,14 +162,16 @@ export default function Header() {
             <span className="mt-0.5 block text-base font-black text-[var(--primary-red)] tracking-[4px]">
               AUTOBOUTIQUE
             </span>
-          </div>
+          </div> */}
 
           {/* Desktop nav */}
           <nav>
             <ul className="hidden items-center gap-6 text-sm font-medium md:flex">
               {NAV_LINKS.map(({ href, label }) => (
                 <li key={href}>
-                  <Link className={linkClass} href={href}><b>{label}</b></Link>
+                  <Link className={linkClass} href={href}>
+                    <b>{label}</b>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -154,7 +208,14 @@ export default function Header() {
             className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-[var(--color-border)] bg-[var(--bg-input)] text-[var(--text-white)] md:hidden"
             aria-label="Abrir menú"
           >
-            <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <svg
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
               <path d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
@@ -184,7 +245,14 @@ export default function Header() {
             className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--primary-red)] text-white"
             aria-label="Cerrar menú"
           >
-            <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+            <svg
+              width="14"
+              height="14"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+            >
               <path d="M18 6 6 18M6 6l12 12" />
             </svg>
           </button>
@@ -214,7 +282,14 @@ export default function Header() {
                     <span className="flex-shrink-0">{icon}</span>
                     <span className="flex-1">{label}</span>
                     {!isActive && (
-                      <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <svg
+                        width="16"
+                        height="16"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        viewBox="0 0 24 24"
+                      >
                         <path d="m9 18 6-6-6-6" />
                       </svg>
                     )}
@@ -256,12 +331,17 @@ export default function Header() {
         <div className="px-4 pb-6">
           <button
             type="button"
-            onClick={() => { setMenuOpen(false); toggleCart(); }}
+            onClick={() => {
+              setMenuOpen(false);
+              toggleCart();
+            }}
             className="flex w-full items-center gap-3 rounded-xl bg-white px-4 py-3 text-gray-900"
             aria-label="Abrir carrito"
           >
             <CartIcon />
-            <span className="flex-1 text-left text-sm font-semibold">Carrito</span>
+            <span className="flex-1 text-left text-sm font-semibold">
+              Carrito
+            </span>
             {items.length > 0 && (
               <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[var(--primary-red)] text-[11px] font-bold leading-none text-white">
                 {items.length}

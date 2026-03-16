@@ -1,6 +1,8 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "@/public/assets/logo1.png";
 
 const footerCategories = [
   "PARLANTES",
@@ -11,30 +13,58 @@ const footerCategories = [
 ];
 
 export default function Footer() {
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+
+  useEffect(() => {
+    const update = () => {
+      const t = document.documentElement.getAttribute("data-theme");
+      setTheme(t === "light" ? "light" : "dark");
+    };
+    update();
+    const observer = new MutationObserver(update);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <footer className="bg-[var(--color-surface)]/10 backdrop-blur-[10px] ">
       <div className="mx-auto w-full max-w-[1200px] px-5 pb-5 pt-14">
         <div className="mb-10 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_2fr]">
           <div className="mb-4 flex items-center justify-center">
-            <Image src={logo} alt="Logo Autoshop Autoboutique" width={180} height={160} />
+            <Image
+              src={theme === "dark" ? "/assets/logo1.png" : "/assets/logo2.png"}
+              alt="Logo Autoshop Autoboutique"
+              width={180}
+              height={160}
+            />
           </div>
 
           <div>
-            <h3 className="mb-5 text-sm tracking-[1px] text-text">NAVEGACION</h3>
+            <h3 className="mb-5 text-sm tracking-[1px] text-text">
+              NAVEGACION
+            </h3>
             <ul className="flex flex-col gap-2.5 text-sm text-[var(--text-gray)]">
               <li>
-                <Link className="transition-colors duration-200 hover:text-[var(--primary-red)]" href="/">
+                <Link
+                  className="transition-colors duration-200 hover:text-[var(--primary-red)]"
+                  href="/"
+                >
                   INICIO
                 </Link>
               </li>
               <li>
-                <Link className="transition-colors duration-200 hover:text-[var(--primary-red)]" href="/tienda">
+                <Link
+                  className="transition-colors duration-200 hover:text-[var(--primary-red)]"
+                  href="/tienda"
+                >
                   CATALOGO
                 </Link>
               </li>
               <li>
-                <Link className="transition-colors duration-200 hover:text-[var(--primary-red)]" href="/nosotros">
+                <Link
+                  className="transition-colors duration-200 hover:text-[var(--primary-red)]"
+                  href="/nosotros"
+                >
                   NOSOTROS
                 </Link>
               </li>
@@ -42,7 +72,9 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-5 text-sm tracking-[1px] text-text">CATEGORIAS</h3>
+            <h3 className="mb-5 text-sm tracking-[1px] text-text">
+              CATEGORIAS
+            </h3>
             <ul className="flex flex-col gap-2.5 text-sm text-[var(--text-gray)]">
               {footerCategories.map((cat) => (
                 <li key={cat}>
@@ -67,8 +99,8 @@ export default function Footer() {
 
           <div>
             <p className="text-sm leading-6 text-[#777] text-justify">
-              Líderes en personalización y equipamiento automotriz. 15 años transformando autos comunes en vehículos
-              extraordinarios.
+              Líderes en personalización y equipamiento automotriz. 15 años
+              transformando autos comunes en vehículos extraordinarios.
             </p>
             <div className="mt-4 flex gap-2.5">
               <a
