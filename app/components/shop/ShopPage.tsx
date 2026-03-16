@@ -160,7 +160,7 @@ export default function ShopPage({ products }: Props) {
           >
             <div className="absolute inset-0 bg-black/60 backdrop-blur-[10px]" />
             <motion.div
-              className="relative flex max-h-[88vh] w-full flex-col rounded-t-2xl bg-[#161616]"
+              className="relative flex max-h-[80%] w-full flex-col rounded-t-2xl bg-[#161616]"
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
