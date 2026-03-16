@@ -128,10 +128,16 @@ export default function SearchBar({ className }: { className?: string }) {
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => results.length > 0 && setOpen(true)}
         />
-        {loading && (
+        {loading ? (
           <svg className="animate-spin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M21 12a9 9 0 1 1-6.219-8.56" />
           </svg>
+        ) : query && (
+          <button type="button" onClick={() => { setQuery(""); setOpen(false); }} className="text-[var(--text-gray)] hover:text-[red] transition-colors">
+            <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <path d="M18 6 6 18M6 6l12 12" />
+            </svg>
+          </button>
         )}
       </div>
 
