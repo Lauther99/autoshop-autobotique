@@ -59,7 +59,7 @@ export default function HeroBackgroundSlider({ duration = 5000 }) {
                 src={img}
                 alt={`Fondo de héroe ${i + 1}`}
                 fill
-                className="hero-bg-img"
+                className="hero-bg-img object-cover"
                 priority={i === 0}
               />
             </div>

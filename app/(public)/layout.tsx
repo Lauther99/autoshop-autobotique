@@ -10,11 +10,13 @@ export default function PublicLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <HexagonBackground className="min-h-screen w-full">
+    <>
       <Header />
-      <CartProvider />
-      <main className="mt-[110px]">{children}</main>
-      <Footer />
-    </HexagonBackground>
+      <HexagonBackground className="min-h-screen w-full">
+        <CartProvider />
+        <main>{children}</main>
+        <Footer />
+      </HexagonBackground>
+    </>
   );
 }

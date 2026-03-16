@@ -55,7 +55,7 @@ export default function ShopPage({ products }: Props) {
   return (
     <div className="mx-auto w-full max-w-[1200px] px-5">
       <ShopBreadcrumbs />
-      <div className="relative flex flex-col gap-[30px] py-10 min-[901px]:flex-row">
+      <div className="relative flex flex-col pb-10 min-[901px]:flex-row min-[901px]:gap-15">
         <ShopFilters />
         <div className="flex-1">
           <ShopHeader />

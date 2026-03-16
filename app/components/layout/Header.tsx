@@ -112,6 +112,7 @@ export default function Header() {
   const { items } = useCartStore();
   const toggleCart = useCartStore((state) => state.toggleCart);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const pathname = usePathname();
   const [theme, setTheme] = useState<ThemeMode>(() => {
     if (typeof window === "undefined") return "dark";
@@ -141,32 +142,44 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed top-0 z-50 w-full bg-[var(--color-surface)]/10 backdrop-blur-[10px]">
-        <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-5 py-4">
-          {/* Logo */}
-          <Link href="/">
-            <div className="inline-block">
-              <Image
-                src={theme === "dark" ? "/assets/logos_nav/22.png" : "/assets/logos_nav/11.png"}
-                alt="Logo Autoshop Autoboutique"
-                width={180}
-                height={70}
-              />
-            </div>
+      <header className="sticky top-0 z-50 w-full bg-[#0a0a0a]/85 backdrop-blur-[50px]">
+        <div className="relative mx-auto flex w-full max-w-[1200px] items-center justify-between px-5 py-4">
+
+          {/* Mobile hamburger - izquierda */}
+          <button
+            type="button"
+            onClick={() => setMenuOpen(true)}
+            className="inline-flex h-9 w-9 items-center justify-center text-white md:hidden"
+            aria-label="Abrir menú"
+          >
+            <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+
+          {/* Logo imagen - solo desktop */}
+          <Link href="/" className="hidden md:block">
+            <Image
+              src="/assets/logos_nav/22.png"
+              alt="Logo Autoshop Autoboutique"
+              width={180}
+              height={70}
+            />
           </Link>
-          {/* <div className="inline-block skew-x-[-15deg] py-2.5 text-left">
-            <h1 className="m-0 p-0 text-[2rem] font-black leading-none tracking-[-2px]">
-              <span className="text-[var(--primary-red)]">AUTO</span>
-              <span className="text-[var(--text-white)]">SHOP</span>
-            </h1>
-            <span className="mt-0.5 block text-base font-black text-[var(--primary-red)] tracking-[4px]">
-              AUTOBOUTIQUE
-            </span>
-          </div> */}
+
+          {/* Logo imagen - centrado, solo mobile */}
+          <Link href="/" className="absolute left-1/2 -translate-x-1/2 md:hidden">
+            <Image
+              src="/assets/logos_nav/22.png"
+              alt="Logo Autoshop Autoboutique"
+              width={120}
+              height={46}
+            />
+          </Link>
 
           {/* Desktop nav */}
           <nav>
-            <ul className="hidden items-center gap-6 text-sm font-medium md:flex">
+            <ul className="hidden items-center gap-6 text-sm font-medium md:flex text-white">
               {NAV_LINKS.map(({ href, label }) => (
                 <li key={href}>
                   <Link className={linkClass} href={href}>
@@ -183,7 +196,7 @@ export default function Header() {
             <button
               type="button"
               onClick={toggleTheme}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-[var(--color-border)] bg-[var(--bg-input)] text-[var(--text-white)] transition-colors hover:border-[var(--primary-red)]"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-[var(--color-border)] bg-[var(--bg-input)] transition-colors hover:border-[var(--primary-red)]"
               aria-label="Cambiar tema"
             >
               <ThemeIcon />
@@ -201,25 +214,20 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Mobile hamburger */}
+          {/* Mobile search icon - derecha */}
           <button
             type="button"
-            onClick={() => setMenuOpen(true)}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-[var(--color-border)] bg-[var(--bg-input)] text-[var(--text-white)] md:hidden"
-            aria-label="Abrir menú"
+            onClick={() => setSearchOpen((v) => !v)}
+            className="inline-flex h-9 w-9 items-center justify-center text-white md:hidden"
+            aria-label="Buscar"
           >
-            <svg
-              width="20"
-              height="20"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-            >
-              <path d="M4 6h16M4 12h16M4 18h16" />
+            <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
             </svg>
           </button>
         </div>
+
       </header>
 
       {/* Overlay */}
@@ -232,8 +240,8 @@ export default function Header() {
 
       {/* Drawer */}
       <div
-        className={`fixed right-0 top-0 z-[70] flex h-full bg-[var(--color-bg)] w-[85%] flex-col bg-[#120808] transition-transform duration-300 ease-in-out md:hidden ${
-          menuOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed left-0 top-0 z-[70] flex h-full bg-[var(--color-bg)] w-[85%] flex-col bg-[#120808] transition-transform duration-300 ease-in-out md:hidden ${
+          menuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         {/* Header del drawer */}
@@ -350,6 +358,37 @@ export default function Header() {
           </button>
         </div>
       </div>
+
+      {/* Mobile search modal */}
+      {searchOpen && (
+        <div
+          className="fixed inset-0 z-[80] flex flex-col md:hidden"
+          onClick={() => setSearchOpen(false)}
+        >
+          {/* Panel superior */}
+          <div
+            className="w-full bg-[#0a0a0a] px-4 pt-5 pb-4 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="mb-3 flex items-center justify-between">
+              <span className="text-sm font-semibold text-white/60 uppercase tracking-widest">Buscar</span>
+              <button
+                type="button"
+                onClick={() => setSearchOpen(false)}
+                className="flex h-7 w-7 items-center justify-center rounded-full bg-[var(--primary-red)] text-white"
+                aria-label="Cerrar búsqueda"
+              >
+                <svg width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                  <path d="M18 6 6 18M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <SearchBar className="relative w-full" />
+          </div>
+          {/* Overlay oscuro */}
+          <div className="flex-1 bg-black/60 backdrop-blur-[10px]" />
+        </div>
+      )}
     </>
   );
 }

@@ -13,7 +13,7 @@ const footerCategories = [
 ];
 
 export default function Footer() {
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [theme, setTheme] = useState<"dark" | "light">("light");
 
   useEffect(() => {
     const update = () => {
