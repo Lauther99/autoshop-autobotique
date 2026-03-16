@@ -13,14 +13,15 @@ import { Product } from "@/types/product";
 import SearchBar from "@/app/components/layout/SearchBar";
 import { motion, AnimatePresence } from "framer-motion";
 import { STATIC_BRANDS, STATIC_CATEGORIES } from "@/docs/categories";
+import { FaArrowTrendDown, FaArrowTrendUp } from "react-icons/fa6";
 
 interface Props {
   products: Product[];
 }
 
 const SORT_OPTIONS = [
-  { value: "price-asc", label: "Menor precio" },
-  { value: "price-desc", label: "Mayor precio" },
+  { value: "price-asc", label: "Menor precio", icon: FaArrowTrendDown },
+  { value: "price-desc", label: "Mayor precio", icon: FaArrowTrendUp },
 ] as const;
 
 type SortValue = (typeof SORT_OPTIONS)[number]["value"];
@@ -322,7 +323,10 @@ export default function ShopPage({ products }: Props) {
                       onClick={() => setPendingSort(opt.value)}
                       className="flex w-full items-center justify-between rounded-xl px-4 py-4 transition-colors hover:bg-white/5"
                     >
-                      <span className="text-[0.95rem] text-white">{opt.label}</span>
+                      <span className="flex items-center gap-2.5 text-[0.95rem] text-white">
+                        <opt.icon style={{ color: "rgb(255, 0, 0)" }} />
+                        {opt.label}
+                      </span>
                       <span className={`flex h-5 w-5 items-center justify-center rounded-full border-2 ${
                         pendingSort === opt.value ? "border-[var(--primary-red)]" : "border-white/30"
                       }`}>
