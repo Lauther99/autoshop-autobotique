@@ -89,7 +89,7 @@ export default function ShopFilters() {
   };
 
   return (
-    <aside className="w-full shrink-0 min-[901px]:w-[280px]">
+    <aside className="hidden w-full shrink-0 min-[901px]:block min-[901px]:w-[280px]">
       <div className="mb-7">
         <div className="flex items-center justify-between">
           <div className="flex items-center">

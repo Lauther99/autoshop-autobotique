@@ -25,7 +25,7 @@ export default function ShopHeader() {
   };
 
   return (
-    <header className="mb-5 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
+    <header className="mb-5 hidden flex-col items-start justify-between gap-3 min-[901px]:flex min-[901px]:flex-row min-[901px]:items-center">
       <h2 className="text-[1.8rem]">Tienda</h2>
 
       <div className="flex w-full items-center gap-2.5 sm:w-auto">
