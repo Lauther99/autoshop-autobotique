@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Product } from "@/types/product";
 import { useCartStore } from "@/store/cartStore";
 import Toast from "@/app/components/ui/Toast";
+import WhatsAppButton from "@/app/components/ui/WhatsAppButton";
 import { FaStore, FaTruck, FaLocationDot, FaEarthAmericas } from "react-icons/fa6";
 
 type CurrencyCode = "SOL" | "MXN" | "USD" | string;
@@ -63,10 +64,12 @@ export default function ProductInfo({ product }: Props) {
       )}
       <h1 className="p-title font-bold">{product.title}</h1>
 
-      <div className="p-price">
-        {currencies[product.currency]}
-        {product.price}
-      </div>
+      {product.price > 0 && (
+        <div className="p-price">
+          {currencies[product.currency]}
+          {product.price}
+        </div>
+      )}
 
       {inStock && <div className="shipping-promo">Disponible</div>}
       {backorder && (
@@ -168,31 +171,38 @@ export default function ProductInfo({ product }: Props) {
             +
           </button>
         </div> */}
-          <button
-            style={{}}
-            className="btn-add"
-            disabled={!inStock && !backorder}
-            onClick={() => {
-              addItem({
-                id: product.id,
-                title: product.title,
-                price: product.price,
-                quantity: 1,
-                image: product.images ? product.images[0] : "",
-                sku: product.sku ?? "",
-                currency: product.currency,
-                stock: product.stock,
-                isFreeShipping: product.isFreeShipping,
-                backorder: product.backorder,
-                backorderDays: product.backorderDays,
-                backorderQty: 0,
-              });
-              setOpenToast(true);
-              setToastMessage("Producto agregado.");
-            }}
-          >
-            Añadir al Carrito
-          </button>
+          {product.price === 0 ? (
+            <WhatsAppButton
+              inline
+              label="Consultar precio y disponibilidad"
+              message={`Hola! Me interesa el producto "${product.title}" y quisiera consultar el precio y disponibilidad.`}
+            />
+          ) : (
+            <button
+              className="btn-add"
+              disabled={!inStock && !backorder}
+              onClick={() => {
+                addItem({
+                  id: product.id,
+                  title: product.title,
+                  price: product.price,
+                  quantity: 1,
+                  image: product.images ? product.images[0] : "",
+                  sku: product.sku ?? "",
+                  currency: product.currency,
+                  stock: product.stock,
+                  isFreeShipping: product.isFreeShipping,
+                  backorder: product.backorder,
+                  backorderDays: product.backorderDays,
+                  backorderQty: 0,
+                });
+                setOpenToast(true);
+                setToastMessage("Producto agregado.");
+              }}
+            >
+              Añadir al Carrito
+            </button>
+          )}
         </div>
         {!inStock && !backorder && (
           <button className="btn-buy-now" disabled={!inStock && !backorder}>

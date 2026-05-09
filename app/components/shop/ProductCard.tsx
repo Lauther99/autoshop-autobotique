@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCartStore } from "@/store/cartStore";
 import { currencies, Product } from "@/types/product";
+import WhatsAppButton from "@/app/components/ui/WhatsAppButton";
 
 export default function ProductCard({
   product,
@@ -57,38 +58,48 @@ export default function ProductCard({
       <div className="flex flex-1 flex-col p-4">
         <div className="mb-1 text-xs font-bold uppercase text-[var(--primary-red)]">{product.brand}</div>
         <div className="mb-2.5 flex-1 text-base font-semibold leading-[1.4]">{product.title}</div>
-        <div className="mb-3.5 text-[1.3rem] font-bold text-[var(--primary-red)]">
-          {currencies[product.currency]}
-          {product.price.toFixed(2)}
-        </div>
-        <button
-          disabled={!inStock && !backorder}
-          onClick={(e) => {
-            e.stopPropagation();
-            e.preventDefault();
+        {product.price > 0 && (
+          <div className="mb-3.5 text-[1.3rem] font-bold text-[var(--primary-red)]">
+            {currencies[product.currency]}
+            {product.price.toFixed(2)}
+          </div>
+        )}
+        {product.price === 0 ? (
+          <WhatsAppButton
+            inline
+            label="Consultar precio"
+            message={`Hola! Me interesa el producto "${product.title}" y quisiera consultar el precio y disponibilidad.`}
+          />
+        ) : (
+          <button
+            disabled={!inStock && !backorder}
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
 
-            addItem({
-              id: product.id,
-              title: product.title,
-              price: product.price,
-              quantity: 1,
-              image: product.images ? product.images[0] : "",
-              sku: product.sku ?? "",
-              currency: product.currency,
-              stock: product.stock,
-              isFreeShipping: product.isFreeShipping,
-              backorder: product.backorder,
-              backorderDays: product.backorderDays,
-              backorderQty: 0,
-            });
+              addItem({
+                id: product.id,
+                title: product.title,
+                price: product.price,
+                quantity: 1,
+                image: product.images ? product.images[0] : "",
+                sku: product.sku ?? "",
+                currency: product.currency,
+                stock: product.stock,
+                isFreeShipping: product.isFreeShipping,
+                backorder: product.backorder,
+                backorderDays: product.backorderDays,
+                backorderQty: 0,
+              });
 
-            setOpenToast(true);
-            setToastMessage("Producto agregado.");
-          }}
-          className="w-full rounded border border-[#333] bg-[#202020] px-3 py-2.5 text-xs font-semibold uppercase text-[#ccc] transition hover:border-[var(--primary-red)] hover:bg-[var(--primary-red)] hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          Anadir al carrito
-        </button>
+              setOpenToast(true);
+              setToastMessage("Producto agregado.");
+            }}
+            className="w-full rounded border border-[#333] bg-[#202020] px-3 py-2.5 text-xs font-semibold uppercase text-[#ccc] transition hover:border-[var(--primary-red)] hover:bg-[var(--primary-red)] hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            Anadir al carrito
+          </button>
+        )}
       </div>
     </Link>
   );
