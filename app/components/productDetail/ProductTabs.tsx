@@ -79,7 +79,7 @@ export default function ProductTabs({ product }: Props) {
                 <div>
                   {specs.map((s, index) => (
                     <div
-                      key={s.label}
+                      key={`${s.label}-${index}`}
                       className={`
                         flex justify-between py-3 text-sm
                         ${index !== specs.length - 1 ? "border-b border-[gray]/20" : ""}
