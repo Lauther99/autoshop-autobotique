@@ -12,8 +12,8 @@ export default function PublicLayout({
   return (
     <>
       <Header />
+      <CartProvider />
       <HexagonBackground className="min-h-screen w-full">
-        <CartProvider />
         <main>{children}</main>
         <Footer />
       </HexagonBackground>

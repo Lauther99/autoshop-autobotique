@@ -10,5 +10,9 @@ export async function GET(request: Request) {
   if (!query.trim()) return NextResponse.json([]);
 
   const products = await searchProducts(query, offset, limit);
-  return NextResponse.json(products);
+  return NextResponse.json(products, {
+    headers: {
+      "Cache-Control": "s-maxage=60",
+    },
+  });
 }
